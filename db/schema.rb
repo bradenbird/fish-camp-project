@@ -10,6 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20180305233739) do
+
+  create_table "session_availabilities", force: :cascade do |t|
+    t.integer "session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_session_availabilities_on_session_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "year", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
