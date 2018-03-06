@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20180306033240) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
     t.datetime "submitted_at"
@@ -102,15 +105,15 @@ ActiveRecord::Schema.define(version: 20180306033240) do
 
   create_table "camps", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "session_id", null: false
+    t.bigint "session_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_camps_on_session_id"
   end
 
   create_table "chairs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "camp_id"
+    t.bigint "user_id", null: false
+    t.bigint "camp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_chairs_on_camp_id"
@@ -118,8 +121,8 @@ ActiveRecord::Schema.define(version: 20180306033240) do
   end
 
   create_table "session_availabilities", force: :cascade do |t|
-    t.integer "session_id", null: false
-    t.integer "applicant_id", null: false
+    t.bigint "session_id", null: false
+    t.bigint "applicant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["applicant_id"], name: "index_session_availabilities_on_applicant_id"

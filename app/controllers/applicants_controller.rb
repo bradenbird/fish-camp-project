@@ -1,10 +1,10 @@
 class ApplicantsController < ApplicationController
-  def index 
+  def index
     @applicants = Applicant.all
   end 
-    
-  def import 
+
+  def import
     Applicant.import(params[:file])
-    redirect_to request.referrer, notice: "Applicants imported."  
+    redirect_to request.referrer, notice: "Applicants imported."
   end
 end
