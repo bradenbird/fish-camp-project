@@ -1,0 +1,42 @@
+<!-- Applicant DB page -->
+
+<html>
+  <head>
+    <title>Fish Camp Profile</title>
+  </head>
+
+  <body>
+    <h1 style="font-size:300%">Fish Camp Homepage</h1>
+    <%= link_to 'Home', home_path %>
+    &emsp;
+    <%= link_to 'Register Now', register_path %>
+    &emsp;
+    <%= link_to 'FishCamp Profile', profile_path %>
+    <br>
+    <h1>Fish Camp Profile</h1>
+    <br>
+    <hr>
+    <section>
+      <table id="Applicants">
+        <tr>
+          <th>UIN</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tr>
+      <% @applicants.each do |applicant| %>
+        <tr>
+          <td><%= applicant.uin %></td>
+          <td><%= applicant.first_name %></td>
+          <td><%= applicant.last_name %></td>
+        </tr>
+      <% end %>
+      </table>
+      Import Applicant Spreadsheet
+
+      <%= form_tag import_applicants_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import" %>
+      <% end %>
+    </section>
+  </body>
+</html>

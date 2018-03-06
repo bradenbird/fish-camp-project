@@ -11,6 +11,17 @@
   </head>
 
   <body>
+
+    <h1 style="font-size:300%">Fish Camp Homepage</h1>
+    <%= link_to 'Home', home_path %>
+    &emsp;
+    <%= link_to 'Register Now', register_path %>
+    &emsp;
+    <%= link_to 'FishCamp Profile', profile_path %>
+    
+    <br>
+    <br>
+
     <div>
       <p style="text-align:right">
         <% if current_user %>
@@ -22,6 +33,9 @@
           Please use a valid TAMU Google login.
         <% end %>
       </p>
+    </div>
+    <div>
+      <%= link_to 'Applicant Database', applicants_path %>
     </div>
     <div>
     <%= yield %>
