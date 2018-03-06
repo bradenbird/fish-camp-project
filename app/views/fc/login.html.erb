@@ -1,0 +1,23 @@
+<!-- Redirect Login Page -->
+
+<html>
+  <head>
+    <title>Fish Camp Registration</title>
+  </head>
+
+  <body>
+    <div>
+      <% if current_user %>
+        <!-- Redirect to the page originally requested -->
+        Error redirecting you to the requested page. Press
+        <%= link_to "here", home_path %>
+        to return to the home page.
+      <% else %>
+        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+        <br>
+        Please use a valid TAMU Google login.
+      <% end %>
+    </div>
+    <div>
+  </body>
+</html>

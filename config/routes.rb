@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get "/fc/home", to: "fc#home", as: "home"
 
+  get "/fc/login/", to: "fc#login", as: "login"
+
   get "/fc/register", to: "fc#register", as: "register"
 
   get "/fc/profile", to: "fc#profile", as: "profile"

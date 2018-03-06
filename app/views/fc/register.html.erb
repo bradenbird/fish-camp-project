@@ -6,6 +6,21 @@
   </head>
 
   <body>
+    <div>
+      <p style="text-align:right">
+        <% if current_user %>
+          Signed in as <strong><%= current_user.name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+          <br>
+          Please use a valid TAMU Google login.
+        <% end %>
+      </p>
+    </div>
+    <div>
+    <%= yield %>
+    </div>
     <h1 style="font-size:300%">Fish Camp Homepage</h1>
     <%= link_to 'Home', home_path %>
     &emsp;
@@ -17,7 +32,28 @@
     <br>
     <hr>
     <section>
-      <h2>We should discuss how we're gonna handle login stuff, and then what actually goes on this page.</h2>
+      <h2>Registration Currently Open</h2>
+      <h3>Co-Chair Registration</h3>
+      <p><b>Co-Chair Registration is now open!</b> Click the button below to begin registration.</p>
+      <%= link_to "I go to home", home_path %>
+    </section>
+    <br>
+    <section>
+      <h2>Closed Registration Types</h2>
+      <h3>Freshman Registration</h3>
+      <p>This registration type is open from May 21, 2018 3:00pm to Jun 11, 2018 3:00pm.</p>
+      <h3>Counselor Phase 1 Registration</h3>
+      <p>This registration type is open from Jan 19, 2016 3:00pm to May 7, 2017 3:00pm.</p>
+      <h3>Counselor Phase 2 Registration</h3>
+      <p>This registration type is open from Mar 6, 2015 3:00pm to May 7, 2017 3:00pm.</p>
+      <h3>Director Registration</h3>
+      <p>This registration type is open from Jan 26, 2018 3:00pm to Jan 28, 2018 3:00pm.</p>
+    </section>
+    <hr>
+    <br>
+    <section style="text-align:center;">
+      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a></h3>
+      <h3>Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
     </section>
   </body>
 </html>
