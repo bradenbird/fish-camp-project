@@ -29,9 +29,9 @@
     <h1 style="font-size:300%">Fish Camp Homepage</h1>
     <%= link_to 'Home', home_path %>
     &emsp;
-    <%= link_to 'Register Now', login_path, controller: 'login', reqpath: 'register_path' %>
+    <%= link_to "Register Now", login_path(:reqpath => 'register') %>
     &emsp;
-    <%= link_to 'FishCamp Profile', login_path, :id => 'profile_path' %>
+    <%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
     <br>
     <br>
     <h1>Online Registration</h1>
