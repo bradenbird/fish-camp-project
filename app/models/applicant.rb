@@ -237,6 +237,8 @@ class Applicant < ApplicationRecord
       applicant.app_question_3 = spreadsheet.cell(i,'CX')
       applicant.crew_question = spreadsheet.cell(i,'CZ')
       applicant.created_at = Time.now.strftime("%d/%m/%Y %H:%M")
+      
+      applicant.save!
     end
   end
   
