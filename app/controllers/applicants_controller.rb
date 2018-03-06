@@ -7,5 +7,4 @@ class ApplicantsController < ApplicationController
     Applicant.import(params[:file])
     redirect_to request.referrer, notice: "Applicants imported."  
   end
-
 end
