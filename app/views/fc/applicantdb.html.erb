@@ -20,7 +20,7 @@
       <h2>This is where Tyler Should display the user data</h2>
       <h2>Import Applicant Spreadsheet</h2>
 
-      <%= form_tag import_applicant_path, multipart: true do %>
+      <%= form_tag import_applicants_path, multipart: true do %>
         <%= file_field_tag :file %>
         <%= submit_tag "Import" %>
       <% end %>

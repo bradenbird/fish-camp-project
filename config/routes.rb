@@ -2,9 +2,13 @@ FishCampProject::Application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  get '/fc/applicantdb', to: 'fc#applicantdb', as: 'applicantdb' 
 
   resources :sessions, only: [:create, :destroy]
-
+  
+  resources :applicants do
+    collection { post :import }
+  end
   #root to: "home#show"
 end
 
@@ -14,9 +18,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'fc#home'
 
-  resources :applicants do
-    collection { post :import }
-  end
+  
   
   resources :fc, :path => '', :only => [:show, :new, :create, :index]
 
@@ -26,7 +28,6 @@ Rails.application.routes.draw do
 
   get "/fc/profile", to: "fc#profile", as: "profile"
   
-  get "/fc/applicantdb", to: "fc#applicantdb", as: "applicantdb" 
   
 
 end
