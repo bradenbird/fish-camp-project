@@ -1,9 +1,8 @@
 FishCampProject::Application.routes.draw do
-  debugger
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
-  get '/fc/applicantdb', to: 'applicants#index', as: 'applicantdb' 
+  get '/fc/applicants', to: 'applicants#index', as: 'applicants' 
 
   resources :sessions, only: [:create, :destroy]
   
