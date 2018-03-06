@@ -5,6 +5,6 @@ class ApplicantsController < ApplicationController
     
     def import 
       Applicant.import(params[:file])
-      redirect_to root_url, notice: "Applicants imported."  
+      redirect_to request.referrer, notice: "Applicants imported."  
     end
 end 
