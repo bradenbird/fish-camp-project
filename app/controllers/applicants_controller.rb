@@ -1,6 +1,7 @@
 class ApplicantsController < ApplicationController
     def index
-      @applicants = Applicant.order(:first_name)
+      
+      @applicants = Applicant.all
     end 
     
     def import 

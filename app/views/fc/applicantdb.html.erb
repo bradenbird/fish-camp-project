@@ -17,8 +17,21 @@
     <br>
     <hr>
     <section>
-      <h2>This is where Tyler Should display the user data</h2>
-      <h2>Import Applicant Spreadsheet</h2>
+      <table id="Applicants">
+        <tr>
+          <th>UIN</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+        </tr>
+      <% @applicants.each do |applicant| %>
+        <tr>
+          <td><%= applicant.uin %></td>
+          <td><%= applicant.first_name %></td>
+          <td><%= applicant.last_name %></td>
+        </tr>
+      <% end %>
+      </table>
+      Import Applicant Spreadsheet
 
       <%= form_tag import_applicants_path, multipart: true do %>
         <%= file_field_tag :file %>
