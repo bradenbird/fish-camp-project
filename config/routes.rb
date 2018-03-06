@@ -14,6 +14,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'fc#home'
 
+  resources :applicants do
+    collection { post :import }
+  end
+  
   resources :fc, :path => '', :only => [:show, :new, :create, :index]
 
   get "/fc/home", to: "fc#home", as: "home"
@@ -21,5 +25,8 @@ Rails.application.routes.draw do
   get "/fc/register", to: "fc#register", as: "register"
 
   get "/fc/profile", to: "fc#profile", as: "profile"
+  
+  get "/fc/applicantdb", to: "fc#applicantdb", as: "applicantdb" 
+  
 
 end

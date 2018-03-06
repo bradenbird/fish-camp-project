@@ -1,0 +1,29 @@
+<!-- Applicant DB page -->
+
+<html>
+  <head>
+    <title>Fish Camp Profile</title>
+  </head>
+
+  <body>
+    <h1 style="font-size:300%">Fish Camp Homepage</h1>
+    <%= link_to 'Home', home_path %>
+    &emsp;
+    <%= link_to 'Register Now', register_path %>
+    &emsp;
+    <%= link_to 'FishCamp Profile', profile_path %>
+    <br>
+    <h1>Fish Camp Profile</h1>
+    <br>
+    <hr>
+    <section>
+      <h2>This is where Tyler Should display the user data</h2>
+      <h2>Import Applicant Spreadsheet</h2>
+
+      <%= form_tag import_applicant_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import" %>
+      <% end %>
+    </section>
+  </body>
+</html>
