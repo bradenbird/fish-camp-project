@@ -109,10 +109,12 @@ ActiveRecord::Schema.define(version: 20180306033240) do
   end
 
   create_table "chairs", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "camp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_chairs_on_camp_id"
+    t.index ["user_id"], name: "index_chairs_on_user_id"
   end
 
   create_table "session_availabilities", force: :cascade do |t|
