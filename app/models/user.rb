@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
   has_one :chairs
 
+  validates :google_uid, presence: true
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :role, presence: true
+
   def self.from_omniauth(auth)
     where(google_uid: auth.uid).first_or_initialize.tap do |user|
       user.google_uid = auth.uid
