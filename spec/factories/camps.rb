@@ -4,5 +4,6 @@ require 'faker'
 FactoryBot.define do
   factory :camp do |c|
     c.name{ Faker::Name.last_name }
-  end 
+    c.association :session 
+  end
 end
