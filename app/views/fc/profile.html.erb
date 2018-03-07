@@ -32,7 +32,14 @@
     <br>
     <hr>
     <section>
-      <h2>Again, we should discuss login procedures, and what exactly goes in here</h2>
+      <h2>Hello, <strong><%= current_user.name %></strong></h2>
+      <br>
+      <h3>Your current profile information:</h3>
+      <br>
+      <p>Name: <strong><%= current_user.name %></strong></p>
+      <p>UIN: <strong><%= current_user.uin %></strong></p>
+      <p>Email: <strong><%= current_user.email %></strong></p>
+      <p>Role: <strong><%= current_user.role %></strong></p>
     </section>
   </body>
 </html>
