@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Applicant, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory"
+  it "is invalid without a submission_id"
+  it "is invalid without a uin"
 end
