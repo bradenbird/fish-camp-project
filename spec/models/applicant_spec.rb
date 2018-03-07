@@ -12,4 +12,8 @@ RSpec.describe Applicant, type: :model do
   it "is invalid without a uin" do
     expect(build(:applicant, uin: nil)).to_not be_valid
   end
+
+  describe "import" do
+    # testing for import goes here
+  end
 end
