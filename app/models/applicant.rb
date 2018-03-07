@@ -5,8 +5,10 @@ require 'roo'
 class Applicant < ApplicationRecord
   has_many :session_availabilities
   has_many :sessions, through: :session_availabilities
-  
-  
+
+  validates :submission_id, presence: true
+  validates :uin, presence: true
+
   def self.import(file)
     spreadsheet = open_spreadsheet(file)
     (2..spreadsheet.last_row).each do |i|
@@ -19,9 +21,9 @@ class Applicant < ApplicationRecord
       applicant.last_name = spreadsheet.cell(i,'L')
       if (spreadsheet.cell(i,'F') == 'Approved')
         applicant.status = true
-      else 
+      else
         applicant.status = false
-      end 
+      end
       applicant.comment = spreadsheet.cell(i,'G')
       applicant.updated_by = spreadsheet.cell(i,'H')
       applicant.updated_at = spreadsheet.cell(i,'I')
@@ -37,7 +39,7 @@ class Applicant < ApplicationRecord
       applicant.address = spreadsheet.cell(i,'W')
       applicant.extracurriculars = spreadsheet.cell(i,'X')
       applicant.shirt_size = spreadsheet.cell(i,'Y')
-      
+
       applicant.parent_name = spreadsheet.cell(i,'AB')
       applicant.parent_phone = spreadsheet.cell(i,'AC')
       applicant.parent_email = spreadsheet.cell(i,'AD')
@@ -45,7 +47,7 @@ class Applicant < ApplicationRecord
       applicant.parent_city = spreadsheet.cell(i,'AF')
       applicant.parent_state = spreadsheet.cell(i,'AG')
       applicant.parent_zip = spreadsheet.cell(i,'AH')
-      
+
       applicant.alt_contact_1_name = spreadsheet.cell(i,'AJ')
       applicant.alt_contact_1_phone = spreadsheet.cell(i,'AK')
       applicant.alt_contact_1_email = spreadsheet.cell(i, 'AL')
@@ -53,7 +55,7 @@ class Applicant < ApplicationRecord
       applicant.alt_contact_1_city = spreadsheet.cell(i,'AN')
       applicant.alt_contact_1_state = spreadsheet.cell(i,'AO')
       applicant.alt_contact_1_zip = spreadsheet.cell(i,'AP')
-      
+
       applicant.alt_contact_2_name = spreadsheet.cell(i,'AR')
       applicant.alt_contact_2_phone = spreadsheet.cell(i,'AS')
       applicant.alt_contact_2_email = spreadsheet.cell(i, 'AT')
@@ -61,15 +63,15 @@ class Applicant < ApplicationRecord
       applicant.alt_contact_2_city = spreadsheet.cell(i,'AV')
       applicant.alt_contact_2_state = spreadsheet.cell(i,'AW')
       applicant.alt_contact_2_zip = spreadsheet.cell(i,'AX')
-      
+
       applicant.insurance_provider = spreadsheet.cell(i,'AY')
       applicant.insurance_policy_number = spreadsheet.cell(i,'AZ')
       applicant.insurance_policy_holder_name = spreadsheet.cell(i,'BA')
       applicant.last_tetanus_booster_date = spreadsheet.cell(i,'BB')
-      
+
       applicant.drug_allergies = spreadsheet.cell(i,'BC')
       applicant.food_allergies = spreadsheet.cell(i,'BD')
-      
+
       if(spreadsheet.cell(i,'BE') == "None")
         applicant.dietary_none = true
         applicant.dietary_red_meat = false
@@ -82,37 +84,37 @@ class Applicant < ApplicationRecord
         applicant.dietary_none = false
         if(spreadsheet.cell(i,'BF').blank?)
           applicant.dietary_red_meat = false
-        else 
+        else
           applicant.dietary_red_meat = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BG').blank?)
           applicant.dietary_vegan = false
-        else 
+        else
           applicant.dietary_vegan = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BH').blank?)
           applicant.dietary_vegetarian = false
-        else 
+        else
           applicant.dietary_vegetarian = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BI').blank?)
           applicant.dietary_dairy_free = false
-        else 
+        else
           applicant.dietary_dairy_free = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BJ').blank?)
           applicant.dietary_gluten_free = false
-        else 
+        else
           applicant.dietary_gluten_free = true
-        end 
-        
+        end
+
         applicant.dietary_other = spreadsheet.cell(i,'BK')
       end
-      
+
       applicant.medications = spreadsheet.cell(i,'BL')
       if(spreadsheet.cell(i,'BM') == "None")
         applicant.accommodations_none = true
@@ -123,129 +125,129 @@ class Applicant < ApplicationRecord
         applicant.accommodations_none = false
         if(spreadsheet.cell(i,'BN').blank?)
           applicant.accommodations_auditory = false
-        else 
+        else
           applicant.accommodations_auditory = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BO').blank?)
           applicant.accommodations_visual = false
-        else 
+        else
           applicant.accommodations_visual = true
-        end 
-        
+        end
+
         if(spreadsheet.cell(i,'BP').blank?)
           applicant.accommodations_physical = false
-        else 
+        else
           applicant.accommodations_physical = true
-        end 
-      end 
+        end
+      end
       applicant.accommodations_other = spreadsheet.cell(i,'BQ')
       applicant.other_medical_concerns = spreadsheet.cell(i,'BR')
-      
+
       if(spreadsheet.cell(i,'BV').blank?)
           applicant.policy_agreement = false
-      else 
+      else
           applicant.policy_agreement = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'BX').blank?)
           applicant.behavior_agreement = false
-      else 
+      else
           applicant.behavior_agreement = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'BZ').blank?)
           applicant.personal_responsibility_agreement = false
-      else 
+      else
           applicant.personal_responsibility_agreement = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CB').blank?)
           applicant.liability_waiver = false
-      else 
+      else
           applicant.liability_waiver = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CD').blank?)
           applicant.photo_release = false
-      else 
+      else
           applicant.photo_release = true
       end
-      
+
       if(spreadsheet.cell(i,'CF').blank?)
           applicant.camp_counselor = false
-      else 
+      else
           applicant.camp_counselor = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CG').blank?)
           applicant.crew_counselor = false
-      else 
+      else
           applicant.crew_counselor = true
-      end 
-      
+      end
+
       applicant.pick_up_only = spreadsheet.cell(i,'CI')
-      
+
       if(spreadsheet.cell(i,'CJ').blank?)
           applicant.session_A = false
-      else 
+      else
           applicant.session_A = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CK').blank?)
           applicant.session_B = false
-      else 
+      else
           applicant.session_B = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CL').blank?)
           applicant.session_C = false
-      else 
+      else
           applicant.session_C = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CM').blank?)
           applicant.session_D = false
-      else 
+      else
           applicant.session_D = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CN').blank?)
           applicant.session_E = false
-      else 
+      else
           applicant.session_E = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CO').blank?)
           applicant.session_F = false
-      else 
+      else
           applicant.session_F = true
-      end 
-      
+      end
+
       if(spreadsheet.cell(i,'CP').blank?)
           applicant.session_G = false
-      else 
+      else
           applicant.session_G = true
-      end 
-      
+      end
+
       applicant.camp_history = spreadsheet.cell(i,'CQ')
       applicant.no_show_explanation = spreadsheet.cell(i,'CR')
       if(spreadsheet.cell(i,'CS').blank?)
           applicant.abuse_agreement = false
-      else 
+      else
           applicant.abuse_agreement = true
-      end 
-      
+      end
+
       applicant.app_question_1 = spreadsheet.cell(i,'CV')
       applicant.app_question_2 = spreadsheet.cell(i,'CW')
       applicant.app_question_3 = spreadsheet.cell(i,'CX')
       applicant.crew_question = spreadsheet.cell(i,'CZ')
       applicant.created_at = Time.now.strftime("%d/%m/%Y %H:%M")
-      
+
       applicant.save!
     end
   end
-  
+
   def self.open_spreadsheet(file)
     case File.extname(file.original_filename)
     when ".csv" then Roo::CSV.new(file.path)
@@ -254,7 +256,5 @@ class Applicant < ApplicationRecord
     else raise "Unknown file type: #{file.original_filename}"
     end
   end
-  
+
 end
-
-
