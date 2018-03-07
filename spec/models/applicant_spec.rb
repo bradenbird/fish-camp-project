@@ -15,5 +15,8 @@ RSpec.describe Applicant, type: :model do
 
   describe "import" do
     # testing for import goes here
+    it "has a valid fixture" do
+      expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
+    end
   end
 end
