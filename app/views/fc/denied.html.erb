@@ -2,14 +2,48 @@
 
 <html>
   <head>
-    <title>Access Denied</title>
+    <title>Fish Camp Registration</title>
   </head>
 
   <body>
+    <div class = "header">
+      <p style="text-align:right">
+        <% if current_user %>
+          Signed in as <strong><%= current_user.name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+          <br>
+          Please use a valid TAMU Google login.
+        <% end %>
+      </p>
+    </div>
+
+    <div class="body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Redirect</h>
+      <br><br>
+    </div>
     <div>
+    <%= yield %>
+    </div>
+    <ul class = "bar">
+      <li class = "bar"><%= link_to 'Home', home_path %>
+      &emsp;
+      <li class = "bar"><%= link_to "Register Now", login_path(:reqpath => 'register') %>
+      &emsp;
+      <li class = "bar"><%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
+      &emsp;
+      <% if current_user %>
+      <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+      <% end %>
+    </ul>
+    <br>
+    <div class="redirect">
       <% if current_user %>
         <!-- Redirect to the page originally requested -->
-        You do not have permission to view this page. Press
+        Error redirecting you to the requested page. Press
         <%= link_to "here", home_path %>
         to return to the home page.
       <% else %>
@@ -18,5 +52,13 @@
         Please use a valid TAMU Google login.
       <% end %>
     </div>
+    <br>
+    </div>
+    <div class = "footer">
+      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
+      <br>
+      Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
+    </div>
+    <br>
   </body>
 </html>

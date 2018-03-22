@@ -6,7 +6,7 @@
   </head>
 
   <body>
-  <div class = "title">
+    <div class = "header">
       <p style="text-align:right">
         <% if current_user %>
           Signed in as <strong><%= current_user.name %></strong>!
@@ -17,10 +17,17 @@
           Please use a valid TAMU Google login.
         <% end %>
       </p>
-      <h style="font-size:300%">&#x1F41F Fish Camp Homepage</h>
-      <br><br><br>
     </div>
+
     <div class="body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Redirect</h>
+      <br><br>
+    </div>
+    <div>
+    <%= yield %>
+    </div>
     <ul class = "bar">
       <li class = "bar"><%= link_to 'Home', home_path %>
       &emsp;
@@ -32,6 +39,7 @@
       <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
       <% end %>
     </ul>
+    <br>
     <div class="redirect">
       <% if current_user %>
         <!-- Redirect to the page originally requested -->
@@ -44,6 +52,13 @@
         Please use a valid TAMU Google login.
       <% end %>
     </div>
+    <br>
     </div>
+    <div class = "footer">
+      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
+      <br>
+      Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
+    </div>
+    <br>
   </body>
 </html>
