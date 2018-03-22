@@ -6,7 +6,7 @@
   </head>
 
   <body>
-    <div class = "title">
+    <div class = "header">
       <p style="text-align:right">
         <% if current_user %>
           Signed in as <strong><%= current_user.name %></strong>!
@@ -17,13 +17,17 @@
           Please use a valid TAMU Google login.
         <% end %>
       </p>
-      <h style="font-size:300%">&#x1F41F Fish Camp Homepage</h>
-      <br><br><br>
+    </div>
+
+    <div class="body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Registration</h>
+      <br><br>
     </div>
     <div>
     <%= yield %>
     </div>
-    <div class="body">
     <ul class = "bar">
       <li class = "bar"><%= link_to 'Home', home_path %>
       &emsp;
@@ -36,9 +40,6 @@
       <% end %>
     </ul>
     <br>
-    <h1>Fish Camp Registration</h1>
-    <br>
-    <hr>
     <section>
       <h2>Registration Currently Open</h2>
       <h3>Co-Chair Registration</h3>
