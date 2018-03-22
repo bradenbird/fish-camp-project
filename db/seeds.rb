@@ -19,7 +19,27 @@ start_date = Date.parse("July 1")
 end
 
 # Create some applicants using faker, and assign to them random session availabilities
+(1..10).each do |i|
+  Applicant.create!(submission_id: i,
+                    uin: Faker::Number.number(9),
+                    first_name: Faker::Name.first_name,
+                    last_name: Faker::Name.last_name,
+                    session_A: Faker::Boolean.boolean,
+                    session_B: Faker::Boolean.boolean,
+                    session_C: Faker::Boolean.boolean,
+                    session_D: Faker::Boolean.boolean,
+                    session_E: Faker::Boolean.boolean,
+                    session_F: Faker::Boolean.boolean,
+                    session_G: Faker::Boolean.boolean)
+end
 
 # Create some users using faker
 
-# Create a chair for each user using faker, and assign them to a camp 
+(1..3).each do |i|
+  User.create!(google_uid: i,
+               uin: Faker::Number.number(9),
+               name: Faker::Name.first_name,
+               role: "chair")
+
+
+# Create a chair for each user using faker, and assign them to a camp
