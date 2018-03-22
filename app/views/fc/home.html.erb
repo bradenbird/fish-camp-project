@@ -13,8 +13,8 @@
 
   <body>
     
-    <div class = "title">
-      <p style="text-align:right">
+    <div class = "header">
+      <p>
         <% if current_user %>
           Signed in as <strong><%= current_user.name %></strong>!
           <%= link_to "Sign out", signout_path, id: "sign_out" %>
@@ -24,11 +24,15 @@
           Please use a valid TAMU Google login.
         <% end %>
       </p>
-      <h style="font-size:300%">&#x1F41F Fish Camp Homepage</h>
-      <br><br><br>
+    </div>
+
+    <div class = "body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Homepage</h>
+      <br><br>
     </div>
     
-    <div class = "body">
     <ul class = "bar">
       <li class = "bar"><%= link_to 'Home', home_path %>
       &emsp;
