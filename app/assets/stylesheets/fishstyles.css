@@ -83,7 +83,7 @@ table {
     max-width: 920px;
     width:90%;
 }
-.redirect {
-    background: white;
+div.redirect {
+    font-family: "Arial", Helvetica, sans-serif;
     text-align: center;
 }
