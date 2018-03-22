@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306033240) do
+ActiveRecord::Schema.define(version: 20180319195937) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
@@ -109,12 +109,20 @@ ActiveRecord::Schema.define(version: 20180306033240) do
   end
 
   create_table "chairs", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.integer "camp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["camp_id"], name: "index_chairs_on_camp_id"
-    t.index ["user_id"], name: "index_chairs_on_user_id"
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer "chair_id"
+    t.integer "applicant_id"
+    t.string "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["applicant_id"], name: "index_evaluations_on_applicant_id"
+    t.index ["chair_id"], name: "index_evaluations_on_chair_id"
   end
 
   create_table "session_availabilities", force: :cascade do |t|
