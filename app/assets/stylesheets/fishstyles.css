@@ -69,8 +69,11 @@ div.body {
     background-color: white;
 }
 table {
+    display:table;
     margin-right: 20px;
     margin-left: 20px;
+    max-width: 920px;
+    width:100%;
 }
 .redirect {
     background: white;
