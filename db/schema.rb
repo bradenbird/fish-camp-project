@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319195937) do
+ActiveRecord::Schema.define(version: 20180322181950) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
@@ -83,13 +83,6 @@ ActiveRecord::Schema.define(version: 20180319195937) do
     t.boolean "camp_counselor"
     t.boolean "crew_counselor"
     t.string "pick_up_only"
-    t.boolean "session_A"
-    t.boolean "session_B"
-    t.boolean "session_C"
-    t.boolean "session_D"
-    t.boolean "session_E"
-    t.boolean "session_F"
-    t.boolean "session_G"
     t.text "camp_history"
     t.text "no_show_explanation"
     t.boolean "abuse_agreement"
