@@ -36,10 +36,11 @@ end
 # Create some users using faker
 
 (1..3).each do |i|
-  User.create!(google_uid: i,
-               uin: Faker::Number.number(9),
-               name: Faker::Name.first_name,
-               role: "chair")
+  user = User.create!(google_uid: i,
+                      uin: Faker::Number.number(9),
+                      name: Faker::Name.first_name,
+                      role: "chair")
+  chair = user.create_chair!()
 
 
 # Create a chair for each user using faker, and assign them to a camp
