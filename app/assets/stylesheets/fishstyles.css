@@ -54,7 +54,8 @@ ol {
 }
 div.title {
     color: white;
-    width: 960px;
+    max-width: 960px;
+    width: 95%;
 	margin-right: auto;
     margin-left: auto;
 }
@@ -63,7 +64,8 @@ div.body {
 	box-shadow:0 0 15px #000;
 	margin-bottom: 20px;
 	background: #E9E9E9;
-	width: 960px;
+	max-width: 960px;
+    width: 95%;
 	margin-right: auto;
     margin-left: auto;
     background-color: white;
