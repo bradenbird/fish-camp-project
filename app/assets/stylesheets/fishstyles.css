@@ -72,10 +72,10 @@ div.body {
 }
 table {
     display:table;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
     max-width: 920px;
-    width:100%;
+    width:90%;
 }
 .redirect {
     background: white;
