@@ -80,6 +80,11 @@ div.header {
     text-align:right;
     font-size:75%;
 }
+div.footer {
+    font-size:75%;
+    text-align:center;
+    color: rgb(80,0,0);
+}
 table {
     display:table;
     margin-right: auto;
