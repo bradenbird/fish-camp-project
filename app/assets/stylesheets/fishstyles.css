@@ -2,15 +2,18 @@ body {
     background-color: rgb(80, 0, 0);
 }
 h1 {
+    font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
     margin-left: 20px;
     background-color: white;
 }
 h2 {
+    font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
     margin-left: 20px;
 }
 h3 {
+    font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
     margin-left: 20px;
 }
@@ -35,8 +38,19 @@ li.bar a:hover {
     background-color: #111;
 }
 p {
+    font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
     margin-left: 20px;
+}
+ul {
+    font-family: "Arial", Helvetica, sans-serif;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+ol {
+    font-family: "Arial", Helvetica, sans-serif;
+    margin-right: 20px;
+    margin-left: 10px;
 }
 div.title {
     color: white;
