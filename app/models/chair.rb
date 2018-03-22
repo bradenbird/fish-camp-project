@@ -8,7 +8,7 @@ class Chair < ApplicationRecord
            source: :applicant
 
   # This is just something to grab all "good" applicants that a Chair has
-  # evaluated: rating system isn't set in stone. This is just an early example 
+  # evaluated: rating system isn't set in stone. This is just an early example
   has_many :good_applicants,
            ->() { where(rating: "A") },
            source: :applicant,

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :chairs
+  has_one :chair
 
   validates :google_uid, presence: true
   validates :name, presence: true
