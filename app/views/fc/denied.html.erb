@@ -1,15 +1,15 @@
-<!-- Redirect Login Page -->
+<!-- Access denied page -->
 
 <html>
   <head>
-    <title>Fish Camp Registration</title>
+    <title>Access Denied</title>
   </head>
 
   <body>
-    <div class="redirect">
+    <div>
       <% if current_user %>
         <!-- Redirect to the page originally requested -->
-        Error redirecting you to the requested page. Press
+        You do not have permission to view this page. Press
         <%= link_to "here", home_path %>
         to return to the home page.
       <% else %>
