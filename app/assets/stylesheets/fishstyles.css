@@ -54,7 +54,8 @@ ol {
 }
 div.title {
     color: white;
-    width: 960px;
+    max-width: 960px;
+    width: 95%;
 	margin-right: auto;
     margin-left: auto;
 }
@@ -63,17 +64,18 @@ div.body {
 	box-shadow:0 0 15px #000;
 	margin-bottom: 20px;
 	background: #E9E9E9;
-	width: 960px;
+	max-width: 960px;
+    width: 95%;
 	margin-right: auto;
     margin-left: auto;
     background-color: white;
 }
 table {
     display:table;
-    margin-right: 20px;
-    margin-left: 20px;
+    margin-right: auto;
+    margin-left: auto;
     max-width: 920px;
-    width:100%;
+    width:90%;
 }
 div.redirect {
     font-family: "Arial", Helvetica, sans-serif;
