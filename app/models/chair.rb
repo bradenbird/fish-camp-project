@@ -18,6 +18,10 @@ class Chair < ApplicationRecord
     camp.session
   end
 
+  def applicants
+    session.applicants
+  end 
+
   def unevaluated_applicants
     session
       .applicants
