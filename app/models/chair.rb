@@ -20,7 +20,7 @@ class Chair < ApplicationRecord
 
   def applicants
     session.applicants
-  end 
+  end
 
   def unevaluated_applicants
     session
