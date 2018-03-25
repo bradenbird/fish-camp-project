@@ -13,10 +13,21 @@ RSpec.describe Applicant, type: :model do
     expect(build(:applicant, uin: nil)).to_not be_valid
   end
 
-  describe "import" do
+  describe ".import" do
     # testing for import goes here
-    it "has a valid fixture" do
-      expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
+    # it "has a valid fixture" do
+    #   expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
+    # end
+    before do
+      file_path = "#{Rails.root}/spec/fixtures/fc_sample.csv"
+      Applicant.import(file_path, ".csv")
+      ("A".."G").each{ |letter| create(:session, name: letter) }
+    end
+    it "imports first names properly" do
+      expect(Applicant.find_by(submission_id: 12255241).first_name).to eq("Brooke")
+    end
+    it "imports last names properly" do
+      expect(Applicant.find_by(submission_id: 12255241).last_name).to eq("Aaron")
     end
   end
 end

@@ -9,10 +9,8 @@ class Applicant < ApplicationRecord
   validates :submission_id, presence: true
   validates :uin, presence: true
 
-
-
-  def self.import(file)
-    spreadsheet = open_spreadsheet(file)
+  def self.import(path, extension)
+    spreadsheet = open_spreadsheet(path, extension)
 
     session_cells = {'CJ' => Session.find_by(name: 'A'),
                      'CK' => Session.find_by(name: 'B'),
@@ -222,17 +220,19 @@ class Applicant < ApplicationRecord
           applicant.session_availabilities.create!(session: session)
         end
       end
-      
+
     end
   end
 
-  def self.open_spreadsheet(file)
-    case File.extname(file.original_filename)
-    when ".csv" then Roo::CSV.new(file.path)
-    when ".xls" then Roo::Excel.new(file.path)
-    when ".xlsx" then Roo::Excelx.new(file.path)
-    else raise "Unknown file type: #{file.original_filename}"
-    end
+  def self.open_spreadsheet(path, extension)
+    Roo::Spreadsheet.open(path, extension: extension)
+    # puts file.class.inspect
+    # case File.extname(file.original_filename)
+    # when ".csv" then Roo::CSV.new(file.path)
+    # when ".xls" then Roo::Excel.new(file.path)
+    # when ".xlsx" then Roo::Excelx.new(file.path)
+    # else raise "Unknown file type: #{file.original_filename}"
+    # end
   end
 
 end
