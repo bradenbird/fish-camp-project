@@ -1,6 +1,7 @@
 <!-- Home page -->
 
 <html>
+  
   <head>
     <title>Fish Camp Home</title>
     <style>
@@ -11,8 +12,9 @@
   </head>
 
   <body>
-    <div>
-      <p style="text-align:right">
+    
+    <div class = "header">
+      <p>
         <% if current_user %>
           Signed in as <strong><%= current_user.name %></strong>!
           <%= link_to "Sign out", signout_path, id: "sign_out" %>
@@ -23,20 +25,27 @@
         <% end %>
       </p>
     </div>
-    <h1 style="font-size:300%">Fish Camp Homepage</h1>
-    <%= link_to 'Home', home_path %>
-    &emsp;
-    <%= link_to "Register Now", login_path(:reqpath => 'register') %>
-    &emsp;
-    <%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
-    &emsp;
-    <% if current_user %>
-      <%= link_to 'Applicant Database', applicants_path %>
-    <% end %>
-    <br>
+
+    <div class = "body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Homepage</h>
+      <br><br>
+    </div>
+    
+    <ul class = "bar">
+      <li class = "bar"><%= link_to 'Home', home_path %>
+      &emsp;
+      <li class = "bar"><%= link_to "Register Now", login_path(:reqpath => 'register') %>
+      &emsp;
+      <li class = "bar"><%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
+      &emsp;
+      <% if current_user %>
+      <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+      <% end %>
+    </ul>
     <br>
     <h1>Online Registration</h1>
-    <br>
     <hr>
     <section>
       <h2>Basic Information</h2>
@@ -52,16 +61,16 @@
     <section>
       <h2>Helpful Resources</h2>
       <ul>
-        <li><a href="https://fishcamponline.tamu.edu/static/documents/MedicalReleaseForm.pdf">Medical Release Form</a> (PDF)</li>
-        <li><a href="https://fishcamponline.tamu.edu/forms/refunds">Cancellation/Refund Request Form</a></li>
-        <li><a href="https://fishcamponline.tamu.edu/registration/index/sessionchange">Session Change Form</a></li>
-        <li><a href="https://fishcamponline.tamu.edu/static/documents/FishCampBrochure.pdf">Freshman Registration Brochure</a> (PDF)</li>
+        <li><a class = "hlink" href="https://fishcamponline.tamu.edu/static/documents/MedicalReleaseForm.pdf">Medical Release Form</a> (PDF)</li>
+        <li><a class = "hlink" href="https://fishcamponline.tamu.edu/forms/refunds">Cancellation/Refund Request Form</a></li>
+        <li><a class = "hlink" href="https://fishcamponline.tamu.edu/registration/index/sessionchange">Session Change Form</a></li>
+        <li><a class = "hlink" href="https://fishcamponline.tamu.edu/static/documents/FishCampBrochure.pdf">Freshman Registration Brochure</a> (PDF)</li>
       </ul>
     </section>
     <hr>
     <section>
       <h2>Session Dates and Current Status</h2>
-      <table>
+      <table style="text-align:left">
         <tr>
           <th>Session A</th>
           <th>July 27 - July 30</th>
@@ -289,11 +298,13 @@
         <li>You run the risk of not being assigned to another session due to other sessions being filled to maximum capacity.</li>
       </ul>
     </section>
-    <hr>
     <br>
-    <section style="text-align:center;">
-      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a></h3>
-      <h3>Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
-    </section>
+    </div>
+    <div class = "footer">
+      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
+      <br>
+      Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
+    </div>
+    <br>
   </body>
 </html>

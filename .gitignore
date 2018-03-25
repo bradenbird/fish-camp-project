@@ -21,6 +21,3 @@
 /yarn-error.log
 
 .byebug_history
-
-# Ignore files with sensitive data
-/config/initializers/omniauth.rb
