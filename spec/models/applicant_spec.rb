@@ -19,11 +19,12 @@ RSpec.describe Applicant, type: :model do
     #   expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
     # end
     before do
+      ("A".."G").each{ |letter| create(:session, name: letter) }
       file_path = "#{Rails.root}/spec/fixtures/fc_sample.csv"
       Applicant.import(file_path, ".csv")
-      ("A".."G").each{ |letter| create(:session, name: letter) }
     end
     it "imports first names properly" do
+      # byebug
       expect(Applicant.find_by(submission_id: 12255241).first_name).to eq("Brooke")
     end
     it "imports last names properly" do
