@@ -16,6 +16,10 @@ class FcController < ApplicationController
     #do nothing yet
   end
 
+  def denied
+    #do nothing yet
+  end
+
   def login
     requested_path = params[:reqpath]
     if current_user then
