@@ -55,12 +55,14 @@
         </tr>
       <% end %>
       </table>
-      Import Applicant Spreadsheet
+      <% if policy(Applicant).create? %>
+        Import Applicant Spreadsheet
 
-      <%= form_tag import_applicants_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import" %>
-      <% end %>
+        <%= form_tag import_applicants_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import" %>
+        <% end %>
+      <% end %>  
     </section>
     <br>
     </div>
@@ -70,5 +72,10 @@
       Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
     </div>
     <br>
+    <div id="flash">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+    </div>
   </body>
 </html>

@@ -24,7 +24,10 @@ gem 'roo'
 # Use iconv to read excel spreadsheet files
 gem "iconv", "~> 1.0.3"
 # Use pundit for permissions
-gem "pundit"
+gem 'pundit'
+# Also used for permissions
+gem 'clearance'
+gem 'bootstrap-sass'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
