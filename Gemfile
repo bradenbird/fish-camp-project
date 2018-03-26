@@ -52,10 +52,10 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem 'faker'
 end
 
 group :test do
-  gem 'faker'
   gem 'capybara', '~> 2.13'
   gem 'guard-rspec'
   gem 'launchy'
