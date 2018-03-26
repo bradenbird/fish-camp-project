@@ -40,16 +40,8 @@
       <% end %>
     </ul>
     <br>
-    <p style="text-align:center">
-      Filter applicants: 
-      <% ("A".."G").each do |session|%>
-        <%= check_box_tag("sessions[]", session) %>
-        <%= session %>
-      <% end %>
-      <input type="submit" value="Filter">
-    </p>
     <section>
-      <table id="Applicants" style="text-align:center">
+      <table id="Applicants">
         <tr>
           <th>UIN</th>
           <th>First Name</th>
@@ -80,10 +72,12 @@
       Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
     </div>
     <br>
-    <div id="flash">
+    <div class="container">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
+      <%= yield %>
+      <%= debug(params) if Rails.env.development? %>
     </div>
   </body>
 </html>
