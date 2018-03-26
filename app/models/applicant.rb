@@ -9,8 +9,17 @@ class Applicant < ApplicationRecord
   validates :submission_id, presence: true
   validates :uin, presence: true
 
-  def self.import(file)
-    spreadsheet = open_spreadsheet(file)
+  def self.import(path, extension)
+    spreadsheet = open_spreadsheet(path, extension)
+
+    session_cells = {'CJ' => Session.find_by(name: 'A'),
+                     'CK' => Session.find_by(name: 'B'),
+                     'CL' => Session.find_by(name: 'C'),
+                     'CM' => Session.find_by(name: 'D'),
+                     'CN' => Session.find_by(name: 'E'),
+                     'CO' => Session.find_by(name: 'F'),
+                     'CP' => Session.find_by(name: 'G')}
+
     (2..spreadsheet.last_row).each do |i|
       applicant = Applicant.new
       # For now let's hard code the spreadsheet indexes
@@ -188,48 +197,6 @@ class Applicant < ApplicationRecord
 
       applicant.pick_up_only = spreadsheet.cell(i,'CI')
 
-      if(spreadsheet.cell(i,'CJ').blank?)
-          applicant.session_A = false
-      else
-          applicant.session_A = true
-      end
-
-      if(spreadsheet.cell(i,'CK').blank?)
-          applicant.session_B = false
-      else
-          applicant.session_B = true
-      end
-
-      if(spreadsheet.cell(i,'CL').blank?)
-          applicant.session_C = false
-      else
-          applicant.session_C = true
-      end
-
-      if(spreadsheet.cell(i,'CM').blank?)
-          applicant.session_D = false
-      else
-          applicant.session_D = true
-      end
-
-      if(spreadsheet.cell(i,'CN').blank?)
-          applicant.session_E = false
-      else
-          applicant.session_E = true
-      end
-
-      if(spreadsheet.cell(i,'CO').blank?)
-          applicant.session_F = false
-      else
-          applicant.session_F = true
-      end
-
-      if(spreadsheet.cell(i,'CP').blank?)
-          applicant.session_G = false
-      else
-          applicant.session_G = true
-      end
-
       applicant.camp_history = spreadsheet.cell(i,'CQ')
       applicant.no_show_explanation = spreadsheet.cell(i,'CR')
       if(spreadsheet.cell(i,'CS').blank?)
@@ -245,16 +212,27 @@ class Applicant < ApplicationRecord
       applicant.created_at = Time.now.strftime("%d/%m/%Y %H:%M")
 
       applicant.save!
+
+      # changing import script here for new session availability modeling
+
+      session_cells.each do | column, session |
+        unless spreadsheet.cell(i, column).blank?
+          applicant.session_availabilities.create!(session: session)
+        end
+      end
+
     end
   end
 
-  def self.open_spreadsheet(file)
-    case File.extname(file.original_filename)
-    when ".csv" then Roo::CSV.new(file.path)
-    when ".xls" then Roo::Excel.new(file.path)
-    when ".xlsx" then Roo::Excelx.new(file.path)
-    else raise "Unknown file type: #{file.original_filename}"
-    end
+  def self.open_spreadsheet(path, extension)
+    Roo::Spreadsheet.open(path, extension: extension)
+    # puts file.class.inspect
+    # case File.extname(file.original_filename)
+    # when ".csv" then Roo::CSV.new(file.path)
+    # when ".xls" then Roo::Excel.new(file.path)
+    # when ".xlsx" then Roo::Excelx.new(file.path)
+    # else raise "Unknown file type: #{file.original_filename}"
+    # end
   end
 
 end
