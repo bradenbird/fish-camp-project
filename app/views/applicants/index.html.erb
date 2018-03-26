@@ -4,7 +4,13 @@
   <head>
     <title>Fish Camp Profile</title>
   </head>
-
+  <% unless flash.empty? %>
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= key.upcase %>: <%= value %></div>
+        <% end %>
+      </div>
+    <% end %>
   <body>
     <div class = "header">
       <p style="text-align:right">
@@ -72,10 +78,6 @@
       Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
     </div>
     <br>
-    <div class="container">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-    </div>
+    
   </body>
 </html>
