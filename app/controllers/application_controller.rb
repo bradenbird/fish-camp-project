@@ -9,11 +9,22 @@ class ApplicationController < ActionController::Base
   end
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
+  
+  rescue_from IOError do |exception|
+    flash[:error] = exception.message
+    redirect_to(request.referrer || root_path)
+  end 
+  
   private
 
   def user_not_authorized
-    flash[:warning] = "You are not authorized to perform this action."
+    flash[:error] = "You are not authorized to perform this action."
     redirect_to(request.referrer || root_path)
   end
+  
+  def invalid_arguments
+    flash[:error] = "Improper Arguments for Operation"
+    redirect_to(request.referrer || root_path)
+  end
+  
 end

@@ -225,6 +225,7 @@ class Applicant < ApplicationRecord
   end
 
   def self.open_spreadsheet(path, extension)
+    raise IOError, "Please Choose a .csv, .xlx, or .xlsx file" unless (extension == ".csv" || extension == ".xls" || extension == ".xlsx")
     Roo::Spreadsheet.open(path, extension: extension)
     # puts file.class.inspect
     # case File.extname(file.original_filename)
