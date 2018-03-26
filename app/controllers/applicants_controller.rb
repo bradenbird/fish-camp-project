@@ -5,8 +5,12 @@ class ApplicantsController < ApplicationController
 
   def import
     authorize Applicant, :create?
-    extension = File.extname(params[:file].original_filename)
-    Applicant.import(params[:file].path, extension)
-    redirect_to request.referrer, notice: "Applicants imported."
+    if params[:file].nil? 
+      raise IOError, "Please Choose a file"
+    else 
+      extension = File.extname(params[:file].original_filename)
+      Applicant.import(params[:file].path, extension)
+      redirect_to request.referrer, notice: "Applicants imported."
+    end 
   end
 end

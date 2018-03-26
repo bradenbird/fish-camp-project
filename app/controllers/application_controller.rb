@@ -10,7 +10,10 @@ class ApplicationController < ActionController::Base
   
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   
-  rescue_from ArgumentError, with: :invalid_arguments
+  rescue_from IOError do |exception|
+    flash[:warning] = exception.message
+    redirect_to(request.referrer || root_path)
+  end 
   
   private
 
