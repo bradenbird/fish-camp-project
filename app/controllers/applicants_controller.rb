@@ -3,6 +3,8 @@ class ApplicantsController < ApplicationController
     @applicants = Applicant.all
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
+    else
+      @current_sessions = ("A".."G")
     end
   end
 

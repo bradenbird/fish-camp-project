@@ -50,10 +50,10 @@
     <%= form_tag applicants_path, :method => :get do%>
       Filter applicants: 
       <% ("A".."G").each do |session|%>
-        <%= check_box_tag("sessions[#{session}]", session) %>
+        <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
         <%= session %>
       <% end %>
-      <%= submit_tag "Refresh"%>
+      <%= submit_tag "Filter"%>
       <% end %>
     </p>
     <section>
