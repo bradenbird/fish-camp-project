@@ -52,10 +52,10 @@ camps = Camp.pluck(:id)
   chair = user.create_chair!(camp_id: chair_camp)
 end
 
-james = User.find_by(email: "jameslvdb@tamu.edu")
-james_camp = camps.sample
-james.create_chair!(camp_id: james_camp)
+# james = User.find_by(email: "jameslvdb@tamu.edu")
+# james_camp = camps.sample
+# james.create_chair!(camp_id: james_camp)
 
-braden = User.find_by(email: "bradenbird@tamu.edu")
-braden_camp = camps.sample
-braden.create_chair!(camp_id: braden_camp)
+# braden = User.find_by(email: "bradenbird@tamu.edu")
+# braden_camp = camps.sample
+# braden.create_chair!(camp_id: braden_camp)
