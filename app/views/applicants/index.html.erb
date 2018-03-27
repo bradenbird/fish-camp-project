@@ -47,15 +47,17 @@
     </ul>
     <br>
     <p style="text-align:center">
+    <%= form_tag applicants_path, :method => :get do%>
       Filter applicants: 
       <% ("A".."G").each do |session|%>
-        <%= check_box_tag("sessions[]", session) %>
+        <%= check_box_tag("sessions[#{session}]", session) %>
         <%= session %>
       <% end %>
-      <input type="submit" value="Filter">
+      <%= submit_tag "Refresh"%>
+      <% end %>
     </p>
     <section>
-      <table id="Applicants">
+      <table id="Applicants" style="text-align: center">
         <tr>
           <th>UIN</th>
           <th>First Name</th>

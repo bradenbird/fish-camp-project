@@ -1,6 +1,9 @@
 class ApplicantsController < ApplicationController
   def index
     @applicants = Applicant.all
+    if params[:sessions].present?
+      @current_sessions = params[:sessions].keys
+    end
   end
 
   def import
