@@ -5,7 +5,7 @@ class ApplicantsController < ApplicationController
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
     else
-      @current_sessions = ("A".."G")
+      @current_sessions = Session.all_session_names
     end
 
     if params[:evaluated].present?

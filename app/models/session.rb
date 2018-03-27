@@ -18,4 +18,8 @@ class Session < ApplicationRecord
       errors.add(:end_date, "must be after start_date")
     end
   end
+
+  def self.all_session_names
+    all.distinct.pluck(:name)
+  end
 end
