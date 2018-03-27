@@ -5,7 +5,6 @@ class ApplicantsController < ApplicationController
 
   def import
     authorize Applicant, :create?
-    after_action :verify_authorized, only: [:create]
     if params[:file].nil? 
       raise IOError, "Please Choose a file"
     else 
