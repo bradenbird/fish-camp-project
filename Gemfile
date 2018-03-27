@@ -59,6 +59,7 @@ group :test do
   gem 'capybara', '~> 2.13'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'pundit-matchers', '~> 1.4.1'
 end
 
 group :development do
