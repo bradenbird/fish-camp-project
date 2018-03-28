@@ -47,15 +47,19 @@
     </ul>
     <br>
     <p style="text-align:center">
-      Filter applicants: 
-      <% ("A".."G").each do |session|%>
-        <%= check_box_tag("sessions[]", session) %>
-        <%= session %>
+      <%= form_tag applicants_path, :method => :get do%>
+        Filter applicants: 
+        <% ("A".."G").each do |session|%>
+          <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
+          <%= session %>
+        <% end %>
+        | Show previously evaluated
+        <%= check_box_tag "evaluated", true, @show_evaluated %>
+        <%= submit_tag "Filter"%>
       <% end %>
-      <input type="submit" value="Filter">
     </p>
     <section>
-      <table id="Applicants">
+      <table id="Applicants" style="text-align: center">
         <tr>
           <th>UIN</th>
           <th>First Name</th>

@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 20180322181950) do
   end
 
   create_table "evaluations", force: :cascade do |t|
-    t.integer "chair_id"
-    t.integer "applicant_id"
+    t.integer "chair_id", null: false
+    t.integer "applicant_id", null: false
     t.string "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

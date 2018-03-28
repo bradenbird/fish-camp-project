@@ -236,4 +236,10 @@ class Applicant < ApplicationRecord
     # end
   end
 
+  def self.all_session_names
+    Session.distinct
+      .where("EXISTS (?)", SessionAvailability
+        .where("session_availabilities.session_id = sessions.id")).pluck(:name)
+  end
+
 end

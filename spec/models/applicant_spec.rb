@@ -40,4 +40,22 @@ RSpec.describe Applicant, type: :model do
       expect(session_names2).to contain_exactly("B", "C", "D", "E", "F", "G")
     end
   end
+
+  describe "#all_session_names" do
+    it "gets all of the names of sessions that have applicants" do
+      applicant1 = create(:applicant)
+      applicant2 = create(:applicant)
+      sessiona = create(:session, name: "A")
+      sessionb = create(:session, name: "B")
+      sessionc = create(:session, name: "C")
+      sessione = create(:session, name: "E")
+
+      applicant1.session_availabilities.create!(session: sessiona)
+      applicant1.session_availabilities.create!(session: sessionb)
+      applicant1.session_availabilities.create!(session: sessionc)
+      applicant2.session_availabilities.create!(session: sessiona)
+      applicant2.session_availabilities.create!(session: sessione)
+      expect(Applicant.all_session_names).to contain_exactly("A", "B", "C", "E")
+    end
+  end
 end
