@@ -48,8 +48,8 @@ camps = Camp.pluck(:id)
                       name: Faker::Name.first_name,
                       email: Faker::Internet.free_email(:name),
                       role: "chair")
-  chair_camp = camps.sample
-  chair = user.create_chair!(camp_id: chair_camp)
+  # chair_camp = camps.sample
+  # chair = user.create_chair!(camp_id: chair_camp)
 end
 
 # james = User.find_by(email: "jameslvdb@tamu.edu")
