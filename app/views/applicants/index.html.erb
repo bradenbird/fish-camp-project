@@ -76,7 +76,7 @@
       <% end %>
       </table>
       <% if policy(Applicant).create? %>
-        Import Applicant Spreadsheet
+        <p>Import Applicant Spreadsheet</p>
 
         <%= form_tag import_applicants_path, multipart: true do %>
           <%= file_field_tag :file %>
