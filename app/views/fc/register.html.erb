@@ -36,7 +36,9 @@
       <li class = "bar"><%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
       &emsp;
       <% if current_user %>
-      <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+        <% end %>
       <% end %>
     </ul>
     <br>
@@ -45,7 +47,7 @@
       <h3>Co-Chair Registration</h3>
       <p><b>Co-Chair Registration is now open!</b> Click the button below to begin registration.
       <p><button>
-        <%= link_to "I go to home", home_path %>
+        <%= link_to "HOME", home_path %>
       </button></p>
     </section>
     <section>
