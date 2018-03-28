@@ -18,6 +18,11 @@ class ApplicantsController < ApplicationController
     end
   end
 
+  def show
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', :uin
+  end
+
   def import
     authorize Applicant, :create?
     if params[:file].nil? 
