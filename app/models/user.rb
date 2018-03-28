@@ -6,21 +6,25 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :role, presence: true
 
+  # after_create here to give us chair permission 
+  # this will be changed later once we finalize permissons
+  after_create :create_chair 
+
+  ADMIN_EMAILS = ["jameslvdb@tamu.edu", "bradenbird@tamu.edu", "jwstone@tamu.edu", "darrelmarek@tamu.edu"]
+
   def self.from_omniauth(auth)
     data = auth.info
     user = User.where(email: data['email']).first
-    unless user 
-      user = User.create(name: data['name'],
-        google_uid: auth.uid,
-        email: data['email'],
-        uin: nil,
-        role: 'guest',
-        oauth_token: auth.credentials.token,
-        oauth_expires_at: Time.at(auth.credentials.expires_at)
-      )
-      user.save!
-    end
-    user
+    return user unless user.nil?
+    user = User.create(name: data['name'],
+      google_uid: auth.uid,
+      email: data['email'],
+      uin: nil,
+      role: ADMIN_EMAILS.include?(data['email']) ? 'admin' : 'guest', 
+      oauth_token: auth.credentials.token,
+      oauth_expires_at: Time.at(auth.credentials.expires_at)
+    )
+    user.save!
     #where(google_uid: auth.uid).first_or_initialize.tap do |user|
     #  user.google_uid = auth.uid
     #  user.name = auth.info.name
@@ -31,5 +35,12 @@ class User < ActiveRecord::Base
     #  user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     #  user.save!
     #end
+  end
+
+  private 
+
+  def create_chair
+    camp_id = Camp.pluck(:id).sample
+    create_chair!(camp_id: camp_id)
   end
 end
