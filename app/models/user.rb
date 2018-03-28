@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   # this will be changed later once we finalize permissons
   after_create :create_chair 
 
-  ADMIN_EMAILS = ["jameslvdb@tamu.edu", "bradenbird@tamu.edu", "jwstone@tamu.edu", "darrelmarek@tamu.edu"]
+  ADMIN_EMAILS = ["jameslvdb@tamu.edu", "bradenbird@tamu.edu", "jwstone@tamu.edu", "darrelmarek@tamu.edu", "tyler_lamkin@tamu.edu"]
 
   def self.from_omniauth(auth)
     data = auth.info
