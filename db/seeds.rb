@@ -18,7 +18,6 @@ start_date = Date.parse("July 1")
   start_date += 1.week
 end
 session_ids = Session.pluck(:id)
-num_sessions = rand(session_ids.count) + 1
 
 # create camps here
 colors = ["red", "yellow", "purple", "blue", "aqua", "green", "lime"]
@@ -34,6 +33,7 @@ end
                                 uin: Faker::Number.number(9),
                                 first_name: Faker::Name.first_name,
                                 last_name: Faker::Name.last_name)
+  num_sessions = rand(session_ids.count) + 1
   available_sessions = session_ids.sample(num_sessions)
   available_sessions.each do |session_id|
     applicant.session_availabilities.create!(session_id: session_id)
