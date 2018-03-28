@@ -4,7 +4,7 @@ class ApplicantsController < ApplicationController
     
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
-      @applicants = Applicant.joins(:sessions).where(sessions: {name: @current_sessions}).uniq
+      @applicants = Applicant.joins(:sessions).where(sessions: {name: @current_sessions}).distinct
     else
       @current_sessions = Session.all_session_names 
     end
