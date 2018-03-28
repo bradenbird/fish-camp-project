@@ -4,8 +4,9 @@ class ApplicantsController < ApplicationController
     
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
+      @applicants = Applicant.joins(:sessions).where(sessions: {name: @current_sessions})
     else
-      @current_sessions = Session.all_session_names
+      @current_sessions = Session.all_session_names 
     end
 
     if params[:evaluated].present?
