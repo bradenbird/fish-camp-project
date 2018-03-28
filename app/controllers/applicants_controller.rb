@@ -20,7 +20,7 @@ class ApplicantsController < ApplicationController
 
   def show
     uin = params[:uin]
-    @applicant = Applicant.all.find_by 'uin = ?', :uin
+    @applicant = Applicant.all.find_by 'uin = ?', uin
   end
 
   def import
