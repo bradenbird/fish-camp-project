@@ -36,7 +36,9 @@
       <li class = "bar"><%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
       &emsp;
       <% if current_user %>
-      <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+        <% end %>
       <% end %>
     </ul>
     <br>
