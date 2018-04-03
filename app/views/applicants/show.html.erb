@@ -3,7 +3,7 @@
 	<title>Fish Camp Applicant</title>
   </head>
   <body>
-    
+
     <div class = "header">
       <p>
         <% if current_user %>
@@ -23,7 +23,7 @@
       <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
       <br><br>
     </div>
-    
+
     <ul class = "bar">
       <li class = "bar"><%= link_to 'Home', home_path %>
       &emsp;
@@ -41,6 +41,15 @@
     <h2>
       <%= @applicant.first_name + " " + @applicant.last_name%>
     </h2>
+    <p>
+      UIN: <%= @applicant.uin%>
+      <br>
+      Classification: <%= @applicant.classification %>
+      <br>
+      Email: <%= @applicant.other_email %>
+      <br>
+    </p>
+    <br>
     </div>
     <div class = "footer">
       <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
