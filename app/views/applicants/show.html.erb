@@ -48,6 +48,9 @@
       <br>
       Email: <%= @applicant.other_email %>
       <br>
+      <p><button>
+        <%= link_to 'Write Interview', login_path(:reqpath => 'interview') %>
+      </button></p>
     </p>
     <h3>
       <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
@@ -68,6 +71,14 @@
       <%= @applicant.app_question_3 %>
     </p>
     <br>
+    <% if @applicant.crew_counselor %>
+      <h3>
+        <strong>Why are you applying to be a Crew Counselor?</strong>
+      </h3>
+      <p>
+        <%= @applicant.crew_question %>
+      </p>
+    <% end %>
     <!-- Remove this H3, just a visual reminder to add stuff later -->
     <h3 style="text-align: center">
       ####Add score form and link to interview writing pages here. List interview transcripts that are present####
