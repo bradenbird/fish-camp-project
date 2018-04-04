@@ -42,11 +42,17 @@
       <%= @applicant.first_name + " " + @applicant.last_name%>
     </h2>
     <p>
+      Gender: <%= @applicant.gender%>
+      <br>
       UIN: <%= @applicant.uin%>
       <br>
       Classification: <%= @applicant.classification %>
       <br>
+      Expected Graduation: <%= @applicant.anticipated_graduation %>
+      <br>
       Email: <%= @applicant.other_email %>
+      <br>
+      Extracurriculars: <%= @applicant.extracurriculars %>
       <br>
       <p><button>
         <%= link_to 'Write Interview', login_path(:reqpath => 'interview') %>
