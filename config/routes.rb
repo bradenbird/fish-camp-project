@@ -33,6 +33,8 @@ Rails.application.routes.draw do
 
   get "/fc/denied", to: "fc#denied", as: "denied"
 
+  get "/fc/interview", to: "fc#interview", as:"interview"
+
 
 
 end
