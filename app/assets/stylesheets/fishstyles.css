@@ -32,6 +32,7 @@ ul.bar {
 }
 li.bar {
     float: left;
+    padding: 0px 10px;
 }
 li.bar a {
     display: inline-block;
@@ -63,18 +64,18 @@ ol {
     color: white;
     max-width: 960px;
     width: 100%;
-	margin-right: auto;
+    margin-right: auto;
     margin-left: auto;
     background-color: rgb(80, 0, 0);
 }
 .body {
     border-radius: 12px 12px 10px 10px;
-	box-shadow:0 0 15px #000;
-	margin-bottom: 20px;
-	background: #E9E9E9;
-	max-width: 960px;
+    box-shadow:0 0 15px #000;
+    margin-bottom: 20px;
+    background: #E9E9E9;
+    max-width: 960px;
     width: 95%;
-	margin-right: auto;
+    margin-right: auto;
     margin-left: auto;
     background-color: white;
 
