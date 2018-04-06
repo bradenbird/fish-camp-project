@@ -48,13 +48,22 @@
     <br>
     <p style="text-align:center">
       <%= form_tag applicants_path, :method => :get do%>
-        Filter applicants: 
+        Filter applicants:
         <% ("A".."G").each do |session|%>
           <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
           <%= session %>
         <% end %>
-        | Show previously evaluated
+        <br>
+        Show previously evaluated
         <%= check_box_tag "evaluated", true, @show_evaluated %>
+        <br>
+        Show odds, evens, or all applicants?
+        <%= radio_button_tag "show", "odd", @odd %>
+        Odd
+        <%= radio_button_tag "show", "even", @even %>
+        Even
+        <%= radio_button_tag "show", "all", @all %>
+        All
         <%= submit_tag "Filter"%>
       <% end %>
     </p>
@@ -62,6 +71,7 @@
       <table id="Applicants" style="text-align: center">
         <tr>
           <th>UIN</th>
+          <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Sessions</th>
@@ -69,6 +79,7 @@
       <% @applicants.each do |applicant| %>
         <tr>
           <td><%= link_to applicant.uin, applicants_path + "/#{applicant.uin}" %></td>
+          <td><%= applicant.id%></td>
           <td><%= applicant.first_name %></td>
           <td><%= applicant.last_name %></td>
           <td><%= applicant.sessions.pluck(:name).sort.join(", ") %></td>
@@ -82,7 +93,7 @@
           <%= file_field_tag :file %>
           <%= submit_tag "Import" %>
         <% end %>
-      <% end %>  
+      <% end %>
     </section>
     <br>
     </div>
@@ -92,6 +103,6 @@
       Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
     </div>
     <br>
-    
+
   </body>
 </html>
