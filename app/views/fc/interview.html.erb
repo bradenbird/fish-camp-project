@@ -39,6 +39,28 @@
       <% end %>
     </ul>
     <br>
+
+    <h2>Please write your responses in the textboxes below.</h2>
+    <hr>
+
+    <p>Interview Question 1
+    &emsp;&emsp;<%= text_field(:post, :question1, size: 100) %></p>
+    <br>
+    <p>Interview Question 2
+    &emsp;&emsp;<%= text_field(:post, :question2, size: 100) %></p>
+    <br>
+    <p>Interview Question 3
+    &emsp;&emsp;<%= text_field(:post, :question3, size: 100) %></p>
+    <br>
+
+    <br>
+    <p><button>
+      <%= link_to 'Submit', applicants_path %>
+    </button>
+    Currently, just returns to applicants_path without saving anything
+    </p>
+    <br>
+
     </div>
     <div class = "footer">
       <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
