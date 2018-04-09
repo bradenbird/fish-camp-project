@@ -9,32 +9,27 @@ class FcController < ApplicationController
   end
 
   def register
-    #do nothing yet
+    if !current_user then
+      redirect_to login_path
+    end
   end
 
   def profile
-    #do nothing yet
+    if !current_user then
+      redirect_to login_path
+    end
   end
 
   def denied
     #do nothing yet
   end
 
+  def interview
+    #do nothing yet
+  end
+
   def login
-    requested_path = params[:reqpath]
-    if current_user then
-      if requested_path then
-        if (requested_path == 'register') then
-          redirect_to(register_path)
-        elsif (requested_path == 'profile') then
-          redirect_to(profile_path)
-        else
-          puts(requested_path)
-        end
-      else
-        puts("Error")
-      end
-    end
+    #do nothing yet
   end
 
   def show
