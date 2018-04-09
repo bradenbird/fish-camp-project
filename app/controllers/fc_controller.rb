@@ -25,7 +25,9 @@ class FcController < ApplicationController
   end
 
   def interview
-    #do nothing yet
+    if !current_user then
+      redirect_to login_path
+    end
   end
 
   def login
