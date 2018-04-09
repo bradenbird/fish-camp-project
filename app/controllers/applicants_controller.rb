@@ -2,6 +2,7 @@ class ApplicantsController < ApplicationController
   def index
     @applicants = Applicant.all
 
+    # Maybe change to admin only filters? Chairs only need to see people for their session
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
       @applicants = Applicant.joins(:sessions).where(sessions: {name: @current_sessions}).distinct
@@ -9,6 +10,7 @@ class ApplicantsController < ApplicationController
       @current_sessions = Session.all_session_names
     end
 
+    # Change to only chairs since to use it you should be a chair
     if params[:evaluated].present?
       @show_evaluated = true
       #Set applicants to show all
@@ -17,8 +19,8 @@ class ApplicantsController < ApplicationController
       #Set applicants to show unevaluated
     end
 
-    @even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
     if params[:show].present?
+      @even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
       @odd = false
       @even = false
       @all = false
