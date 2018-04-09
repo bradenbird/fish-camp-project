@@ -23,20 +23,18 @@
       <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
       <br><br>
     </div>
-
+    
     <ul class = "bar">
-      <li class = "bar"><%= link_to 'Home', home_path %>
-      &emsp;
-      <li class = "bar"><%= link_to "Register Now", login_path(:reqpath => 'register') %>
-      &emsp;
-      <li class = "bar"><%= link_to 'FishCamp Profile', login_path(:reqpath => 'profile') %>
-      &emsp;
+      <li class = "bar"><%= link_to 'Home', home_path %></li>
+      <li class = "bar"><%= link_to "Register Now", register_path %></li>
+      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
       <% if current_user %>
         <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
-          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
         <% end %>
       <% end %>
     </ul>
+    <br>
     <br>
     <h2>
       <%= @applicant.first_name + " " + @applicant.last_name%>
