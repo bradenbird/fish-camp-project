@@ -49,6 +49,10 @@ p {
     margin-right: 20px;
     margin-left: 20px;
 }
+form {
+    margin-left: 20px;
+    margin-right: 20px;
+}
 ul {
     font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
@@ -69,6 +73,7 @@ ol {
     background-color: rgb(80, 0, 0);
 }
 .body {
+    font-family: "Arial", Helvetica, sans-serif;
     border-radius: 12px 12px 10px 10px;
     box-shadow:0 0 15px #000;
     margin-bottom: 20px;
@@ -91,6 +96,7 @@ ol {
     color: rgb(80,0,0);
 }
 table {
+    font-family: "Arial", Helvetica, sans-serif;
     display:table;
     margin-right: auto;
     margin-left: auto;
@@ -101,7 +107,7 @@ table {
    
 }
 th {
-    font-weight: normal;
+    font-weight: bold;
      padding: 6px;
 }
 tr:nth-child(even) {

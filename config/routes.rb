@@ -3,6 +3,7 @@ FishCampProject::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get '/fc/applicants', to: 'applicants#index', as: 'applicants' 
+  get '/fc/applicants/:uin', to: 'applicants#show'
 
 
   resources :sessions, only: [:create, :destroy]
