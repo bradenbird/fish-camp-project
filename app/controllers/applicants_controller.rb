@@ -1,5 +1,9 @@
 class ApplicantsController < ApplicationController
   def index
+    if !current_user then
+      redirect_to login_path
+    end
+
     @applicants = Applicant.all
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
@@ -41,6 +45,10 @@ class ApplicantsController < ApplicationController
   end
 
   def show
+    if !current_user then
+      redirect_to login_path
+    end
+    
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
   end
