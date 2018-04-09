@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get "/fc/interview", to: "fc#interview", as:"interview"
 
+  post "/fc/submit", to: "fc#submit", as:"submit"
+
 
 
 end

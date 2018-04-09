@@ -53,7 +53,7 @@
       Extracurriculars: <%= @applicant.extracurriculars %>
       <br>
       <p><button>
-        <%= link_to 'Write Interview', interview_path %>
+        <%= link_to 'Write Interview', interview_path(:id => @applicant.uin) %>
       </button></p>
     </p>
     <h3>
