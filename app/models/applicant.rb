@@ -245,4 +245,5 @@ class Applicant < ApplicationRecord
   def self.search(search)
     where("first_name LIKE ? OR uin LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
   end
+  
 end

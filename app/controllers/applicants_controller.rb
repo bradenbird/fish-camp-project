@@ -96,7 +96,18 @@ class ApplicantsController < ApplicationController
   
   def delete_all
     Applicant.delete_all
+    #Session.delete_all
     flash[:notice] = "You have removed all applicants"
+    redirect_to request.referrer
+  end
+  
+  def destroy 
+    @applicant = Applicant.find(params[:id])
+    #uin = @applicant.uin
+    #@session = Session.find_by 'uin = ?', uin
+    @applicant.destroy
+   # @session.destroy
+    flash[:notice] = "You have removed the applicant"
     redirect_to request.referrer
   end
 end
