@@ -4,12 +4,14 @@ FishCampProject::Application.routes.draw do
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get '/fc/applicants', to: 'applicants#index', as: 'applicants' 
   get '/fc/applicants/:uin', to: 'applicants#show'
-
+  
 
   resources :sessions, only: [:create, :destroy]
 
   resources :applicants do
     collection { post :import }
+  resources :users
+  
   end
   #root to: "home#show"
 end
