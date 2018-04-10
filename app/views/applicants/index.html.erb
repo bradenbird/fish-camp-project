@@ -64,6 +64,18 @@
         Even
         <%= radio_button_tag "show", "all", @all %>
         All
+        <br>
+        Classifications:
+        <%= check_box_tag "classifications[Freshmen]", "Freshmen", @current_classifications.include?("Freshmen") %>
+        Freshmen
+        <%= check_box_tag "classifications[Sophomore]", "Sophomore", @current_classifications.include?("Sophomore") %>
+        Sophomore
+        <%= check_box_tag "classifications[Junior]", "Junior", @current_classifications.include?("Junior") %>
+        Junior
+        <%= check_box_tag "classifications[Senior]", "Senior", @current_classifications.include?("Senior") %>
+        Senior
+        <%= check_box_tag "classifications[Graduate]", "Graduate", @current_classifications.include?("Graduate") %>
+        Graduate Student
         <%= submit_tag "Filter"%>
       <% end %>
     </p>

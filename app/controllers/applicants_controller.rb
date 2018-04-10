@@ -10,6 +10,13 @@ class ApplicantsController < ApplicationController
       @current_sessions = Session.all_session_names
     end
 
+    if params[:classifications].present?
+      @current_classifications = params[:classifications].keys
+      @applicants = @applicants.where(classification: @current_classifications)
+    else
+      @current_classifications = ['Freshmen', 'Sophomore', 'Junior', 'Senior', 'Graduate']
+    end
+
     # Change to only chairs since to use it you should be a chair
     if params[:evaluated].present?
       @show_evaluated = true
