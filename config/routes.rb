@@ -38,6 +38,8 @@ Rails.application.routes.draw do
 
   post "/fc/submit", to: "fc#submit", as:"submit"
 
+  get "/interviews/new", to: "interviews#new", as: "new"
+
 
 
 end
