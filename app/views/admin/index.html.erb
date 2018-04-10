@@ -64,15 +64,22 @@
            <section>
               <table id="Users" style="text-align: center">
                 <tr>
+                  
                   <th>Name</th>
                   <th>Email</th>
                   <th>Role</th>
+                  <th> Make Admin </th>
+                  <th> Make Chair </th>
+                  <th> Make Guest </th>
                  </tr>
               <% @users.each do |user| %>
                 <tr>
                   <td><%= user.name %></td>
                   <td><%= user.email %></td>
                   <td><%= user.role %></td>
+                  <td> <%= link_to "Make Admin", makeAdmin_users_path(:id => user.id ), :method => :get%></td>
+                  <td> <%= link_to "Make Chair", makeChair_users_path(:id => user.id ), :method => :get%></td>
+                  <td> <%= link_to "Make Guest", makeGuest_users_path(:id => user.id ), :method => :get%></td>
                 </tr>
               <% end %>
               </table>

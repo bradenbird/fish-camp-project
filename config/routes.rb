@@ -15,7 +15,11 @@ FishCampProject::Application.routes.draw do
     collection { get 'delete/:uin', action: :delete }
   end
   
-  resources :users
+  resources :users do
+    collection { get :makeAdmin}
+    collection { get :makeChair}
+    collection { get :makeGuest}
+  end
   #root to: "home#show"
 end
 
