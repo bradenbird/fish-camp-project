@@ -95,6 +95,7 @@ class ApplicantsController < ApplicationController
   end
   
   def delete_all
+    authorize Applicant, :destroy?
     Applicant.delete_all
     #Session.delete_all
     flash[:notice] = "You have removed all applicants"
@@ -102,6 +103,7 @@ class ApplicantsController < ApplicationController
   end
   
   def destroy 
+    authorize Applicant, :destroy?
     @applicant = Applicant.find(params[:id])
     #uin = @applicant.uin
     #@session = Session.find_by 'uin = ?', uin

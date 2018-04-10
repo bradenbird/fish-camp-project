@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     def makeAdmin
+        authorize User, :edit?
         @user = User.find(params[:id])
         @user.role = 'admin'
         @user.save!
@@ -8,6 +9,7 @@ class UsersController < ApplicationController
     end
     
     def makeGuest
+        authorize User, :edit?
         @user = User.find(params[:id])
         @user.role = 'guest'
         @user.save!
@@ -16,6 +18,7 @@ class UsersController < ApplicationController
     end
     
     def makeChair
+        authorize User, :edit?
         @user = User.find(params[:id])
         @user.role = 'chair'
         @user.save!

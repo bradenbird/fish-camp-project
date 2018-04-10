@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
   def index 
+    authorize Applicant, :index?
+    authorize User, :index?
     @users = User.all
     @applicants = Applicant.all
     if params[:search1]
