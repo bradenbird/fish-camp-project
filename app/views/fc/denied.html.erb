@@ -34,7 +34,12 @@
       <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
       <% if current_user %>
         <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
-          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
+        <% end %>
+      <% end %>
+      <% if current_user %>
+        <% if (current_user.role == 'admin') %>
+          <li class = "bar"><%= link_to 'Admin Console', admin_path %>
         <% end %>
       <% end %>
     </ul>
