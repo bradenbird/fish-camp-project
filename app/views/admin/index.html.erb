@@ -64,9 +64,6 @@
                 <tr>
                   <td><%= user.name %></td>
                   <td><%= user.email %></td>
-                  <% form_for users do |f| %>
-                    <td><%= f.select :role, [ ["admin",2], ["chair",1], ["guest",0]] %></td>
-                  <% end %>
                   <td><%= user.role %></td>
                 </tr>
               <% end %>
@@ -100,6 +97,7 @@
                 </tr>
            <% end %>
            </table>
+           <%= link_to "Delete All", delete_all_applicants_path, :method => :get, :data => {:confirm => 'Are you sure?'} %>
            </section>
         <% end %>
     </p>

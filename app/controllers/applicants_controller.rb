@@ -93,4 +93,10 @@ class ApplicantsController < ApplicationController
       redirect_to request.referrer, notice: "Applicants imported."
     end
   end
+  
+  def delete_all
+    Applicant.delete_all
+    flash[:notice] = "You have removed all applicants"
+    redirect_to request.referrer
+  end
 end

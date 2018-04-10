@@ -10,6 +10,7 @@ FishCampProject::Application.routes.draw do
 
   resources :applicants do
     collection { post :import }
+    collection { get :delete_all}
   resources :users
   
   end
