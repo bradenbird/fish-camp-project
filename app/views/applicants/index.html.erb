@@ -31,7 +31,7 @@
       <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
       <br><br>
     </div>
-    
+
     <ul class = "bar">
       <li class = "bar"><%= link_to 'Home', home_path %></li>
       <li class = "bar"><%= link_to "Register Now", register_path %></li>
@@ -60,6 +60,14 @@
         <%= radio_button_tag "show", "even", @even %>
         Even
         <%= radio_button_tag "show", "all", @all %>
+        All
+        <br>
+        Gender?
+        <%= radio_button_tag "gender", "Male", @male %>
+        Male
+        <%= radio_button_tag "gender", "Female", @female %>
+        Female
+        <%= radio_button_tag "gender", "Both", @both %>
         All
         <br>
         Classifications:

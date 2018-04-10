@@ -38,7 +38,6 @@ class ApplicantsController < ApplicationController
       if params[:show] == "odd"
         @applicants = @odd_applicants
         @odd = true
-
       elsif params[:show] == "even"
         @applicants = @even_applicants
         @even = true
@@ -49,13 +48,31 @@ class ApplicantsController < ApplicationController
       @all = true
     end
 
+    if params[:gender].present?
+      @male_applicants, @female_applicants = @applicants.partition{ |r| r.gender == "Male" }
+      @male = false
+      @female = false
+      @both = false
+      if params[:gender] == "Male"
+        @applicants = @male_applicants
+        @male = true
+      elsif params[:gender] == "Female"
+        @applicants = @female_applicants
+        @female = true
+      else
+        @both = true
+      end
+    else
+      @both = true
+    end
+
   end
 
   def show
     if !current_user then
       redirect_to login_path
     end
-    
+
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
   end
