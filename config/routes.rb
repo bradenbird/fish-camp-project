@@ -10,6 +10,7 @@ FishCampProject::Application.routes.draw do
 
   resources :applicants do
     collection { post :import }
+    resources :interviews, except: :destroy
   end
   #root to: "home#show"
 end
@@ -19,8 +20,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'fc#home'
-
-  resources :interviews, only: [:new, :create]
 
   resources :fc, :path => '', :only => [:show, :new, :create, :index]
 
@@ -34,11 +33,8 @@ Rails.application.routes.draw do
 
   get "/fc/denied", to: "fc#denied", as: "denied"
 
-  get "/fc/interview", to: "fc#interview", as:"interview"
-
   post "/fc/submit", to: "fc#submit", as:"submit"
 
-  get "/interviews/new", to: "interviews#new", as: "new"
 
 
 

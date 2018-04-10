@@ -43,13 +43,15 @@
     <h2>Please write your responses in the textboxes below.</h2>
     <hr>
 
-    <%= form_for @interview do |f| -%>
+    <%= form_for [@applicant, @interview] do |f| -%>
+      <%= f.hidden_field :applicant_id %>
       <p>Question 1 <br/>
-      <%= text_field :transcript1, nil %> <br/></p>
+      <%= f.text_field :transcript1 %> <br/></p>
       <p>Question 2 <br/>
-      <%= text_field :transcript2, nil %> <br/></p>
+      <%= f.text_field :transcript2 %> <br/></p>
       <%= f.submit "Submit", :name => "value[#{@curr_applicant}]" %>
     <% end -%>
+
     <p>Currently, submit prints this applicant's UIN, each response, and the interviewer's name to the terminal, then redirects to the applicant database page</p>
     <br/>
 
