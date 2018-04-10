@@ -3,6 +3,7 @@ FishCampProject::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get '/fc/applicants', to: 'applicants#index', as: 'applicants' 
+  get '/fc/applicants/:uin', to: 'applicants#show'
 
 
   resources :sessions, only: [:create, :destroy]
@@ -35,6 +36,8 @@ Rails.application.routes.draw do
   
   get "/fc/denied", to: "fc#denied", as: "denied"
 
-  
+  get "/fc/interview", to: "fc#interview", as:"interview"
+
+  post "/fc/submit", to: "fc#submit", as:"submit"
 
 end

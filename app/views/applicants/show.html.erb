@@ -1,0 +1,99 @@
+<html>
+  <head>
+	<title>Fish Camp Applicant</title>
+  </head>
+  <body>
+
+    <div class = "header">
+      <p>
+        <% if current_user %>
+          Signed in as <strong><%= current_user.name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out" %>
+        <% else %>
+          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+          <br>
+          Please use a valid TAMU Google login.
+        <% end %>
+      </p>
+    </div>
+
+    <div class = "body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
+      <br><br>
+    </div>
+    
+    <ul class = "bar">
+      <li class = "bar"><%= link_to 'Home', home_path %></li>
+      <li class = "bar"><%= link_to "Register Now", register_path %></li>
+      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
+      <% if current_user %>
+        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
+        <% end %>
+      <% end %>
+    </ul>
+    <br>
+    <br>
+    <h2>
+      <%= @applicant.first_name + " " + @applicant.last_name%>
+    </h2>
+    <p>
+      Gender: <%= @applicant.gender%>
+      <br>
+      UIN: <%= @applicant.uin%>
+      <br>
+      Classification: <%= @applicant.classification %>
+      <br>
+      Expected Graduation: <%= @applicant.anticipated_graduation %>
+      <br>
+      Email: <%= @applicant.other_email %>
+      <br>
+      Extracurriculars: <%= @applicant.extracurriculars %>
+      <br>
+      <p><button>
+        <%= link_to 'Write Interview', interview_path(:id => @applicant.uin) %>
+      </button></p>
+    </p>
+    <h3>
+      <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
+    </h3>
+    <p>
+      <%= @applicant.app_question_1 %>
+    </p>
+    <h3>
+      <strong>What kind of experience would you want as an incoming freshman. As a camp/crew counselor how would you accomplish this? Please provide tangible examples.</strong>
+    </h3>
+    <p>
+      <%= @applicant.app_question_2 %>
+    </p>
+    <h3>
+      <strong>What will determine your success as a Fish Camp camp/crew counselor? Please use tangible examples.</strong>
+    </h3>
+    <p>
+      <%= @applicant.app_question_3 %>
+    </p>
+    <br>
+    <% if @applicant.crew_counselor %>
+      <h3>
+        <strong>Why are you applying to be a Crew Counselor?</strong>
+      </h3>
+      <p>
+        <%= @applicant.crew_question %>
+      </p>
+    <% end %>
+    <!-- Remove this H3, just a visual reminder to add stuff later -->
+    <h3 style="text-align: center">
+      ####Add score form and link to interview writing pages here. List interview transcripts that are present####
+    </h3>
+    <br>
+    </div>
+    <div class = "footer">
+      <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
+      <br>
+      Hosted by <a href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>
+    </div>
+    <br>
+  </body>
+</html>
