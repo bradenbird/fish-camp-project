@@ -45,9 +45,9 @@
 
     <%= form_for @interview do |f| -%>
       <p>Question 1 <br/>
-      <%= f.text_field :transcript1, nil %> <br/></p>
+      <%= text_field :transcript1, nil %> <br/></p>
       <p>Question 2 <br/>
-      <%= f.text_field :transcript2, nil %> <br/></p>
+      <%= text_field :transcript2, nil %> <br/></p>
       <%= f.submit "Submit", :name => "value[#{@curr_applicant}]" %>
     <% end -%>
     <p>Currently, submit prints this applicant's UIN, each response, and the interviewer's name to the terminal, then redirects to the applicant database page</p>

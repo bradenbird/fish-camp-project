@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'fc#home'
 
-
+  resources :interviews, only: [:new, :create]
 
   resources :fc, :path => '', :only => [:show, :new, :create, :index]
 
