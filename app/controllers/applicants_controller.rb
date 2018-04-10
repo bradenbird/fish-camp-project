@@ -73,6 +73,22 @@ class ApplicantsController < ApplicationController
     end
 
   end
+  
+  def edit 
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', uin
+  end
+  
+  def update
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', uin
+    
+    @applicant.first_name = params['applicant'][:first_name]
+    @applicant.last_name = params['applicant'][:last_name]
+    @applicant.save!
+    flash[:notice] = "You have updated the applicantion"
+    redirect_to request.referrer
+  end
 
   def show
     if !current_user then
