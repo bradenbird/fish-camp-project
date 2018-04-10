@@ -3,7 +3,13 @@ class ApplicantsController < ApplicationController
     if !current_user then
       redirect_to login_path
     end
-
+    if params[:commit].present? && params[:commit] == "Find"
+      uin = params[:find][:uin]
+      if Applicant.exists?(uin: uin)
+        redirect_to applicants_path + "/#{uin}"
+      end
+      flash[:error] = "UIN not found in database"
+    end
     @applicants = Applicant.all
 
     # Maybe change to admin only filters? Chairs only need to see people for their session

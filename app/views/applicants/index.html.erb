@@ -45,6 +45,14 @@
     <br>
     <p style="text-align:center">
       <%= form_tag applicants_path, :method => :get do%>
+        Find applicant by UIN:
+        <%= text_field :find, :uin, size: 9 %>
+        <%= submit_tag "Find"%>
+      <% end %>
+    </p>
+    <br>
+    <p style="text-align:center">
+      <%= form_tag applicants_path, :method => :get do%>
         Filter applicants:
         <% ("A".."G").each do |session|%>
           <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
