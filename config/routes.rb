@@ -31,8 +31,10 @@ Rails.application.routes.draw do
 
   get "/fc/profile", to: "fc#profile", as: "profile"
 
+  get "/admin/index", to: "admin#index", as: "admin"
+  
   get "/fc/denied", to: "fc#denied", as: "denied"
 
-
+  
 
 end

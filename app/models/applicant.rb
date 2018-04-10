@@ -241,5 +241,8 @@ class Applicant < ApplicationRecord
       .where("EXISTS (?)", SessionAvailability
         .where("session_availabilities.session_id = sessions.id")).pluck(:name)
   end
-
+  
+  def self.search(search)
+    where("first_name LIKE ? OR uin LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  end
 end

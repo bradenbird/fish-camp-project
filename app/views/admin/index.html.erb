@@ -1,4 +1,4 @@
-<!-- Access denied page -->
+<!-- Admin page -->
 
 <html>
   <head>
@@ -42,18 +42,35 @@
       <% end %>
     </ul>
     <br>
-    <div class="redirect">
-      <% if current_user %>
-        <!-- Redirect to the page originally requested -->
-        Error redirecting you to the requested page. Press
-        <%= link_to "here", home_path %>
-        to return to the home page.
-      <% else %>
-        <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-        <br>
-        Please use a valid TAMU Google login.
-      <% end %>
-    </div>
+    
+    <p style="text-align:center">
+        <h4> Users </h4>
+           <%= form_tag(admin_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+    </p>
+        <% if @users.blank? %>
+          <h4>There are no users matching  <%= params[:search] %>.</h4>
+        <% else %>
+           <section>
+              <table id="Users" style="text-align: center">
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+
+                 </tr>
+              <% @users.each do |user| %>
+                <tr>
+                  <td><%= user.name %></td>
+                  <td><%= user.email %></td>
+                  <td><%= user.role %></td>
+                </tr>
+              <% end %>
+              </table>
+            </section>
+        <% end %>
     <br>
     </div>
     <div class = "footer">
