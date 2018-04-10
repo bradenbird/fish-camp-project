@@ -1,7 +1,7 @@
 class InterviewsController < ApplicationController
 	def new
 		# all attributes are nil, so form shows up empty
-		@applicant = current_user.chair.applicants.find(params[:applicant_id])
+		@applicant = Applicant.find(params[:applicant_id])
 		@interview = Interview.new(applicant: @applicant)
 	end
 
