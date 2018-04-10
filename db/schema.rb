@@ -120,6 +120,11 @@ ActiveRecord::Schema.define(version: 20180406170544) do
     t.index ["chair_id"], name: "index_evaluations_on_chair_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "session_availabilities", force: :cascade do |t|
     t.integer "session_id", null: false
     t.integer "applicant_id", null: false

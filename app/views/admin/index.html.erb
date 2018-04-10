@@ -45,13 +45,13 @@
     
     <p style="text-align:center">
         <h4> Users </h4>
-           <%= form_tag(admin_path, :method => "get", id: "search-form") do %>
-            <%= text_field_tag :search, params[:search], placeholder: "Search Users" %>
+        <%= form_tag(admin_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search1, params[:search1], placeholder: "Search Users" %>
             <%= submit_tag "Search", :name => nil %>
         <% end %>
     </p>
         <% if @users.blank? %>
-          <h4>There are no users matching  <%= params[:search] %>.</h4>
+          <h4>There are no users matching  <%= params[:search1] %>.</h4>
         <% else %>
            <section>
               <table id="Users" style="text-align: center">
@@ -59,7 +59,6 @@
                   <th>Name</th>
                   <th>Email</th>
                   <th>Role</th>
-
                  </tr>
               <% @users.each do |user| %>
                 <tr>
@@ -72,6 +71,35 @@
             </section>
         <% end %>
     <br>
+    <p style="text-align:center">
+        <h4> Applicants </h4>
+        <%= form_tag(admin_path, :method => "get", id: "search-form") do %>
+            <%= text_field_tag :search2, params[:search2], placeholder: "Search Applicants" %>
+            <%= submit_tag "Search", :name => nil %>
+        <% end %>
+         <% if @applicants.blank? %>
+          <h4>There are no applicants matching  <%= params[:search2] %>.</h4>
+        <% else %>
+           <section>
+           <table id="Applicants" style="text-align: center">
+                <tr>
+                  <th>UIN</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Sessions</th>
+                </tr>
+           <% @applicants.each do |applicant| %>
+                <tr>
+                   <td><%= applicant.uin %></td>
+                   <td><%= applicant.first_name %></td>
+                   <td><%= applicant.last_name %></td>
+                   <td><%= applicant.sessions.pluck(:name).sort.join(", ") %></td>
+                </tr>
+           <% end %>
+           </table>
+           </section>
+        <% end %>
+    </p>
     </div>
     <div class = "footer">
       <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
