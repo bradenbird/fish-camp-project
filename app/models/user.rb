@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_one :chair
 
+
   validates :google_uid, presence: true
   validates :name, presence: true
   validates :email, presence: true
@@ -32,5 +33,10 @@ class User < ActiveRecord::Base
   def create_chair
     camp_id = Camp.pluck(:id).sample
     create_chair!(camp_id: camp_id) unless chair.nil?
+  end
+  
+  
+  def self.search(search)
+    where("name LIKE ? OR uin LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
   end
 end
