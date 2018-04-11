@@ -16,10 +16,8 @@ FishCampProject::Application.routes.draw do
     collection { get :delete_all}
     collection { get 'delete/:uin', action: :delete }
     collection { get :edit}
-    
+    resources :interviews, except: :destroy
   end
-  
-  resources :interviews, except: :destroy
   
   resources :users do
     collection { get :makeAdmin}
