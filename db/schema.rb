@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404185623) do
+ActiveRecord::Schema.define(version: 20180410195046) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
@@ -123,9 +123,10 @@ ActiveRecord::Schema.define(version: 20180404185623) do
   create_table "interviews", force: :cascade do |t|
     t.integer "chair_id", null: false
     t.integer "applicant_id", null: false
-    t.text "transcript"
+    t.text "transcript1"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "transcript2"
     t.index ["applicant_id"], name: "index_interviews_on_applicant_id"
     t.index ["chair_id"], name: "index_interviews_on_chair_id"
   end

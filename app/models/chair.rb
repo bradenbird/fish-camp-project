@@ -2,6 +2,8 @@ class Chair < ApplicationRecord
   belongs_to :camp
   belongs_to :user
 
+  has_many :interviews
+  
   has_many :evaluations
   has_many :evaluated_applicants,
            through: :evaluations,
