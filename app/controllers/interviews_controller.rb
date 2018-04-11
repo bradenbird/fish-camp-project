@@ -7,7 +7,7 @@ class InterviewsController < ApplicationController
 
 	def create
 		# populates the object with the paramaters 
-		@applicant = current_user.chair.applicants.find(interview_params[:applicant_id])
+		@applicant = Applicant.find(interview_params[:applicant_id])
 		@interview = current_user.chair.interviews.new(interview_params)
 		if @interview.save 
 			redirect_to "/fc/applicants"
