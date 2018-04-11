@@ -46,9 +46,9 @@
     <%= form_for [@applicant, @interview] do |f| -%>
       <%= f.hidden_field :applicant_id %>
       <p>Question 1 <br/>
-      <%= f.text_field :transcript1 %> <br/></p>
+      <%= f.text_field :transcript1, class: "custom_textbox" %> <br/></p>
       <p>Question 2 <br/>
-      <%= f.text_field :transcript2 %> <br/></p>
+      <%= f.text_field :transcript2, class: "custom_textbox" %> <br/></p>
       <%= f.submit "Submit", :name => "value[#{@curr_applicant}]" %>
     <% end -%>
 
