@@ -1,16 +1,15 @@
-class ApplicantPolicy < ApplicationPolicy
-  def create?
-      if (user.role == "admin") 
-          return true
-      else 
-          return false
-      end
-  end
+class UserPolicy < ApplicationPolicy
   
   def show?
       if (user.role == "admin")
           return true
-      elsif (user.role == "chair")
+      else 
+          return false 
+      end
+  end
+  
+  def edit?
+      if (user.role == "admin")
           return true
       else 
           return false 

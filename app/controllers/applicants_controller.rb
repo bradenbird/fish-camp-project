@@ -73,6 +73,22 @@ class ApplicantsController < ApplicationController
     end
 
   end
+  
+  def edit 
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', uin
+  end
+  
+  def update
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', uin
+    
+    @applicant.first_name = params['applicant'][:first_name]
+    @applicant.last_name = params['applicant'][:last_name]
+    @applicant.save!
+    flash[:notice] = "You have updated the applicantion"
+    redirect_to request.referrer
+  end
 
   def show
     if !current_user then
@@ -92,5 +108,24 @@ class ApplicantsController < ApplicationController
       Applicant.import(params[:file].path, extension)
       redirect_to request.referrer, notice: "Applicants imported."
     end
+  end
+  
+  def delete_all
+    authorize Applicant, :destroy?
+    Applicant.delete_all
+    #Session.delete_all
+    flash[:notice] = "You have removed all applicants"
+    redirect_to request.referrer
+  end
+  
+  def destroy 
+    authorize Applicant, :destroy?
+    @applicant = Applicant.find(params[:id])
+    #uin = @applicant.uin
+    #@session = Session.find_by 'uin = ?', uin
+    @applicant.destroy
+   # @session.destroy
+    flash[:notice] = "You have removed the applicant"
+    redirect_to request.referrer
   end
 end
