@@ -3,12 +3,29 @@ FishCampProject::Application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   get '/fc/applicants', to: 'applicants#index', as: 'applicants' 
-
+  get '/fc/applicants/:uin', to: 'applicants#show'
+  post '/fc/applicants/update/:uin', to: 'applicants#update'
+  #get '/fc/applicants/delete/:uin', to: 'applicants#delete'
+  
 
   resources :sessions, only: [:create, :destroy]
 
   resources :applicants do
     collection { post :import }
+
+    collection { get :delete_all}
+    collection { get 'delete/:uin', action: :delete }
+    collection { get :edit}
+    
+  end
+  
+  resources :interviews, except: :destroy
+  
+  resources :users do
+    collection { get :makeAdmin}
+    collection { get :makeChair}
+    collection { get :makeGuest}
+
   end
   #root to: "home#show"
 end
@@ -18,8 +35,6 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'fc#home'
-
-
 
   resources :fc, :path => '', :only => [:show, :new, :create, :index]
 
@@ -31,8 +46,10 @@ Rails.application.routes.draw do
 
   get "/fc/profile", to: "fc#profile", as: "profile"
 
+  get "/admin/index", to: "admin#index", as: "admin"
+  
   get "/fc/denied", to: "fc#denied", as: "denied"
 
-
+  post "/fc/submit", to: "fc#submit", as:"submit"
 
 end

@@ -1,10 +1,16 @@
-<!-- Profile page -->
+<!-- Edit Applicant page -->
 
 <html>
   <head>
-    <title>Fish Camp Profile</title>
+    <title>Fish Camp Registration</title>
   </head>
-
+  <% unless flash.empty? %>
+      <div class="container">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= key.upcase %>: <%= value %></div>
+        <% end %>
+      </div>
+  <% end %>
   <body>
     <div class = "header">
       <p style="text-align:right">
@@ -19,10 +25,10 @@
       </p>
     </div>
 
-    <div class = "body">
+    <div class="body">
     <div class = "title">
       <br>
-      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Profile</h>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Redirect</h>
       <br><br>
     </div>
     <div>
@@ -44,16 +50,23 @@
       <% end %>
     </ul>
     <br>
-    <section>
-      <h2>Hello, <strong><%= current_user.name %></strong></h2>
-      <br>
-      <h3>Your current profile information:</h3>
-      <p>Name: <strong><%= current_user.name %></strong></p>
-      <p>UIN: <strong><%= current_user.uin %></strong></p>
-      <p>Email: <strong><%= current_user.email %></strong></p>
-      <p>Role: <strong><%= current_user.role %></strong></p>
-    </section>
-    <br>
+    
+    <%= form_for @applicant, url: applicants_path + "/update/#{@applicant.uin}", :method => :POST do |f| %>
+    <p>
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+    </p>
+
+    <p>
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+    <% end %> 
+    
     </div>
     <div class = "footer">
       <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
