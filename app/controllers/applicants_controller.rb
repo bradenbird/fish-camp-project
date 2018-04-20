@@ -123,6 +123,7 @@ class ApplicantsController < ApplicationController
     @applicant = Applicant.find(params[:id])
     #uin = @applicant.uin
     #@session = Session.find_by 'uin = ?', uin
+    @applicant.session_availabilities.destroy_all
     @applicant.destroy
    # @session.destroy
     flash[:notice] = "You have removed the applicant"
