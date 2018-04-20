@@ -85,6 +85,11 @@ class ApplicantsController < ApplicationController
     
     @applicant.first_name = params['applicant'][:first_name]
     @applicant.last_name = params['applicant'][:last_name]
+    @applicant.uin = params['applicant'][:uin]
+    @applicant.gender = params['applicant'][:gender]
+    @applicant.tamu_email = params['applicant'][:tamu_email]
+    @applicant.other_email = params['applicant'][:other_email]
+    @applicant.phone = params['applicant'][:phone]
     @applicant.save!
     flash[:notice] = "You have updated the applicantion"
     redirect_to request.referrer
@@ -112,8 +117,10 @@ class ApplicantsController < ApplicationController
   
   def delete_all
     authorize Applicant, :destroy?
+    Applicant.all.each do |app|
+      app.session_availabilities.destroy_all
+    end
     Applicant.delete_all
-    #Session.delete_all
     flash[:notice] = "You have removed all applicants"
     redirect_to request.referrer
   end
@@ -121,11 +128,8 @@ class ApplicantsController < ApplicationController
   def destroy 
     authorize Applicant, :destroy?
     @applicant = Applicant.find(params[:id])
-    #uin = @applicant.uin
-    #@session = Session.find_by 'uin = ?', uin
     @applicant.session_availabilities.destroy_all
     @applicant.destroy
-   # @session.destroy
     flash[:notice] = "You have removed the applicant"
     redirect_to request.referrer
   end
