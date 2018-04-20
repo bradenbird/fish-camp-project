@@ -114,8 +114,10 @@ class ApplicantsController < ApplicationController
   
   def delete_all
     authorize Applicant, :destroy?
+    Applicant.all.each do |app|
+      app.session_availabilities.destroy_all
+    end
     Applicant.delete_all
-    #Session.delete_all
     flash[:notice] = "You have removed all applicants"
     redirect_to request.referrer
   end
@@ -123,11 +125,8 @@ class ApplicantsController < ApplicationController
   def destroy 
     authorize Applicant, :destroy?
     @applicant = Applicant.find(params[:id])
-    #uin = @applicant.uin
-    #@session = Session.find_by 'uin = ?', uin
     @applicant.session_availabilities.destroy_all
     @applicant.destroy
-   # @session.destroy
     flash[:notice] = "You have removed the applicant"
     redirect_to request.referrer
   end
