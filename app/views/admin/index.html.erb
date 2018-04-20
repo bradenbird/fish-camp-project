@@ -93,6 +93,7 @@
             <%= text_field_tag :search2, params[:search2], placeholder: "Search Applicants" %>
             <%= submit_tag "Search", :name => nil %>
         <% end %>
+    </p>
          <% if @applicants.blank? %>
           <h4>There are no applicants matching  <%= params[:search2] %>.</h4>
         <% else %>
@@ -115,11 +116,15 @@
                 </tr>
            <% end %>
            </table>
+           <p>
+           <button class = red>
            <%= link_to "Delete All", delete_all_applicants_path, :method => :get, :data => {:confirm => 'Are you sure?'} %>
+           </button>
+           </p>
            <br> 
            </section>
+           <section></section>
         <% end %>
-    </p>
     </div>
     <div class = "footer">
       <h3>Operated by <a href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a href="http://www.tamu.edu/">Texas A&#38;M University</a>
