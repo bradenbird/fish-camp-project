@@ -12,9 +12,6 @@ class AdminController < ApplicationController
       @users = User.all.order("created_at DESC").limit(50)
       @applicants = Applicant.search(params[:search2]).order("created_at DESC").limit(50)
       
-    elsif params[:search1] && params[:search2]
-      @users = User.search(params[:search1]).order("created_at DESC").limit(50)
-      @applicants = Applicant.search(params[:search2]).order("created_at DESC").limit(50)
     
     else 
       @users = User.all.order("created_at DESC").limit(50)

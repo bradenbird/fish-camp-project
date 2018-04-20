@@ -85,6 +85,8 @@ class ApplicantsController < ApplicationController
     
     @applicant.first_name = params['applicant'][:first_name]
     @applicant.last_name = params['applicant'][:last_name]
+    @applicant.uin = params['applicant'][:uin]
+    @applicant.gender = params['applicant'][:gender]
     @applicant.save!
     flash[:notice] = "You have updated the applicantion"
     redirect_to request.referrer
