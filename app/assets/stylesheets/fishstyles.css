@@ -1,4 +1,6 @@
 body {
+    background-image: url("px_by_Gre3g.png");
+    background-repeat: repeat;
     background-color: silver;
     color: #333333;
     font-size: 14px;
@@ -15,6 +17,11 @@ h2 {
     margin-left: 20px;
 }
 h3 {
+    font-family: "Arial", Helvetica, sans-serif;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+h4 {
     font-family: "Arial", Helvetica, sans-serif;
     margin-right: 20px;
     margin-left: 20px;
@@ -85,7 +92,7 @@ ol {
 
 }
 .header {
-    color: rgb(80,0,0);
+    color: rgb(255,255,255);
     text-align:right;
     font-size:75%;
 }
@@ -145,15 +152,36 @@ tr:nth-child(even) {
     font-family: "Arial", Helvetica, sans-serif;
     text-align: center;
 }
-button {
-    background-color: #4CAF50; /* Green */
+.button {
+    background-color: #4CAF50;
     border: none;
     color: white;
-    padding: 10px 15px;
+    padding: 10px 10px;
     text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 16px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+.button:hover {
+    background-color: green;
+}
+.redbutton {
+    background-color: #ff4040;
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+.redbutton:hover {
+    background-color: #cd3333;
 }
 .custom_textbox {
     resize:none;
