@@ -17,4 +17,13 @@ class AdminController < ApplicationController
       @applicants = Applicant.all.order("created_at DESC").limit(50)
     end
   end
+
+  def show
+    if !current_user then
+      redirect_to login_path
+    end
+
+    id = params[:id]
+    @user = User.find(id)
+  end
 end

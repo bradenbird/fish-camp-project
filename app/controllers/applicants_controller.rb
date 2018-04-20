@@ -86,7 +86,7 @@ class ApplicantsController < ApplicationController
     @applicant.first_name = params['applicant'][:first_name]
     @applicant.last_name = params['applicant'][:last_name]
     @applicant.save!
-    flash[:notice] = "You have updated the applicantion"
+    flash[:notice] = "You have updated the application"
     redirect_to request.referrer
   end
 
