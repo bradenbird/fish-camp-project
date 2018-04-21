@@ -75,7 +75,7 @@
               <% @users.each do |user| %>
                 <tr>
                   
-                  <td><%= user.name %></td>
+                  <td><%= link_to user.name, "/admin/#{user.id}" %></td>
                   <td><%= user.email %></td>
                   <td><%= user.role %></td>
                   <td> <%= link_to "Make Admin", makeAdmin_users_path(:id => user.id ), :method => :get%></td>
