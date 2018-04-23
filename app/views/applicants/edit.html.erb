@@ -51,6 +51,7 @@
     <br>
     
     <%= form_for @applicant, url: applicants_path + "/update/#{@applicant.uin}", :method => :POST do |f| %>
+    <h4>Applicant Information</h4>
     <p>
       <%= f.label :first_name %>
       <%= f.text_field :first_name %>
@@ -73,12 +74,12 @@
     </p>
     
     <p>
-      <%= f.label :tamu_email %>
+      <%= f.label :tamu_email, "Texas A&M Email" %>
       <%= f.text_field :tamu_email, :size=>"30" %>
     </p>
     
     <p>
-      <%= f.label :other_email %>
+      <%= f.label :other_email, "Other Email" %>
       <%= f.text_field :other_email, :size=>"30" %>
     </p>
     
@@ -104,7 +105,7 @@
     </p>
     
     <p>
-      <%= f.label :anticipated_graduation %>
+      <%= f.label :anticipated_graduation, "Anticipated Graduation Date " %>
       <%= f.text_field :anticipated_graduation %>
     </p>
     
@@ -119,13 +120,13 @@
     </p>
     
     <p>
-      <%= f.label :shirt_size %>
+      <%= f.label :shirt_size, "Shirt Size" %>
       <%= f.text_field :shirt_size %>
     </p>
     
      <br>
     <p>
-      Parent Information:
+      <h4>Parent Information</h4>
     </p>
     <p>
       <%= f.label :parent_name, "Name " %>
@@ -133,7 +134,7 @@
     </p>
     
     <p>
-      <%= f.label :parent_phone, "Phone number " %>
+      <%= f.label :parent_phone, "Phone Number " %>
       <%= f.text_field :parent_phone %>
     </p>
     
@@ -164,7 +165,7 @@
     
     <br>
     <p>
-      Alternate Contact 1 Information:
+      <h4>Alternate Contact 1 Information</h4>
     </p>
     <p>
       <%= f.label :alt_contact_1_name, "Name " %>
@@ -172,7 +173,7 @@
     </p>
     
     <p>
-      <%= f.label :alt_contact_1_phone, "Phone number " %>
+      <%= f.label :alt_contact_1_phone, "Phone Number " %>
       <%= f.text_field :alt_contact_1_phone %>
     </p>
     
@@ -197,13 +198,13 @@
     </p>
     
     <p>
-      <%= f.label :alt_contact_1_zip, "Zip code " %>
+      <%= f.label :alt_contact_1_zip, "Zip Code " %>
       <%= f.text_field :alt_contact_1_zip %>
     </p>
     
     <br>
     <p>
-      Alternate Contact 2 Information:
+      <h4>Alternate Contact 2 Information</h4>
     </p>
     <p>
       <%= f.label :alt_contact_2_name, "Name " %>
@@ -211,7 +212,7 @@
     </p>
     
     <p>
-      <%= f.label :alt_contact_2_phone, "Phone number " %>
+      <%= f.label :alt_contact_2_phone, "Phone Number " %>
       <%= f.text_field :alt_contact_2_phone %>
     </p>
     
@@ -236,30 +237,149 @@
     </p>
     
     <p>
-      <%= f.label :alt_contact_2_zip, "Zip code " %>
+      <%= f.label :alt_contact_2_zip, "Zip Code " %>
       <%= f.text_field :alt_contact_2_zip %>
     </p>
     
     <br> 
-    Insurance Information:
+    <h4>Insurance Information</h4>
     <p>
-      <%= f.label :insurance_provider%>
+      <%= f.label :insurance_provider, "Insurance Provider "%>
       <%= f.text_field :insurance_provider %>
     </p>
     
     <p>
-      <%= f.label :insurance_policy_number%>
+      <%= f.label :insurance_policy_number, "Insurance Policy Name " %>
       <%= f.text_field :insurance_policy_number %>
     </p>
     
     <p>
-      <%= f.label :insurance_policy_holder_name%>
+      <%= f.label :insurance_policy_holder_name, "Insurance Policy Holder Name "%>
       <%= f.text_field :insurance_policy_holder_name %>
     </p>
     
     <br>
-    Health Information:
+    <h4>Health Information</h4>
+    <p>
+      <%= f.label :last_tetanus_booster_date, "Last Tetanus Booster Date" %>
+      <%= f.text_field :last_tetanus_booster_date %>
+    </p>
     
+    <p>
+      <%= f.label :drug_allergies, "Drug Allergies " %>
+      <%= f.text_field :drug_allergies %>
+    </p>
+    
+    <p>
+      <%= f.label :food_allergies, "Food Allergies"%>
+      <%= f.text_field :food_allergies %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_none, "No Dietary Restrictions " %>
+      <%= f.check_box :dietary_none %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_red_meat, "Dietary Restriction: Red Meat" %>
+      <%= f.check_box :dietary_red_meat %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_vegan, "Dietary Restriction: Vegan" %>
+      <%= f.check_box :dietary_vegan %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_vegetarian, "Dietary Restriction: Vegetarian" %>
+      <%= f.check_box :dietary_vegetarian %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_dairy_free, "Dietary Restriction: Dairy free" %>
+      <%= f.check_box :dietary_dairy_free %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_gluten_free, "Dietary Restriction: Gluten free" %>
+      <%= f.check_box :dietary_gluten_free %>
+    </p>
+    
+    <p>
+      <%= f.label :dietary_other, "Other Dietary Restrictions" %>
+      <%= f.text_field :dietary_other, :size=>"40" %>
+    </p>
+    
+    <p>
+      <%= f.label :medications  %>
+      <%= f.text_field :medications %>
+    </p>
+    
+    <p>
+      <%= f.label :accommodations_none, "No Additional Accomodations Needed"  %>
+      <%= f.check_box :accommodations_none %>
+    </p>
+    
+    <p>
+      <%= f.label :accommodations_auditory, "Needs Auditory Accomodations"  %>
+      <%= f.check_box :accommodations_auditory %>
+    </p>
+    
+    <p>
+      <%= f.label :accommodations_visual, "Needs Visual Accomodations"  %>
+      <%= f.check_box :accommodations_visual %>
+    </p>
+    
+    <p>
+      <%= f.label :accommodations_physical, "Needs Physical Accomodations"  %>
+      <%= f.check_box :accommodations_physical %>
+    </p>
+    
+    <p>
+      <%= f.label :accommodations_other, "Other Accomodation Needs "  %>
+      <%= f.text_field :accommodations_other %>
+    </p>
+    
+    <p>
+      <%= f.label :other_medical_concerns, "Other Medical Concerns "  %>
+      <%= f.text_field :other_medical_concerns %>
+    </p>
+    
+    <h4>Fish Camp Information</h4>
+    <p>
+      <%= f.label :camp_counselor, "Applying for Camp Counselor "  %>
+      <%= f.check_box :camp_counselor %>
+    </p>
+    
+    <p>
+      <%= f.label :crew_counselor, "Applying for Crew Counselor "  %>
+      <%= f.check_box :crew_counselor %>
+    </p>
+    
+    <p>
+      <%= f.label :pick_up_only, "Only Applying for Pick Up Counselor "  %>
+      <%= f.check_box :pick_up_only %>
+    </p>
+    
+    <p>
+      <%= f.label :camp_history, "Camp History "  %>
+      <%= f.text_field :camp_history, :size=>"80" %>
+    </p>
+    
+    
+    
+    <p>
+      <%= f.label :no_show_explanation, "Fish Camp No Show Explanation "  %>
+      <%= f.text_field :no_show_explanation, :size=>"80" %>
+    </p>
+    
+    <p>Session Availability</p>
+    <p>
+    <% ("A".."G").each do |session|%>
+      <%= check_box_tag "sessions[#{session}]", session, @applicant.sessions.pluck(:name).include?(session) %>
+      <%= session %>
+    <% end %>
+    </p>
     <p>
       <%= f.submit %>
     </p>

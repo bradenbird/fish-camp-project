@@ -1,8 +1,6 @@
 class ApplicantsController < ApplicationController
   def index
-    if !current_user then
-      redirect_to login_path
-    end
+    authorize Applicant, :show?
     if params[:commit].present? && params[:commit] == "Find"
       uin = params[:find][:uin]
       if Applicant.exists?(uin: uin)
@@ -92,6 +90,11 @@ class ApplicantsController < ApplicationController
     @applicant.tamu_email = params['applicant'][:tamu_email]
     @applicant.other_email = params['applicant'][:other_email]
     @applicant.phone = params['applicant'][:phone]
+    @applicant.session_availabilities.destroy_all
+    params[:sessions].each do |session|
+      curr_sess = Session.find_by(name: session)
+      @applicant.session_availabilities.create!(session: curr_sess)
+    end
     @applicant.save!
     flash[:notice] = "You have updated the application"
     redirect_to "/applicants/edit?uin=#{@applicant.uin}"
@@ -101,6 +104,7 @@ class ApplicantsController < ApplicationController
     authorize Applicant, :show?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
+    joins(:sessions).where(sessions: {name: @current_sessions}).distinct
   end
 
   def import
