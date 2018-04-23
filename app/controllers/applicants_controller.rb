@@ -75,11 +75,13 @@ class ApplicantsController < ApplicationController
   end
   
   def edit 
+    authorize Applicant, :create?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
   end
   
   def update
+    authorize Applicant, :create?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
     
@@ -96,10 +98,7 @@ class ApplicantsController < ApplicationController
   end
 
   def show
-    if !current_user then
-      redirect_to login_path
-    end
-
+    authorize Applicant, :show?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
   end

@@ -1,5 +1,4 @@
 <!-- Edit Applicant page -->
-
 <html>
   <head>
     <title>Fish Camp Registration</title>
@@ -75,12 +74,12 @@
     
     <p>
       <%= f.label :tamu_email %>
-      <%= f.text_field :tamu_email %>
+      <%= f.text_field :tamu_email, :size=>"30" %>
     </p>
     
     <p>
       <%= f.label :other_email %>
-      <%= f.text_field :other_email %>
+      <%= f.text_field :other_email, :size=>"30" %>
     </p>
     
     <p>
@@ -111,11 +110,11 @@
     
     <p>
       <%= f.label :address %>
-      <%= f.text_field :address %>
+      <%= f.text_field :address, :size=>"50" %>
     </p>
     
      <p>
-      <%= f.label :extracurriculars %>
+      Extracurricular Activities <br>
       <%= f.text_area :extracurriculars, size: "60x4" %>
     </p>
     
@@ -124,7 +123,7 @@
       <%= f.text_field :shirt_size %>
     </p>
     
-    <br>
+     <br>
     <p>
       Parent Information:
     </p>
@@ -140,12 +139,12 @@
     
     <p>
       <%= f.label :parent_email, "Email " %>
-      <%= f.text_field :parent_email %>
+      <%= f.text_field :parent_email, :size=>"30" %>
     </p>
     
     <p>
       <%= f.label :parent_address, "Address " %>
-      <%= f.text_field :parent_address %>
+      <%= f.text_field :parent_address, :size=>"40" %>
     </p>
     
     <p>
@@ -159,13 +158,112 @@
     </p>
     
     <p>
-      <%= f.label :parent_zip, "State " %>
+      <%= f.label :parent_zip, "Zip Code " %>
       <%= f.text_field :parent_zip %>
     </p>
+    
+    <br>
+    <p>
+      Alternate Contact 1 Information:
+    </p>
+    <p>
+      <%= f.label :alt_contact_1_name, "Name " %>
+      <%= f.text_field :alt_contact_1_name %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_phone, "Phone number " %>
+      <%= f.text_field :alt_contact_1_phone %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_email, "Email " %>
+      <%= f.text_field :alt_contact_1_email, :size=>"30" %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_address, "Address " %>
+      <%= f.text_field :alt_contact_1_address, :size=>"40" %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_city, "City " %>
+      <%= f.text_field :alt_contact_1_city %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_state, "State " %>
+      <%= f.text_field :alt_contact_1_state %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_1_zip, "Zip code " %>
+      <%= f.text_field :alt_contact_1_zip %>
+    </p>
+    
+    <br>
+    <p>
+      Alternate Contact 2 Information:
+    </p>
+    <p>
+      <%= f.label :alt_contact_2_name, "Name " %>
+      <%= f.text_field :alt_contact_2_name %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_phone, "Phone number " %>
+      <%= f.text_field :alt_contact_2_phone %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_email, "Email " %>
+      <%= f.text_field :alt_contact_2_email, :size=>"30" %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_address, "Address " %>
+      <%= f.text_field :alt_contact_2_address, :size=>"40" %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_city, "City " %>
+      <%= f.text_field :alt_contact_2_city %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_state, "State " %>
+      <%= f.text_field :alt_contact_2_state %>
+    </p>
+    
+    <p>
+      <%= f.label :alt_contact_2_zip, "Zip code " %>
+      <%= f.text_field :alt_contact_2_zip %>
+    </p>
+    
+    <br> 
+    Insurance Information:
+    <p>
+      <%= f.label :insurance_provider%>
+      <%= f.text_field :insurance_provider %>
+    </p>
+    
+    <p>
+      <%= f.label :insurance_policy_number%>
+      <%= f.text_field :insurance_policy_number %>
+    </p>
+    
+    <p>
+      <%= f.label :insurance_policy_holder_name%>
+      <%= f.text_field :insurance_policy_holder_name %>
+    </p>
+    
+    <br>
+    Health Information:
     
     <p>
       <%= f.submit %>
     </p>
+    <br>
     <% end %> 
     
     </div>
