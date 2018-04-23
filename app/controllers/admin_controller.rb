@@ -18,10 +18,7 @@ class AdminController < ApplicationController
   end
 
   def show
-    if !current_user then
-      redirect_to login_path
-    end
-
+    authorize User, :index?
     id = params[:id]
     @user = User.find(id)
   end
