@@ -123,8 +123,43 @@
       <%= f.label :shirt_size, "Shirt Size" %>
       <%= f.text_field :shirt_size %>
     </p>
+    <br>
+    <h4>Fish Camp Information</h4>
+    <p>Session Availability</p>
+    <p>
+    <% ("A".."G").each do |session|%>
+      <%= check_box_tag "sessions[#{session}]", session, @applicant.sessions.pluck(:name).include?(session) %>
+      <%= session %>
+    <% end %>
+    </p>
+    <p>
+      <%= f.label :camp_counselor, "Applying for Camp Counselor "  %>
+      <%= f.check_box :camp_counselor %>
+    </p>
     
-     <br>
+    <p>
+      <%= f.label :crew_counselor, "Applying for Crew Counselor "  %>
+      <%= f.check_box :crew_counselor %>
+    </p>
+    
+    <p>
+      <%= f.label :pick_up_only, "Only Applying for Pick Up Counselor "  %>
+      <%= f.check_box :pick_up_only %>
+    </p>
+    
+    <p>
+      <%= f.label :camp_history, "Camp History "  %>
+      <%= f.text_field :camp_history, :size=>"80" %>
+    </p>
+    
+    
+    
+    <p>
+      <%= f.label :no_show_explanation, "Fish Camp No Show Explanation "  %>
+      <%= f.text_field :no_show_explanation, :size=>"80" %>
+    </p>
+    
+    <br>
     <p>
       <h4>Parent Information</h4>
     </p>
@@ -345,41 +380,7 @@
       <%= f.text_field :other_medical_concerns %>
     </p>
     
-    <h4>Fish Camp Information</h4>
-    <p>
-      <%= f.label :camp_counselor, "Applying for Camp Counselor "  %>
-      <%= f.check_box :camp_counselor %>
-    </p>
     
-    <p>
-      <%= f.label :crew_counselor, "Applying for Crew Counselor "  %>
-      <%= f.check_box :crew_counselor %>
-    </p>
-    
-    <p>
-      <%= f.label :pick_up_only, "Only Applying for Pick Up Counselor "  %>
-      <%= f.check_box :pick_up_only %>
-    </p>
-    
-    <p>
-      <%= f.label :camp_history, "Camp History "  %>
-      <%= f.text_field :camp_history, :size=>"80" %>
-    </p>
-    
-    
-    
-    <p>
-      <%= f.label :no_show_explanation, "Fish Camp No Show Explanation "  %>
-      <%= f.text_field :no_show_explanation, :size=>"80" %>
-    </p>
-    
-    <p>Session Availability</p>
-    <p>
-    <% ("A".."G").each do |session|%>
-      <%= check_box_tag "sessions[#{session}]", session, @applicant.sessions.pluck(:name).include?(session) %>
-      <%= session %>
-    <% end %>
-    </p>
     <p>
       <%= f.submit %>
     </p>
