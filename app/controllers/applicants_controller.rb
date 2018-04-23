@@ -92,7 +92,7 @@ class ApplicantsController < ApplicationController
     @applicant.phone = params['applicant'][:phone]
     @applicant.save!
     flash[:notice] = "You have updated the application"
-    redirect_to request.referrer
+    redirect_to "/applicants/edit?uin=#{@applicant.uin}"
   end
 
   def show
