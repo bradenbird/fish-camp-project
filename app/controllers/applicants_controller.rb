@@ -152,7 +152,6 @@ class ApplicantsController < ApplicationController
     authorize Applicant, :show?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
-    joins(:sessions).where(sessions: {name: @current_sessions}).distinct
   end
 
   def import
