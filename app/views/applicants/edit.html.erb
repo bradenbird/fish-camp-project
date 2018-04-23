@@ -64,7 +64,7 @@
     
     
     <p>
-      <%= f.label :uin %>
+      <%= f.label :uin, "UIN" %>
       <%= f.text_field :uin %>
     </p>
     
@@ -94,6 +94,74 @@
       <%= f.text_field :birthdate %>
     </p>
     
+    <p>
+      <%= f.label :classification %>
+      <%= f.text_field :classification %>
+    </p>
+    
+    <p>
+      <%= f.label :major %>
+      <%= f.text_field :major %>
+    </p>
+    
+    <p>
+      <%= f.label :anticipated_graduation %>
+      <%= f.text_field :anticipated_graduation %>
+    </p>
+    
+    <p>
+      <%= f.label :address %>
+      <%= f.text_field :address %>
+    </p>
+    
+     <p>
+      <%= f.label :extracurriculars %>
+      <%= f.text_area :extracurriculars, size: "60x4" %>
+    </p>
+    
+    <p>
+      <%= f.label :shirt_size %>
+      <%= f.text_field :shirt_size %>
+    </p>
+    
+    <br>
+    <p>
+      Parent Information:
+    </p>
+    <p>
+      <%= f.label :parent_name, "Name " %>
+      <%= f.text_field :parent_name %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_phone, "Phone number " %>
+      <%= f.text_field :parent_phone %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_email, "Email " %>
+      <%= f.text_field :parent_email %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_address, "Address " %>
+      <%= f.text_field :parent_address %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_city, "City " %>
+      <%= f.text_field :parent_city %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_state, "State " %>
+      <%= f.text_field :parent_state %>
+    </p>
+    
+    <p>
+      <%= f.label :parent_zip, "State " %>
+      <%= f.text_field :parent_zip %>
+    </p>
     
     <p>
       <%= f.submit %>
