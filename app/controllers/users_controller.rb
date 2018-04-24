@@ -2,6 +2,9 @@ class UsersController < ApplicationController
     def makeAdmin
         authorize User, :edit?
         @user = User.find(params[:id])
+        if @user.role == 'chair'
+            @user.chair.destroy
+        end
         @user.role = 'admin'
         @user.save!
         flash[:notice] = "You have made " +  @user.name + " an admin"
@@ -11,6 +14,9 @@ class UsersController < ApplicationController
     def makeGuest
         authorize User, :edit?
         @user = User.find(params[:id])
+        if @user.role == 'chair'
+            @user.chair.destroy
+        end
         @user.role = 'guest'
         @user.save!
         flash[:notice] = "You have made " +  @user.name + " a guest"
@@ -23,7 +29,7 @@ class UsersController < ApplicationController
         @user.role = 'chair'
         @user.save!
         flash[:notice] = "You have made " +  @user.name + " a chair"
-        redirect_to request.referrer
+        redirect_to admin_path
     end
     
 end
