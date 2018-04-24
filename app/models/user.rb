@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
 
   def create_chair(session_id, color)
     camp_id = Camp.find_by(session_id: session_id, name: color).id
+    if chair != nil
+      chair.destroy
+    end
     create_chair!(camp_id: camp_id)
   end
   
