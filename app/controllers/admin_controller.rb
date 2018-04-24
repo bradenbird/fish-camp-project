@@ -1,5 +1,8 @@
 class AdminController < ApplicationController
   def index 
+    if params[:commit].present?
+      User.find(params[:user_id]).create_chair(params[:session_id], params[:color])
+    end
     authorize Applicant, :index?
     authorize User, :index?
     @users = User.all
