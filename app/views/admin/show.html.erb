@@ -52,11 +52,16 @@
       <p>UIN: <strong><%= @user.uin %></strong></p>
       <p>Email: <strong><%= @user.email %></strong></p>
       <p>Role: <strong><%= @user.role %></strong></p>
+      <% if @user.role == 'chair' %>
+        <p> Session: <strong><%= @user.chair.session.name %></strong></p>
+        <p> Color: <strong><%= @user.chair.camp.name.capitalize %></strong></p>
+      <% end %>
     </section>
     <br>
     <section>
       <h3>Make Chair:</h3>
       <p><%= form_tag admin_path, :method => "get" do%>
+        <%= hidden_field_tag 'user_id', @user.id %>
         Session: <%= select_tag(:session_id, options_for_select([['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6], ['G', 7]])) %> 
         Color: <%= select_tag(:color, options_for_select([['Red', 'red'], ['Yellow', 'yellow'], ['Purple', 'purple'], ['Blue', 'blue'], ['Aqua', 'aqua'], ['Green', 'green'], ['Lime', 'lime']])) %>
           <%= submit_tag "Make Chair" %>

@@ -17,4 +17,25 @@ RSpec.describe User, type: :model do
   it "is invalid wihtout a role" do
     expect(build(:user, role: nil)).to_not be_valid
   end
+
+  describe "#create_chair" do
+    # let(:sessiona) {  }
+    it "creates a chair linked to a camp" do
+      sessiona = create(:session, name: "A", id: 1)
+      camp1 = create(:camp, name: "red", session: sessiona)
+      user = create(:user)
+      expect(user.create_chair(1, "red")).to be_valid
+    end
+    it "deletes old chair records for the same user" do
+      sessiona = create(:session, name: "A", id: 1)
+      camp1 = create(:camp, name: "red", session: sessiona)
+      camp2 = create(:camp, name: "blue", session: sessiona)
+      user = create(:user)
+      user.create_chair(1, "red")
+      user.create_chair(1, "blue")
+      expect(Chair.all.count).to eq(1)
+      expect(Chair.first.camp.name).to eq("blue")
+    end
+  end
+
 end

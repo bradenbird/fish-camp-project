@@ -25,7 +25,7 @@ class Applicant < ApplicationRecord
       # For now let's hard code the spreadsheet indexes
       applicant.submission_id = spreadsheet.cell(i,'A')
       applicant.submitted_at = spreadsheet.cell(i,'B')
-      applicant.uin = spreadsheet.cell(i,'M')
+      applicant.uin = spreadsheet.cell(i,'C')
       applicant.first_name = spreadsheet.cell(i,'K')
       applicant.last_name = spreadsheet.cell(i,'L')
       if (spreadsheet.cell(i,'F') == 'Approved')
@@ -227,13 +227,6 @@ class Applicant < ApplicationRecord
   def self.open_spreadsheet(path, extension)
     raise IOError, "Please Choose a .csv, .xlx, or .xlsx file" unless (extension == ".csv" || extension == ".xls" || extension == ".xlsx")
     Roo::Spreadsheet.open(path, extension: extension)
-    # puts file.class.inspect
-    # case File.extname(file.original_filename)
-    # when ".csv" then Roo::CSV.new(file.path)
-    # when ".xls" then Roo::Excel.new(file.path)
-    # when ".xlsx" then Roo::Excelx.new(file.path)
-    # else raise "Unknown file type: #{file.original_filename}"
-    # end
   end
 
   def self.all_session_names
