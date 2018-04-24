@@ -47,7 +47,7 @@ camps = Camp.pluck(:id)
                       uin: Faker::Number.number(9),
                       name: Faker::Name.first_name,
                       email: Faker::Internet.free_email(:name),
-                      role: "chair")
+                      role: "guest")
   # chair_camp = camps.sample
   # chair = user.create_chair!(camp_id: chair_camp)
 end
