@@ -52,6 +52,10 @@
       <p>UIN: <strong><%= @user.uin %></strong></p>
       <p>Email: <strong><%= @user.email %></strong></p>
       <p>Role: <strong><%= @user.role %></strong></p>
+      <% if @user.role == 'chair' %>
+        <p> Session: <strong><%= @user.chair.session.name %></strong></p>
+        <p> Color: <strong><%= @user.chair.camp.name.capitalize %></strong></p>
+      <% end %>
     </section>
     <br>
     <section>
