@@ -25,7 +25,7 @@ class Applicant < ApplicationRecord
       # For now let's hard code the spreadsheet indexes
       applicant.submission_id = spreadsheet.cell(i,'A')
       applicant.submitted_at = spreadsheet.cell(i,'B')
-      applicant.uin = spreadsheet.cell(i,'M')
+      applicant.uin = spreadsheet.cell(i,'C')
       applicant.first_name = spreadsheet.cell(i,'K')
       applicant.last_name = spreadsheet.cell(i,'L')
       if (spreadsheet.cell(i,'F') == 'Approved')
