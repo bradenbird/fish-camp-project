@@ -23,6 +23,7 @@ class Applicant < ApplicationRecord
     (2..spreadsheet.last_row).each do |i|
       applicant = Applicant.new
       # For now let's hard code the spreadsheet indexes
+      applicant.score = "0"
       applicant.submission_id = spreadsheet.cell(i,'A')
       applicant.submitted_at = spreadsheet.cell(i,'B')
       applicant.uin = spreadsheet.cell(i,'M')

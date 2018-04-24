@@ -1,4 +1,7 @@
 class ApplicantsController < ApplicationController
+
+  skip_before_action :verify_authenticity_token
+
   def index
     authorize Applicant, :show?
     if params[:commit].present? && params[:commit] == "Find"
@@ -182,5 +185,13 @@ class ApplicantsController < ApplicationController
     @applicant.destroy
     flash[:notice] = "You have removed the applicant"
     redirect_to request.referrer
+  end
+
+  def score_submit
+    uin = params[:uin]
+    @applicant = Applicant.all.find_by 'uin = ?', uin
+    @applicant.score = params[:score]
+
+    redirect_to applicants_path
   end
 end
