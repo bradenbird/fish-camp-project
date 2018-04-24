@@ -189,8 +189,15 @@ class ApplicantsController < ApplicationController
 
   def score_submit
     uin = params[:uin]
+    print current_user.chair.methods
     @applicant = Applicant.all.find_by 'uin = ?', uin
-    @applicant.score = params[:score]
+    @evaluation = current_user.chair.evaluations.new(params[:score])
+    if @evaluation.save
+      redirect_to "/fc/applicants"
+    else
+      Rails.logger.debug("errors: #{@evaluation.errors.inspect}")
+      render "new"
+    end
 
     redirect_to applicants_path
   end

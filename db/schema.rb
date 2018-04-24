@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20180410195046) do
     t.text "app_question_2"
     t.text "app_question_3"
     t.text "crew_question"
-    t.string "score"
     t.datetime "created_at", null: false
   end
 
