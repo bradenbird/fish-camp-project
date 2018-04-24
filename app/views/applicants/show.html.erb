@@ -89,9 +89,12 @@
       </p>
     <% end %>
     <!-- Remove this H3, just a visual reminder to add stuff later -->
-    <h3 style="text-align: center">
-      ####Add score form and link to interview writing pages here. List interview transcripts that are present####
-    </h3>
+    <%= form_tag "score_submit", :id => "score_submission" do -%>
+      <p>Please enter this applicant's score out of 10:
+      <%= text_field_tag "score", nil, :size => 2, :maxlength =>2 %>
+      <%= hidden_field_tag "uin", (@applicant.uin) %>
+      <%= submit_tag "Submit" %></p>
+    <% end -%>
     <br>
     </div>
     <div class = "footer">

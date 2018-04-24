@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   
   get "/fc/denied", to: "fc#denied", as: "denied"
 
-  post "/fc/submit", to: "fc#submit", as:"submit"
+  post "/fc/submit", to: "fc#submit", as: "submit"
+
+  post "/fc/applicants/score_submit", to: "applicants#score_submit", as: "score_submit"
 
 end

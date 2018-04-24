@@ -58,7 +58,7 @@
       <h3>Make Chair:</h3>
       <p><%= form_tag admin_path, :method => "get" do%>
         Session: <%= select_tag(:session_id, options_for_select([['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6], ['G', 7]])) %> 
-        Color: <%= select_tag(:color_id, options_for_select([['Red', 1], ['Yellow', 2], ['Blue', 3], ['Aqua', 4], ['Green', 5], ['Lime', 6], ['Purple', 7]])) %>
+        Color: <%= select_tag(:color, options_for_select([['Red', 'red'], ['Yellow', 'yellow'], ['Purple', 'purple'], ['Blue', 'blue'], ['Aqua', 'aqua'], ['Green', 'green'], ['Lime', 'lime']])) %>
           <%= submit_tag "Make Chair" %>
       <% end %>
       </p>
