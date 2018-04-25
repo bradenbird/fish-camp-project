@@ -1,7 +1,7 @@
 class EvaluationsController < ApplicationController
   def create
-    @applicant = Applicant.find(evaluation_params[:applicant_id])
-    @evaluation = current_user.chair.evaluations.new(evaluation_params)
+    @applicant = Applicant.find(params[:applicant_id])
+    @evaluation = current_user.chair.evaluations.new(evaluation_params.merge(applicant_id: @applicant.id))
     if @evaluation.save
       redirect_to "/fc/applicants"
     else

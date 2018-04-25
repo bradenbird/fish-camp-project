@@ -90,7 +90,7 @@
     <% end %>
     <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
       <p>Please enter this applicant's score out of 10:
-      <%= f.text_field :rating, :size => 2, :maxlength => 2 %>
+      <%= f.text_field :rating, size: 2, maxlength: 2 %>
       <%= f.submit "Submit" %></p>
     <% end -%>
     <br>

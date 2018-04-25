@@ -5,6 +5,7 @@ require 'roo'
 class Applicant < ApplicationRecord
   has_many :session_availabilities
   has_many :sessions, through: :session_availabilities
+  has_many :evaluations
 
   validates :submission_id, presence: true
   validates :uin, presence: true

@@ -123,7 +123,7 @@
           <td><%= applicant.first_name %></td>
           <td><%= applicant.last_name %></td>
           <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
-          <td><%= current_user.chair.evaluations.find_by(applicant.uin).rating %></td>
+          <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "" %></td>
         </tr>
       <% end %>
       </table>
