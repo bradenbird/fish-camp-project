@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
       oauth_expires_at: Time.at(auth.credentials.expires_at)
     )
     user.save!
+    return user
   end
 
 
