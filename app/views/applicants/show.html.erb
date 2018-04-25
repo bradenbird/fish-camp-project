@@ -88,11 +88,11 @@
         <%= @applicant.crew_question %>
       </p>
     <% end %>
-    <%= form_tag "score_submit", :id => "score_submission" do -%>
+    <%= form_for [@applicant, @evaluation] do |f| -%>
+      <%= f.hidden_field :applicant_id %>
       <p>Please enter this applicant's score out of 10:
-      <%= text_field_tag "score", nil, :size => 2, :maxlength =>2 %>
-      <%= hidden_field_tag "uin", (@applicant.uin) %>
-      <%= submit_tag "Submit" %></p>
+      <%= f.text_field :score, :size => 2, :maxlength =>2 %>
+      <%= f.submit "Submit" %></p>
     <% end -%>
     <br>
     </div>

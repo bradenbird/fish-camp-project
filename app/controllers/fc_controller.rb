@@ -58,16 +58,4 @@ class FcController < ApplicationController
     redirect_to home_path
   end
 
-  def submit
-    uin = params[:value].to_s.scan(/\d/).join('')
-    response1 = params[:question1]
-    response2 = params[:question2]
-    interviewer = current_user.name
-
-    validate = "SUBMITTED DATA:\nUIN: " + uin + "\nResponse 1: " + response1 + "\nResponse 2: " + response2 + "\nInterviewer: " + interviewer + "\n"
-    print validate
-
-    redirect_to applicants_path
-  end
-
 end

@@ -187,9 +187,13 @@ class ApplicantsController < ApplicationController
     redirect_to request.referrer
   end
 
-  def score_submit
-    byebug
-    @applicant = Applicant.find(evaluation_params[:uin])
+  def new
+    @applicant = Applicant.find(params[:applicant_id])
+    @evaluation = Evaluation.new(applicant: @applicant)
+  end
+
+  def create
+    @applicant = Applicant.find(evaluation_params[:applicant_id])
     @evaluation = current_user.chair.evaluations.new(evaluation_params)
     if @evaluation.save
       redirect_to "/fc/applicants"
@@ -204,7 +208,7 @@ class ApplicantsController < ApplicationController
   private 
 
   def evaluation_params
-    params.permit(evaluation: [:uin, :score])[:evaluation]
+    params.permit(evaluation: [:applicant_id, :score])[:evaluation]
   end
 
 end
