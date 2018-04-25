@@ -2,7 +2,7 @@
 
 <html>
   <head>
-    <title>Fish Camp Registration</title>
+    <title>Fish Camp </title>
   </head>
   <% unless flash.empty? %>
       <div class="container">
@@ -28,7 +28,7 @@
     <div class="body">
     <div class = "title">
       <br>
-      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Redirect</h>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp Admin Console</h>
       <br><br>
     </div>
     <div>
@@ -79,7 +79,7 @@
                   <td><%= user.email %></td>
                   <td><%= user.role %></td>
                   <td> <%= link_to "Make Admin", makeAdmin_users_path(:id => user.id ), :method => :get%></td>
-                  <td> <%= link_to "Make Chair", makeChair_users_path(:id => user.id ), :method => :get%></td>
+                  <td> <%= link_to "Make Chair", "/admin/#{user.id}" %></td>
                   <td> <%= link_to "Make Guest", makeGuest_users_path(:id => user.id ), :method => :get%></td>
                 </tr>
               <% end %>

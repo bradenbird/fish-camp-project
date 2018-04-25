@@ -53,6 +53,7 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :test do
@@ -73,6 +74,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -1,0 +1,79 @@
+<!-- Profile page -->
+
+<html>
+  <head>
+    <title>Fish Camp User Update Page</title>
+  </head>
+
+  <body>
+    <div class = "header">
+      <p style="text-align:right">
+        <% if current_user %>
+          Signed in as <strong><%= current_user.name %></strong>!
+          <%= link_to "Sign out", signout_path, id: "sign_out", style: 'color:#FFFFFF;' %>
+        <% else %>
+          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", style: 'color:#FFFFFF;' %>
+          <br>
+          Please use a valid TAMU Google login.
+        <% end %>
+      </p>
+    </div>
+
+    <div class = "body">
+    <div class = "title">
+      <br>
+      <h style="font-size:300%">&emsp;&#x1F41F Fish Camp User Update Page </h>
+      <br><br>
+    </div>
+    <div>
+    <%= yield %>
+    </div>
+    <ul class = "bar">
+      <li class = "bar"><%= link_to 'Home', home_path %></li>
+      <li class = "bar"><%= link_to "Register Now", register_path %></li>
+      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
+      <% if current_user %>
+        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
+          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
+        <% end %>
+      <% end %>
+      <% if current_user %>
+        <% if (current_user.role == 'admin') %>
+          <li class = "bar"><%= link_to 'Admin Console', admin_path %>
+        <% end %>
+      <% end %>
+    </ul>
+    <br>
+    <section>
+      <h2><strong><%= @user.name %></strong></h2>
+      <br>
+      <h3>User information:</h3>
+      <p>Name: <strong><%= @user.name %></strong></p>
+      <p>UIN: <strong><%= @user.uin %></strong></p>
+      <p>Email: <strong><%= @user.email %></strong></p>
+      <p>Role: <strong><%= @user.role %></strong></p>
+      <% if @user.role == 'chair' %>
+        <p> Session: <strong><%= @user.chair.session.name %></strong></p>
+        <p> Color: <strong><%= @user.chair.camp.name.capitalize %></strong></p>
+      <% end %>
+    </section>
+    <br>
+    <section>
+      <h3>Make Chair:</h3>
+      <p><%= form_tag admin_path, :method => "get" do%>
+        <%= hidden_field_tag 'user_id', @user.id %>
+        Session: <%= select_tag(:session_id, options_for_select([['A', 1], ['B', 2], ['C', 3], ['D', 4], ['E', 5], ['F', 6], ['G', 7]])) %> 
+        Color: <%= select_tag(:color, options_for_select([['Red', 'red'], ['Yellow', 'yellow'], ['Purple', 'purple'], ['Blue', 'blue'], ['Aqua', 'aqua'], ['Green', 'green'], ['Lime', 'lime']])) %>
+          <%= submit_tag "Make Chair" %>
+      <% end %>
+      </p>
+    </section>
+    <br>
+    </div>
+    <div class = "footer">
+      <h3>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
+      <br>
+      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></h3>    </div>
+    <br>
+  </body>
+</html>

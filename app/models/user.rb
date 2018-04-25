@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   # after_create here to give us chair permission 
   # this will be changed later once we finalize permissons
-  after_create :create_chair, if: ->(user){ user.chair.nil? }
+  # after_create :create_chair, if: ->(user){ user.chair.nil? }
 
   ADMIN_EMAILS = ["jameslvdb@tamu.edu", "bradenbird@tamu.edu", "jwstone@tamu.edu", "darrelmarek@tamu.edu", "tyler_lamkin@tamu.edu"]
 
@@ -26,13 +26,16 @@ class User < ActiveRecord::Base
       oauth_expires_at: Time.at(auth.credentials.expires_at)
     )
     user.save!
+    return user
   end
 
-  private 
 
-  def create_chair
-    camp_id = Camp.pluck(:id).sample
-    create_chair!(camp_id: camp_id) unless chair.nil?
+  def create_chair(session_id, color)
+    camp = Camp.find_by(session_id: session_id, name: color)
+    if chair != nil
+      chair.destroy
+    end
+    create_chair!(camp: camp)
   end
   
   

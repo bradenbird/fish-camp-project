@@ -1,4 +1,5 @@
 class ApplicantPolicy < ApplicationPolicy
+  
   def create?
       if (user.role == "admin") 
           return true
