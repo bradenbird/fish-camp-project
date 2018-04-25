@@ -41,16 +41,16 @@ end
 end
 
 # Create some users using faker
-camps = Camp.pluck(:id)
-(1..3).each do |i|
-  user = User.create!(google_uid: Faker::Crypto.sha1,
-                      uin: Faker::Number.number(9),
-                      name: Faker::Name.first_name,
-                      email: Faker::Internet.free_email(:name),
-                      role: "guest")
-  # chair_camp = camps.sample
-  # chair = user.create_chair!(camp_id: chair_camp)
-end
+# camps = Camp.pluck(:id)
+# (1..3).each do |i|
+#   user = User.create!(google_uid: Faker::Crypto.sha1,
+#                       uin: Faker::Number.number(9),
+#                       name: Faker::Name.first_name,
+#                       email: Faker::Internet.free_email(:name),
+#                       role: "guest")
+#   # chair_camp = camps.sample
+#   # chair = user.create_chair!(camp_id: chair_camp)
+# end
 
 # james = User.find_by(email: "jameslvdb@tamu.edu")
 # james_camp = camps.sample

@@ -19,22 +19,17 @@ RSpec.describe User, type: :model do
   end
 
   describe "#create_chair" do
-    # let(:sessiona) {  }
+    let(:sessiona) { create(:session, name: "A") }
+    let(:user) { create(:user) }
+    let!(:camp1) { create(:camp, name: "red", session: sessiona) }
     it "creates a chair linked to a camp" do
-      sessiona = create(:session, name: "A", id: 1)
-      camp1 = create(:camp, name: "red", session: sessiona)
-      user = create(:user)
-      expect(user.create_chair(1, "red")).to be_valid
+      expect(user.create_chair(sessiona.id, "red")).to be_valid
     end
     it "deletes old chair records for the same user" do
-      sessiona = create(:session, name: "A", id: 1)
-      camp1 = create(:camp, name: "red", session: sessiona)
       camp2 = create(:camp, name: "blue", session: sessiona)
-      user = create(:user)
-      user.create_chair(1, "red")
-      user.create_chair(1, "blue")
-      expect(Chair.all.count).to eq(1)
-      expect(Chair.first.camp.name).to eq("blue")
+      user.create_chair(sessiona.id, "red")
+      user.create_chair(sessiona.id, "blue")
+      expect(Chair.all.map { |c| c.camp.name }).to eq(["blue"])
     end
   end
 
