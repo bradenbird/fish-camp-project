@@ -121,7 +121,7 @@
           <td><%= applicant.id%></td>
           <td><%= applicant.first_name %></td>
           <td><%= applicant.last_name %></td>
-          <td><%= applicant.sessions.pluck(:name).sort.join(", ") %></td>
+          <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
         </tr>
       <% end %>
       </table>

@@ -11,12 +11,12 @@ class ApplicantsController < ApplicationController
       end
       flash[:error] = "UIN not found in database"
     end
-    @applicants = Applicant.all
+    @applicants = Applicant.all.preload(:sessions)
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
     if params[:sessions].present?
       @current_sessions = params[:sessions].keys
-      @applicants = Applicant.joins(:sessions).where(sessions: {name: @current_sessions}).distinct
+      @applicants = Applicant.includes(:sessions).where(sessions: {name: @current_sessions}).distinct
     else
       @current_sessions = Session.all_session_names
     end
