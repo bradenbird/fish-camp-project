@@ -30,6 +30,10 @@ a {
     font-family: "Arial", Helvetica, sans-serif;
     color: rgb(80, 0, 0);
 }
+.white {
+    font-family: "Arial", Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+}
 ul.bar {
     list-style-type: none;
     margin: 0;
@@ -99,7 +103,7 @@ ol {
 .footer {
     font-size:75%;
     text-align:center;
-    color: rgb(80,0,0);
+    color: rgb(255,255,255);
 }
 table {
     font-family: "Arial", Helvetica, sans-serif;
