@@ -114,7 +114,9 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Sessions</th>
+          <% if current_user.role == "chair" %>
           <th>Score</th>
+          <% end %>
         </tr>
       <% @applicants.each do |applicant| %>
         <tr>
@@ -123,7 +125,9 @@
           <td><%= applicant.first_name %></td>
           <td><%= applicant.last_name %></td>
           <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
+          <% if current_user.role == "chair" %>
           <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "" %></td>
+          <% end %>
         </tr>
       <% end %>
       </table>
