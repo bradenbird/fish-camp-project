@@ -155,6 +155,7 @@ class ApplicantsController < ApplicationController
     authorize Applicant, :show?
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
+    @evaluation = Evaluation.new(applicant: @applicant)
   end
 
   def import
@@ -185,30 +186,6 @@ class ApplicantsController < ApplicationController
     @applicant.destroy
     flash[:notice] = "You have removed the applicant"
     redirect_to request.referrer
-  end
-
-  def new
-    @applicant = Applicant.find(params[:applicant_id])
-    @evaluation = Evaluation.new(applicant: @applicant)
-  end
-
-  def create
-    @applicant = Applicant.find(evaluation_params[:applicant_id])
-    @evaluation = current_user.chair.evaluations.new(evaluation_params)
-    if @evaluation.save
-      redirect_to "/fc/applicants"
-    else
-      Rails.logger.debug("errors: #{@evaluation.errors.inspect}")
-      render "new"
-    end
-
-    redirect_to applicants_path
-  end
-
-  private 
-
-  def evaluation_params
-    params.permit(evaluation: [:applicant_id, :score])[:evaluation]
   end
 
 end

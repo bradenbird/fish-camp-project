@@ -91,7 +91,7 @@
     <%= form_for [@applicant, @evaluation] do |f| -%>
       <%= f.hidden_field :applicant_id %>
       <p>Please enter this applicant's score out of 10:
-      <%= f.text_field :score, :size => 2, :maxlength =>2 %>
+      <%= f.text_field :rating, :size => 2, :maxlength => 2 %>
       <%= f.submit "Submit" %></p>
     <% end -%>
     <br>
