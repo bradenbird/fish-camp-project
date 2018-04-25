@@ -188,10 +188,9 @@ class ApplicantsController < ApplicationController
   end
 
   def score_submit
-    uin = params[:uin]
-    print current_user.chair.methods
-    @applicant = Applicant.all.find_by 'uin = ?', uin
-    @evaluation = current_user.chair.evaluations.new(params[:score])
+    byebug
+    @applicant = Applicant.find(evaluation_params[:uin])
+    @evaluation = current_user.chair.evaluations.new(evaluation_params)
     if @evaluation.save
       redirect_to "/fc/applicants"
     else
@@ -201,4 +200,11 @@ class ApplicantsController < ApplicationController
 
     redirect_to applicants_path
   end
+
+  private 
+
+  def evaluation_params
+    params.permit(evaluation: [:uin, :score])[:evaluation]
+  end
+
 end

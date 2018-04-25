@@ -88,7 +88,6 @@
         <%= @applicant.crew_question %>
       </p>
     <% end %>
-    <!-- Remove this H3, just a visual reminder to add stuff later -->
     <%= form_tag "score_submit", :id => "score_submission" do -%>
       <p>Please enter this applicant's score out of 10:
       <%= text_field_tag "score", nil, :size => 2, :maxlength =>2 %>
