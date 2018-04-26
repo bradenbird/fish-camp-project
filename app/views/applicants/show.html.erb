@@ -89,8 +89,13 @@
       </p>
     <% end %>
 
-    <% if @applicant.interiews.count > 0 %>
-      <% debugger %>
+    <% if @applicant.interviews.size > 0 %>
+      <h3><strong>Interviews</strong></h3>
+      <% @applicant.interviews.each do |interview| %>
+        <p><%= interview.transcript1 %></p>
+        <p><%= interview.transcript2 %></p>
+        <br>
+      <% end %>
     <% end %> 
     <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
       <p>Please enter this applicant's score out of 10:
