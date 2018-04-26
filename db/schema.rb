@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180410195046) do
+ActiveRecord::Schema.define(version: 20180426202908) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20180410195046) do
     t.string "insurance_provider"
     t.string "insurance_policy_number"
     t.string "insurance_policy_holder_name"
-    t.date "last_tetanus_booster_date"
+    t.string "last_tetanus_booster_date"
     t.text "drug_allergies"
     t.text "food_allergies"
     t.boolean "dietary_none"
