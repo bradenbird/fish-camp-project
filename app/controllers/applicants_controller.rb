@@ -44,10 +44,10 @@ class ApplicantsController < ApplicationController
       @even = false
       @all = false
       if params[:show] == "odd"
-        @applicants = @applicants.where('applicants.id % 2 == 1')
+        @applicants = @applicants.where('applicants.id % 2 = 1')
         @odd = true
       elsif params[:show] == "even"
-        @applicants = @applicants.where('applicants.id % 2 == 0')
+        @applicants = @applicants.where('applicants.id % 2 = 0')
         @even = true
       else
         @all = true
