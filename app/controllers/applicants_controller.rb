@@ -1,5 +1,3 @@
-require 'will_paginate/array'
-
 class ApplicantsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
