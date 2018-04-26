@@ -131,6 +131,7 @@
         </tr>
       <% end %>
       </table>
+      <%= will_paginate @applicants %>
       <% if policy(Applicant).create? %>
         <p>Import Applicant Spreadsheet</p>
 

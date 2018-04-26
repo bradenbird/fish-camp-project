@@ -11,6 +11,7 @@ class ApplicantsController < ApplicationController
       end
       flash[:error] = "UIN not found in database"
     end
+    # @applicants = Applicant.paginate(:page => params[:page], :per_page => 20)
     @applicants = Applicant.all.preload(:evaluations, :sessions)
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
@@ -38,15 +39,15 @@ class ApplicantsController < ApplicationController
     end
 
     if params[:show].present?
-      @even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
+      #@even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
       @odd = false
       @even = false
       @all = false
       if params[:show] == "odd"
-        @applicants = @odd_applicants
+        @applicants = @applicants.where('applicants.id % 2 == 1')
         @odd = true
       elsif params[:show] == "even"
-        @applicants = @even_applicants
+        @applicants = @applicants.where('applicants.id % 2 == 0')
         @even = true
       else
         @all = true
@@ -56,15 +57,15 @@ class ApplicantsController < ApplicationController
     end
 
     if params[:gender].present?
-      @male_applicants, @female_applicants = @applicants.partition{ |r| r.gender == "Male" }
+      #@male_applicants, @female_applicants = @applicants.partition{ |r| r.gender == "Male" }
       @male = false
       @female = false
       @both = false
       if params[:gender] == "Male"
-        @applicants = @male_applicants
+        @applicants = @applicants.where(gender: 'Male')
         @male = true
       elsif params[:gender] == "Female"
-        @applicants = @female_applicants
+        @applicants = @applicants.where(gender: 'Female')
         @female = true
       else
         @both = true
@@ -72,7 +73,7 @@ class ApplicantsController < ApplicationController
     else
       @both = true
     end
-
+    @applicants = @applicants.paginate(page: params[:page], per_page: 20)
   end
   
   def edit 
