@@ -173,7 +173,7 @@ class ApplicantsController < ApplicationController
   def delete_all
     authorize Applicant, :destroy?
     Applicant.all.each do |app|
-      app.session_availabilities.destroy_all
+      app.destroy
     end
     Applicant.delete_all
     flash[:notice] = "You have removed all applicants"

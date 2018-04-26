@@ -3,9 +3,9 @@ require 'iconv'
 require 'roo'
 
 class Applicant < ApplicationRecord
-  has_many :session_availabilities
+  has_many :session_availabilities, dependent: :destroy
   has_many :sessions, through: :session_availabilities
-  has_many :evaluations
+  has_many :evaluations, dependent: :destroy
 
   validates :submission_id, presence: true
   validates :uin, presence: true
