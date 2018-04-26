@@ -11,7 +11,8 @@ class ApplicantsController < ApplicationController
       end
       flash[:error] = "UIN not found in database"
     end
-    @applicants = Applicant.all.preload(:evaluations, :sessions)
+    # @applicants = Applicant.paginate(:page => params[:page], :per_page => 20)
+    @applicants = Applicant.all.preload(:evaluations, :sessions).paginate(:page => params[:page], :per_page => 20)
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
     if params[:sessions].present?
@@ -72,7 +73,6 @@ class ApplicantsController < ApplicationController
     else
       @both = true
     end
-
   end
   
   def edit 
