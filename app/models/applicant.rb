@@ -6,6 +6,7 @@ class Applicant < ApplicationRecord
   has_many :session_availabilities, dependent: :destroy
   has_many :sessions, through: :session_availabilities
   has_many :evaluations, dependent: :destroy
+  has_many :interviews, dependent: :destroy
 
   validates :submission_id, presence: true
   validates :uin, presence: true
