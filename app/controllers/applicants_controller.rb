@@ -62,10 +62,10 @@ class ApplicantsController < ApplicationController
       @female = false
       @both = false
       if params[:gender] == "Male"
-        @applicants = @male_applicants
+        @applicants = @applicants.where(gender: 'Male')
         @male = true
       elsif params[:gender] == "Female"
-        @applicants = @female_applicants
+        @applicants = @applicants.where(gender: 'Female')
         @female = true
       else
         @both = true
