@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class ApplicantsController < ApplicationController
 
   skip_before_action :verify_authenticity_token
@@ -12,7 +14,7 @@ class ApplicantsController < ApplicationController
       flash[:error] = "UIN not found in database"
     end
     # @applicants = Applicant.paginate(:page => params[:page], :per_page => 20)
-    @applicants = Applicant.all.preload(:evaluations, :sessions).paginate(:page => params[:page], :per_page => 20)
+    @applicants = Applicant.all.preload(:evaluations, :sessions)
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
     if params[:sessions].present?
@@ -73,6 +75,7 @@ class ApplicantsController < ApplicationController
     else
       @both = true
     end
+    @applicants = @applicants.paginate(page: params[:page], per_page: 20)
   end
   
   def edit 
