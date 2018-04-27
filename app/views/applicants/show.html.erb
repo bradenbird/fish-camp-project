@@ -92,7 +92,9 @@
     <% if @applicant.interviews.size > 0 %>
       <h3><strong>Interviews</strong></h3>
       <% @applicant.interviews.each do |interview| %>
+        <p style="font-weight: bold">Question 1 Response</p>
         <p><%= interview.transcript1 %></p>
+        <p style="font-weight: bold">Question 2 Response</p>
         <p><%= interview.transcript2 %></p>
         <br>
       <% end %>
