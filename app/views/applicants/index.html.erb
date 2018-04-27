@@ -64,8 +64,8 @@
           <%= session %>
         <% end %>
         <br>
-        Show previously evaluated
-        <%= check_box_tag "evaluated", true, @show_evaluated %>
+        Show unevaluated applicants
+        <%= check_box_tag "unevaluated", true, @show_unevaluated %>
         <br>
         Show odds, evens, or all applicants?
         <%= radio_button_tag "show", "odd", @odd %>
