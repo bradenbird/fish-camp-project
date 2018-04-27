@@ -92,6 +92,7 @@
     <% if @applicant.interviews.size > 0 %>
       <h3><strong>Interviews</strong></h3>
       <% @applicant.interviews.each do |interview| %>
+        <h4>Transcript by <%= interview.chair.user.name %></h4>
         <p style="font-weight: bold">Question 1 Response</p>
         <p><%= interview.transcript1 %></p>
         <p style="font-weight: bold">Question 2 Response</p>
