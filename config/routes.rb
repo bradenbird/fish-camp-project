@@ -13,7 +13,7 @@ FishCampProject::Application.routes.draw do
   resources :applicants do
     collection { post :import }
 
-    collection { get :delete_all}
+    collection { post :delete_all}
     collection { get 'delete/:uin', action: :delete }
     collection { get :edit}
     resources :interviews, except: :destroy

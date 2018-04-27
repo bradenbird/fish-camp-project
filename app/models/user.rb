@@ -29,6 +29,9 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def self.search(search)
+    where("name LIKE ? OR uin LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+  end
 
   def create_chair(session_id, color)
     camp = Camp.find_by(session_id: session_id, name: color)
@@ -37,9 +40,12 @@ class User < ActiveRecord::Base
     end
     create_chair!(camp: camp)
   end
-  
-  
-  def self.search(search)
-    where("name LIKE ? OR uin LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+
+  def admin?
+    role == 'admin'
+  end
+
+  def chair?
+    role == 'chair'
   end
 end

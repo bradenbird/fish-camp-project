@@ -57,16 +57,21 @@
     </p>
     <br>
     <p style="text-align:center">
+      <h3>Filter Applicants</h3>
       <%= form_tag applicants_path, :method => :get do%>
-        Filter applicants:
-        <% ("A".."G").each do |session|%>
-          <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
-          <%= session %>
+        <% if current_user.admin? %>
+          Session:
+          <% ("A".."G").each do |session|%>
+            <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
+            <%= session %>
+          <% end %>
+        <br>
         <% end %>
-        <br>
-        Show unevaluated applicants
-        <%= check_box_tag "unevaluated", true, @show_unevaluated %>
-        <br>
+        <% if current_user.chair? %>
+          Show unevaluated applicants
+          <%= check_box_tag "unevaluated", true, @show_unevaluated %>
+          <br>
+        <% end %>
         Show odds, evens, or all applicants?
         <%= radio_button_tag "show", "odd", @odd %>
         Odd
@@ -113,9 +118,11 @@
           <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
-          <th>Sessions</th>
-          <% if current_user.role == "chair" %>
-          <th>Score</th>
+          <% if current_user.admin? %>
+            <th>Sessions</th>
+          <% end %>
+          <% if current_user.chair? %>
+            <th>Score</th>
           <% end %>
         </tr>
       <% @applicants.each do |applicant| %>
@@ -124,9 +131,11 @@
           <td><%= applicant.id%></td>
           <td><%= applicant.first_name %></td>
           <td><%= applicant.last_name %></td>
-          <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
-          <% if current_user.role == "chair" %>
-          <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "" %></td>
+          <% if current_user.admin? %>
+            <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
+          <% end %>
+          <% if current_user.chair? %>
+            <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "" %></td>
           <% end %>
         </tr>
       <% end %>

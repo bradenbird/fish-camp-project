@@ -119,10 +119,7 @@
             <%= will_paginate @applicants %>
            <p>
 
-           <button class="redbutton">
-           <%= link_to "Delete All", delete_all_applicants_path, :method => :get, :data => {:confirm => 'Are you sure?'}, style: 'color:#FFFFFF;' %>
-
-           </button>
+           <%= button_to "Delete All", delete_all_applicants_path, class: "redbutton", data: {:confirm => 'Are you sure you want to delete all applicants?'} %>
            </p>
            <br> 
            </section>

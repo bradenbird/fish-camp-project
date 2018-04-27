@@ -13,24 +13,29 @@ class ApplicantsController < ApplicationController
     end
 
     # Change to only chairs since to use it you should be a chair
-    if params[:unevaluated].present?
-      #Set applicants to show only unevaluated applicants
-      @show_unevaluated = true
-      # @user = User.find(params[:id])
-      @applicants = current_user.chair.unevaluated_applicants
+    if current_user.chair?
+      if params[:unevaluated].present? 
+        #Set applicants to show only unevaluated applicants
+        @show_unevaluated = true
+        @applicants = current_user.chair.unevaluated_applicants
+      else
+        #Set applicants to show all
+        @show_unevaluated = false
+        @applicants = current_user.chair.applicants
+      end
     else
-      #Set applicants to show all
-      @show_unevaluated = false
       @applicants = Applicant.all
     end
 
     # Maybe change to admin only filters? Chairs only need to see people for their session
-    if params[:sessions].present?
-      @current_sessions = params[:sessions].keys
-      @applicants = @applicants.includes(:sessions).where(sessions: {name: @current_sessions}).preload(:evaluations).distinct
-    else
-      @current_sessions = Session.all_session_names
-      @applicants = @applicants.all.preload(:evaluations, :sessions)
+    if current_user.admin?
+      if params[:sessions].present?
+        @current_sessions = params[:sessions].keys
+        @applicants = @applicants.includes(:sessions).where(sessions: {name: @current_sessions}).preload(:evaluations).distinct
+      else
+        @current_sessions = Session.all_session_names
+        @applicants = @applicants.all.preload(:evaluations, :sessions)
+      end
     end
 
     if params[:classifications].present?
