@@ -136,7 +136,7 @@
             <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
           <% end %>
           <% if current_user.chair? %>
-            <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "" %></td>
+            <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "-" %></td>
           <% end %>
         </tr>
       <% end %>
