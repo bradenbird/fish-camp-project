@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Open Sans');
+
 body {
     background-image: url("/assets/px_by_Gre3g.png");
     background-repeat: repeat;
@@ -6,28 +9,29 @@ body {
     font-size: 14px;
 }
 h1 {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Oswald", sans-serif;
     margin-right: 20px;
     margin-left: 20px;
     background-color: white;
 }
 h2 {
-    font-family: "Arial", Helvetica, sans-serif;
-    margin-right: 20px;
+    font-family: "Oswald", sans-serif;
+/*    font-family: "Arial", Helvetica, sans-serif;
+*/    margin-right: 20px;
     margin-left: 20px;
 }
 h3 {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Oswald", sans-serif;
     margin-right: 20px;
     margin-left: 20px;
 }
 h4 {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Oswald", sans-serif;
     margin-right: 20px;
     margin-left: 20px;
 }
 a {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     color: rgb(80, 0, 0);
 }
 .white {
@@ -46,6 +50,7 @@ li.bar {
     padding: 0px 10px;
 }
 li.bar a {
+    font-family: "Oswald", sans-serif;
     display: inline-block;
     color: white;
     text-align: center;
@@ -56,21 +61,22 @@ li.bar a:hover {
     background-color: #111;
 }
 p {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin-right: 20px;
     margin-left: 20px;
 }
 form {
+    font-family: "Open Sans", sans-serif;
     margin-left: 20px;
     margin-right: 20px;
 }
 ul {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin-right: 20px;
     margin-left: 10px;
 }
 ol {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     margin-right: 20px;
     margin-left: 10px;
 }
@@ -84,7 +90,7 @@ ol {
     background-color: rgb(80, 0, 0);
 }
 .body {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     border-radius: 12px 12px 10px 10px;
     box-shadow:0 0 15px #000;
     margin-bottom: 20px;
@@ -106,7 +112,7 @@ ol {
     color: rgb(255,255,255);
 }
 table {
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     display:table;
     margin-right: auto;
     margin-left: auto;
@@ -116,8 +122,9 @@ table {
     border: 1px solid #dddddd;
 }
 th {
+    font-family: 'Oswald', sans-serif;
     font-weight: bold;
-     padding: 6px;
+    padding: 6px;
 }
 tr:nth-child(even) {
     background-color: #f2f2f2;
@@ -132,7 +139,7 @@ tr:nth-child(even) {
     max-width: 960px;
     color: #9F6000;
     background-color: #FEEFB3;
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
 }
 .alert-error {
@@ -142,7 +149,7 @@ tr:nth-child(even) {
     max-width: 960px;
     color: #D8000C;
     background-color: #FFD2D2;
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
 }
 .alert-notice {
@@ -152,10 +159,11 @@ tr:nth-child(even) {
     max-width: 960px;
     color: #00529B;
     background-color: #BDE5F8;
-    font-family: "Arial", Helvetica, sans-serif;
+    font-family: "Open Sans", sans-serif;
     text-align: center;
 }
 .button {
+    font-family: "Open Sans", sans-serif;
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -171,6 +179,7 @@ tr:nth-child(even) {
     background-color: green;
 }
 .redbutton {
+    font-family: "Open Sans", sans-serif;
     background-color: #ff4040;
     border: none;
     color: white;
