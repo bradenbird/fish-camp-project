@@ -57,9 +57,11 @@
       <br>
       Extracurriculars: <%= @applicant.extracurriculars %>
       <br>
-      <p><button>
-        <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
-      </button></p>
+      <% if current_user.role == 'chair' %>
+        <p><button>
+          <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
+        </button></p>
+      <% end %>
     </p>
     <h3>
       <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
@@ -100,11 +102,13 @@
         <br>
       <% end %>
     <% end %> 
-    <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
-      <p>Please enter this applicant's score out of 10:
-      <%= f.text_field :rating, size: 2, maxlength: 2 %>
-      <%= f.submit "Submit" %></p>
-    <% end -%>
+    <% if current_user.role == 'chair' %>
+      <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
+        <p>Please enter this applicant's score out of 10:
+        <%= f.text_field :rating, size: 2, maxlength: 2 %>
+        <%= f.submit "Submit" %></p>
+      <% end -%>
+    <% end %>
     <br>
     </div>
     <div class = "footer">
