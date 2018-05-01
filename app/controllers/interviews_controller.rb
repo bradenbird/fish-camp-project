@@ -1,11 +1,13 @@
 class InterviewsController < ApplicationController
 	def new
+		authorize Applicant, :show?
 		# all attributes are nil, so form shows up empty
 		@applicant = Applicant.find(params[:applicant_id])
 		@interview = Interview.new(applicant: @applicant)
 	end
 
 	def create
+		authorize Applicant, :show?
 		# populates the object with the paramaters 
 		@applicant = Applicant.find(interview_params[:applicant_id])
 		@interview = current_user.chair.interviews.new(interview_params)

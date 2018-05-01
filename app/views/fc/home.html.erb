@@ -48,7 +48,7 @@
       <% if current_user %>
         <h2>Howdy!<br>Welcome to the Fish Camp Chair Website, <strong><%= current_user.name %></strong>.</h2>
       <% else %>
-        <h2>Howdy!<br>This is the Fish Camp Chair Website! Please <%= link_to "login", "/auth/google_oauth2", id: "sign_in" %> to access this content.</h2>
+        <h2>Howdy!<br>This is the Fish Camp Chair Website! Please <%= link_to "login", "/auth/google_oauth2", id: "home_sign_in" %> to access this content.</h2>
       <% end %>
     </div>
     <br>
@@ -57,7 +57,9 @@
     <div class = "footer">
       <p>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
       <br>
-      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></p>
+      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a>
+      <br>
+      <a class = "white" href="mailto:fish-camp-devs@googlegroups.com">Report an issue with the website</a></p>
     </div>
     <br>
   </body>

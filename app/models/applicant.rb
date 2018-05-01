@@ -11,6 +11,10 @@ class Applicant < ApplicationRecord
   validates :submission_id, presence: true
   validates :uin, presence: true
 
+  def has_interviews?
+    interviews.exists?
+  end
+
   def self.import(path, extension)
     spreadsheet = open_spreadsheet(path, extension)
 

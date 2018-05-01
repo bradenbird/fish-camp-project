@@ -57,9 +57,11 @@
       <br>
       Extracurriculars: <%= @applicant.extracurriculars %>
       <br>
-      <p><button>
-        <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
-      </button></p>
+      <% if current_user.role == 'chair' %>
+        <p><button>
+          <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
+        </button></p>
+      <% end %>
     </p>
     <h3>
       <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
@@ -88,17 +90,33 @@
         <%= @applicant.crew_question %>
       </p>
     <% end %>
-    <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
-      <p>Please enter this applicant's score out of 10:
-      <%= f.text_field :rating, size: 2, maxlength: 2 %>
-      <%= f.submit "Submit" %></p>
-    <% end -%>
+
+    <% if @applicant.interviews.size > 0 %>
+      <h3><strong>Interviews</strong></h3>
+      <% @applicant.interviews.each do |interview| %>
+        <h4>Transcript by <%= interview.chair.user.name %></h4>
+        <p style="font-weight: bold">Question 1 Response</p>
+        <p><%= interview.transcript1 %></p>
+        <p style="font-weight: bold">Question 2 Response</p>
+        <p><%= interview.transcript2 %></p>
+        <br>
+      <% end %>
+    <% end %> 
+    <% if current_user.role == 'chair' %>
+      <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
+        <p>Please enter this applicant's score out of 10:
+        <%= f.text_field :rating, size: 2, maxlength: 2 %>
+        <%= f.submit "Submit" %></p>
+      <% end -%>
+    <% end %>
     <br>
     </div>
     <div class = "footer">
       <p>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
       <br>
-      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a></p>
+      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a>
+      <br>
+      <a class = "white" href="mailto:fish-camp-devs@googlegroups.com">Report an issue with the website</a></p>
     </div>
     <br>
   </body>
