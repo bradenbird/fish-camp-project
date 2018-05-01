@@ -1,5 +1,6 @@
 class EvaluationsController < ApplicationController
   def create
+    authorize Applicant, :show?
     @applicant = Applicant.find(params[:applicant_id])
     unless @applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.nil?
       @evaluation = @applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}
