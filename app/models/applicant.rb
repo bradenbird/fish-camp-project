@@ -15,6 +15,10 @@ class Applicant < ApplicationRecord
     interviews.exists?
   end
 
+  def to_param
+    uin
+  end
+
   def self.import(path, extension)
     spreadsheet = open_spreadsheet(path, extension)
 
@@ -240,9 +244,9 @@ class Applicant < ApplicationRecord
       .where("EXISTS (?)", SessionAvailability
         .where("session_availabilities.session_id = sessions.id")).pluck(:name)
   end
-  
+
   def self.search(search)
-    where("first_name LIKE ? OR uin LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%") 
+    where("first_name LIKE ? OR uin LIKE ? OR last_name LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
-  
+
 end

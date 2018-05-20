@@ -18,10 +18,6 @@ class FcController < ApplicationController
     end
   end
 
-  def index
-    #do nothing yet
-  end
-
   def home
     @title = "Home"
     #default, load home
@@ -58,9 +54,4 @@ class FcController < ApplicationController
     @title = "Registration"
     #do nothing yet
   end
-
-  def show
-    redirect_to home_path
-  end
-
 end

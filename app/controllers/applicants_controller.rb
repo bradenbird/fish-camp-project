@@ -167,8 +167,7 @@ class ApplicantsController < ApplicationController
   def show
     authorize Applicant, :show?
     @title = "Applicant"
-    uin = params[:uin]
-    @applicant = Applicant.all.find_by 'uin = ?', uin
+    @applicant = Applicant.find_by(uin: params[:id])
     @evaluation = Evaluation.new(applicant: @applicant)
   end
 
