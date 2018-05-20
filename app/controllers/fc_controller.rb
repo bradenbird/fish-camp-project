@@ -23,16 +23,19 @@ class FcController < ApplicationController
   end
 
   def home
+    @title = "Home"
     #default, load home
   end
 
   def register
+    @title = "Registration"
     if !check_user(current_user, "chair") then
       redirect_to login_path
     end
   end
 
   def profile
+    @title = "Profile"
     if !check_user(current_user, "chair") then
       redirect_to login_path
     end
@@ -52,6 +55,7 @@ class FcController < ApplicationController
   end
 
   def login
+    @title = "Registration"
     #do nothing yet
   end
 

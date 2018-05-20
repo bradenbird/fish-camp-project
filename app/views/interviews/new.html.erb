@@ -1,67 +1,13 @@
 <!-- interview page -->
 
-<html>
-  
-  <head>
-    <title>Fish Camp Interviews</title>
-  </head>
+<h2>Please write your responses in the textboxes below.</h2>
+<hr>
 
-  <body>
-
-    <div class="header">
-      <p>
-        <% if current_user %>
-          Signed in as <strong><%= current_user.name %></strong>!
-          <%= link_to "Sign out", signout_path, id: "sign_out", style: 'color:#FFFFFF;' %>
-        <% else %>
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", style: 'color:#FFFFFF;' %>
-          <br>
-          Please use a valid TAMU Google login.
-        <% end %>
-      </p>
-    </div>
-
-    <div class = "body">
-    <div class = "title">
-      <br>
-      <h style="font-family: 'Oswald'; font-size:300%">&emsp;&#x1F41F; Fish Camp Interviews</h>
-      <br><br>
-    </div>
-
-    <ul class = "bar">
-      <li class = "bar"><%= link_to 'Home', home_path %></li>
-      <li class = "bar"><%= link_to "Register Now", register_path %></li>
-      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
-      <% if current_user %>
-        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
-          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <br>
-
-    <h2>Please write your responses in the textboxes below.</h2>
-    <hr>
-
-    <%= form_for [@applicant, @interview] do |f| -%>
-      <%= f.hidden_field :applicant_id %>
-      <p>Question 1 <br/>
-      <%= f.text_area :transcript1, class: "custom_textbox" %> <br/></p>
-      <p>Question 2 <br/>
-      <%= f.text_area :transcript2, class: "custom_textbox" %> <br/></p>
-      <%= f.submit "Submit", :name => "value[#{@curr_applicant}]" %>
-    <% end -%>
-
-    <br/>
-
-    </div>
-    <div class = "footer">
-      <p>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
-      <br>
-      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a>
-      <br>
-      <a class = "white" href="mailto:fish-camp-devs@googlegroups.com">Report an issue with the website</a></p>
-    </div>
-    <br>
-  </body>
-</html>
+<%= form_for [@applicant, @interview] do |f| -%>
+  <%= f.hidden_field :applicant_id %>
+  <p>Question 1 <br/>
+  <%= f.text_area :transcript1, class: "custom_textbox" %> <br/></p>
+  <p>Question 2 <br/>
+  <%= f.text_area :transcript2, class: "custom_textbox" %> <br/></p>
+  <%= f.submit "Submit", :name => "value[#{@curr_applicant}]" %>
+<% end -%>
