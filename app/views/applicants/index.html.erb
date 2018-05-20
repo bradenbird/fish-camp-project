@@ -1,157 +1,94 @@
 <!-- Applicant DB page -->
-
-<html>
-  <head>
-    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-    <title style="font-family: 'Oswald'"">Fish Camp Profile</title>
-  </head>
-  <% unless flash.empty? %>
-      <div class="container">
-        <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>"><%= key.upcase %>: <%= value %></div>
-        <% end %>
-      </div>
+<p style="text-align:center">
+  <%= form_tag applicants_path, :method => :get do%>
+    Find applicant by UIN:
+    <%= text_field :find, :uin, size: 9 %>
+    <%= submit_tag "Find"%>
+  <% end %>
+</p>
+<br>
+<p style="text-align:center">
+  <h3>Filter Applicants</h3>
+  <%= form_tag applicants_path, :method => :get do%>
+    <% if current_user.admin? %>
+      Session:
+      <% ("A".."G").each do |session|%>
+        <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
+        <%= session %>
+      <% end %>
+    <br>
     <% end %>
-  <body>
-    <div class = "header">
-      <p style="text-align:right">
-        <% if current_user %>
-          Signed in as <strong><%= current_user.name %></strong>!
-          <%= link_to "Sign out", signout_path, id: "sign_out", style: 'color:#FFFFFF;' %>
-        <% else %>
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", style: 'color:#FFFFFF;' %>
-          <br>
-          Please use a valid TAMU Google login.
-        <% end %>
-      </p>
-    </div>
-
-    <div class = "body">
-    <div class = "title">
+    <% if current_user.chair? %>
+      Show unevaluated applicants
+      <%= check_box_tag "unevaluated", true, @show_unevaluated %>
       <br>
-      <h style="font-family: 'Oswald'; font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
-      <br><br>
-    </div>
+    <% end %>
+    Show odds, evens, or all applicants?
+    <%= radio_button_tag "show", "odd", @odd %>
+    Odd
+    <%= radio_button_tag "show", "even", @even %>
+    Even
+    <%= radio_button_tag "show", "all", @all %>
+    All
+    <br>
+    Gender?
+    <%= radio_button_tag "gender", "Male", @male %>
+    Male
+    <%= radio_button_tag "gender", "Female", @female %>
+    Female
+    <%= radio_button_tag "gender", "Both", @both %>
+    All
+    <br>
+    Classifications:
+    <%= check_box_tag "classifications[Freshmen]", "Freshmen", @current_classifications.include?("Freshmen") %>
+    Freshmen
+    <%= check_box_tag "classifications[Sophomore]", "Sophomore", @current_classifications.include?("Sophomore") %>
+    Sophomore
+    <%= check_box_tag "classifications[Junior]", "Junior", @current_classifications.include?("Junior") %>
+    Junior
+    <%= check_box_tag "classifications[Senior]", "Senior", @current_classifications.include?("Senior") %>
+    Senior
+    <%= check_box_tag "classifications[Graduate]", "Graduate", @current_classifications.include?("Graduate") %>
+    Graduate Student
+    <%= submit_tag "Filter"%>
+  <% end %>
+</p>
+<section>
+  <table id="Applicants" style="text-align: center">
+    <tr>
+      <th>UIN</th>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <% if current_user.admin? %>
+        <th>Sessions</th>
+      <% end %>
+      <% if current_user.chair? %>
+        <th>Score</th>
+      <% end %>
+    </tr>
+  <% @applicants.each do |applicant| %>
+    <tr>
+      <td><%= link_to applicant.uin, applicants_path + "/#{applicant.uin}" %></td>
+      <td><%= applicant.id%></td>
+      <td><%= applicant.first_name %></td>
+      <td><%= applicant.last_name %></td>
+      <% if current_user.admin? %>
+        <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
+      <% end %>
+      <% if current_user.chair? %>
+        <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "-" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
+  <%= will_paginate @applicants %>
+  <% if policy(Applicant).create? %>
+    <p>Import Applicant Spreadsheet</p>
 
-    <ul class = "bar">
-      <li class = "bar"><%= link_to 'Home', home_path %></li>
-      <li class = "bar"><%= link_to "Register Now", register_path %></li>
-      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
-      <% if current_user %>
-        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
-          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
-        <% end %>
-      <% end %>
-      <% if current_user %>
-        <% if (current_user.role == 'admin') %>
-          <li class = "bar"><%= link_to 'Admin Console', admin_path %>
-        <% end %>
-      <% end %>
-    </ul>
-    <br>
-    <p style="text-align:center">
-      <%= form_tag applicants_path, :method => :get do%>
-        Find applicant by UIN:
-        <%= text_field :find, :uin, size: 9 %>
-        <%= submit_tag "Find"%>
-      <% end %>
-    </p>
-    <br>
-    <p style="text-align:center">
-      <h3>Filter Applicants</h3>
-      <%= form_tag applicants_path, :method => :get do%>
-        <% if current_user.admin? %>
-          Session:
-          <% ("A".."G").each do |session|%>
-            <%= check_box_tag "sessions[#{session}]", session, @current_sessions.include?(session) %>
-            <%= session %>
-          <% end %>
-        <br>
-        <% end %>
-        <% if current_user.chair? %>
-          Show unevaluated applicants
-          <%= check_box_tag "unevaluated", true, @show_unevaluated %>
-          <br>
-        <% end %>
-        Show odds, evens, or all applicants?
-        <%= radio_button_tag "show", "odd", @odd %>
-        Odd
-        <%= radio_button_tag "show", "even", @even %>
-        Even
-        <%= radio_button_tag "show", "all", @all %>
-        All
-        <br>
-        Gender?
-        <%= radio_button_tag "gender", "Male", @male %>
-        Male
-        <%= radio_button_tag "gender", "Female", @female %>
-        Female
-        <%= radio_button_tag "gender", "Both", @both %>
-        All
-        <br>
-        Classifications:
-        <%= check_box_tag "classifications[Freshmen]", "Freshmen", @current_classifications.include?("Freshmen") %>
-        Freshmen
-        <%= check_box_tag "classifications[Sophomore]", "Sophomore", @current_classifications.include?("Sophomore") %>
-        Sophomore
-        <%= check_box_tag "classifications[Junior]", "Junior", @current_classifications.include?("Junior") %>
-        Junior
-        <%= check_box_tag "classifications[Senior]", "Senior", @current_classifications.include?("Senior") %>
-        Senior
-        <%= check_box_tag "classifications[Graduate]", "Graduate", @current_classifications.include?("Graduate") %>
-        Graduate Student
-        <%= submit_tag "Filter"%>
-      <% end %>
-    </p>
-    <section>
-      <table id="Applicants" style="text-align: center">
-        <tr>
-          <th>UIN</th>
-          <th>ID</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <% if current_user.admin? %>
-            <th>Sessions</th>
-          <% end %>
-          <% if current_user.chair? %>
-            <th>Score</th>
-          <% end %>
-        </tr>
-      <% @applicants.each do |applicant| %>
-        <tr>
-          <td><%= link_to applicant.uin, applicants_path + "/#{applicant.uin}" %></td>
-          <td><%= applicant.id%></td>
-          <td><%= applicant.first_name %></td>
-          <td><%= applicant.last_name %></td>
-          <% if current_user.admin? %>
-            <td><%= applicant.sessions.map(&:name).sort.join(", ") %></td>
-          <% end %>
-          <% if current_user.chair? %>
-            <td><%= applicant.evaluations.find{|e| e.chair_id == current_user.chair.id}.try(:rating) || "-" %></td>
-          <% end %>
-        </tr>
-      <% end %>
-      </table>
-      <%= will_paginate @applicants %>
-      <% if policy(Applicant).create? %>
-        <p>Import Applicant Spreadsheet</p>
-
-        <%= form_tag import_applicants_path, multipart: true do %>
-          <%= file_field_tag :file %>
-          <%= submit_tag "Import" %>
-        <% end %>
-      <% end %>
-    </section>
-    <br>
-    </div>
-    <div class = "footer">
-      <p>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
-      <br>
-      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a>
-      <br>
-      <a class = "white" href="mailto:fish-camp-devs@googlegroups.com">Report an issue with the website</a></p>
-    </div>
-    <br>
-
-  </body>
-</html>
+    <%= form_tag import_applicants_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import" %>
+    <% end %>
+  <% end %>
+</section>

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_one :chair
+  has_one :chair, dependent: :destroy
 
 
   validates :google_uid, presence: true

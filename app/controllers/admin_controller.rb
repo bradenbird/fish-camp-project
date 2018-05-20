@@ -1,7 +1,10 @@
 class AdminController < ApplicationController
-  def index 
+  def index
     authorize Applicant, :index?
     authorize User, :index?
+
+    @title = 'Admin Console'
+    
     if params[:commit].present?
       user = User.find(params[:user_id])
       user.create_chair(params[:session_id], params[:color])
@@ -11,13 +14,13 @@ class AdminController < ApplicationController
     @applicants = Applicant.all
     if params[:search1]
       @users = User.search(params[:search1]).order("created_at DESC")
-    else 
+    else
       @users = User.all.order("created_at DESC")
     end
-    
+
     if params[:search2]
       @applicants = Applicant.search(params[:search2]).order("created_at DESC")
-    else 
+    else
       @applicants = Applicant.all.order("created_at DESC")
     end
     @applicants = @applicants.paginate(page: params[:page], per_page: 20)
@@ -25,6 +28,9 @@ class AdminController < ApplicationController
 
   def show
     authorize User, :index?
+
+    @title = "User Update Page"
+
     id = params[:id]
     @user = User.find(id)
   end

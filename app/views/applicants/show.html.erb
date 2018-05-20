@@ -1,123 +1,68 @@
-<html>
-  <head>
-	<title>Fish Camp Applicant</title>
-  </head>
-  <body>
+<h2>
+  <%= @applicant.first_name + " " + @applicant.last_name%>
+</h2>
+<p>
+  Gender: <%= @applicant.gender%>
+  <br>
+  UIN: <%= @applicant.uin%>
+  <br>
+  Classification: <%= @applicant.classification %>
+  <br>
+  Expected Graduation: <%= @applicant.anticipated_graduation %>
+  <br>
+  Email: <%= @applicant.other_email %>
+  <br>
+  Extracurriculars: <%= @applicant.extracurriculars %>
+  <br>
+  <% if current_user.role == 'chair' %>
+    <p><button>
+      <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
+    </button></p>
+  <% end %>
+</p>
+<h3>
+  <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
+</h3>
+<p>
+  <%= @applicant.app_question_1 %>
+</p>
+<h3>
+  <strong>What kind of experience would you want as an incoming freshman. As a camp/crew counselor how would you accomplish this? Please provide tangible examples.</strong>
+</h3>
+<p>
+  <%= @applicant.app_question_2 %>
+</p>
+<h3>
+  <strong>What will determine your success as a Fish Camp camp/crew counselor? Please use tangible examples.</strong>
+</h3>
+<p>
+  <%= @applicant.app_question_3 %>
+</p>
+<br>
+<% if @applicant.crew_counselor %>
+  <h3>
+    <strong>Why are you applying to be a Crew Counselor?</strong>
+  </h3>
+  <p>
+    <%= @applicant.crew_question %>
+  </p>
+<% end %>
 
-    <div class = "header">
-      <p>
-        <% if current_user %>
-          Signed in as <strong><%= current_user.name %></strong>!
-          <%= link_to "Sign out", signout_path, id: "sign_out", style: 'color:#FFFFFF;' %>
-        <% else %>
-          <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", style: 'color:#FFFFFF;' %>
-          <br>
-          Please use a valid TAMU Google login.
-        <% end %>
-      </p>
-    </div>
-
-    <div class = "body">
-    <div class = "title">
-      <br>
-      <h style="font-family: 'Oswald'; font-size:300%">&emsp;&#x1F41F Fish Camp Applicant Database</h>
-      <br><br>
-    </div>
-    
-    <ul class = "bar">
-      <li class = "bar"><%= link_to 'Home', home_path %></li>
-      <li class = "bar"><%= link_to "Register Now", register_path %></li>
-      <li class = "bar"><%= link_to 'FC Profile', profile_path %></li>
-      <% if current_user %>
-        <% if (current_user.role == 'admin' || current_user.role == 'chair') %>
-          <li class = "bar"><%= link_to 'Applicant Database', applicants_path %></li>
-        <% end %>
-      <% end %>
-      <% if current_user %>
-        <% if (current_user.role == 'admin') %>
-          <li class = "bar"><%= link_to 'Admin Console', admin_path %>
-        <% end %>
-      <% end %>
-    </ul>
+<% if @applicant.interviews.size > 0 %>
+  <h3><strong>Interviews</strong></h3>
+  <% @applicant.interviews.each do |interview| %>
+    <h4>Transcript by <%= interview.chair.user.name %></h4>
+    <p style="font-weight: bold">Question 1 Response</p>
+    <p><%= interview.transcript1 %></p>
+    <p style="font-weight: bold">Question 2 Response</p>
+    <p><%= interview.transcript2 %></p>
     <br>
-    <br>
-    <h2>
-      <%= @applicant.first_name + " " + @applicant.last_name%>
-    </h2>
-    <p>
-      Gender: <%= @applicant.gender%>
-      <br>
-      UIN: <%= @applicant.uin%>
-      <br>
-      Classification: <%= @applicant.classification %>
-      <br>
-      Expected Graduation: <%= @applicant.anticipated_graduation %>
-      <br>
-      Email: <%= @applicant.other_email %>
-      <br>
-      Extracurriculars: <%= @applicant.extracurriculars %>
-      <br>
-      <% if current_user.role == 'chair' %>
-        <p><button>
-          <%= link_to 'Write Interview', new_applicant_interview_path(@applicant) %>
-        </button></p>
-      <% end %>
-    </p>
-    <h3>
-      <strong>Tell a story about a time in your life in which you embodied a Fish Camp value. Be creative and provide tangible examples.</strong>
-    </h3>
-    <p>
-      <%= @applicant.app_question_1 %>
-    </p>
-    <h3>
-      <strong>What kind of experience would you want as an incoming freshman. As a camp/crew counselor how would you accomplish this? Please provide tangible examples.</strong>
-    </h3>
-    <p>
-      <%= @applicant.app_question_2 %>
-    </p>
-    <h3>
-      <strong>What will determine your success as a Fish Camp camp/crew counselor? Please use tangible examples.</strong>
-    </h3>
-    <p>
-      <%= @applicant.app_question_3 %>
-    </p>
-    <br>
-    <% if @applicant.crew_counselor %>
-      <h3>
-        <strong>Why are you applying to be a Crew Counselor?</strong>
-      </h3>
-      <p>
-        <%= @applicant.crew_question %>
-      </p>
-    <% end %>
-
-    <% if @applicant.interviews.size > 0 %>
-      <h3><strong>Interviews</strong></h3>
-      <% @applicant.interviews.each do |interview| %>
-        <h4>Transcript by <%= interview.chair.user.name %></h4>
-        <p style="font-weight: bold">Question 1 Response</p>
-        <p><%= interview.transcript1 %></p>
-        <p style="font-weight: bold">Question 2 Response</p>
-        <p><%= interview.transcript2 %></p>
-        <br>
-      <% end %>
-    <% end %> 
-    <% if current_user.role == 'chair' %>
-      <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
-        <p>Please enter this applicant's score out of 10:
-        <%= f.text_field :rating, size: 2, maxlength: 2 %>
-        <%= f.submit "Submit" %></p>
-      <% end -%>
-    <% end %>
-    <br>
-    </div>
-    <div class = "footer">
-      <p>Operated by <a class = "white" href="http://fishcamp.tamu.edu/">Fish Camp</a> at <a class = "white" href="http://www.tamu.edu/">Texas A&#38;M University</a>
-      <br>
-      Hosted by <a class = "white" href="http://studentactivities.tamu.edu/IT">Student Activities</a> &middot; <a class = "white" href="http://studentactivities.tamu.edu/site_policies">Site Policies</a>
-      <br>
-      <a class = "white" href="mailto:fish-camp-devs@googlegroups.com">Report an issue with the website</a></p>
-    </div>
-    <br>
-  </body>
-</html>
+  <% end %>
+<% end %>
+<% if current_user.role == 'chair' %>
+  <%= form_for [@applicant, Evaluation.new], :id => "score_submission" do |f| -%>
+    <p>Please enter this applicant's score out of 10:
+    <%= f.text_field :rating, size: 2, maxlength: 2 %>
+    <%= f.submit "Submit" %></p>
+  <% end -%>
+<% end %>

@@ -16,6 +16,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+gem 'faker'
 
 gem 'omniauth-google-oauth2', '~> 0.2.1'
 
@@ -55,8 +56,8 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
-  gem 'faker'
   gem 'rails-controller-testing'
+  gem 'rails-erd'
 end
 
 group :test do
@@ -77,7 +78,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

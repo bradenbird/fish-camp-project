@@ -4,6 +4,9 @@ class ApplicantsController < ApplicationController
 
   def index
     authorize Applicant, :show?
+
+    @title = "Applicant Database"
+
     if params[:commit].present? && params[:commit] == "Find"
       uin = params[:find][:uin]
       if Applicant.exists?(uin: uin)
@@ -14,7 +17,7 @@ class ApplicantsController < ApplicationController
 
     # Change to only chairs since to use it you should be a chair
     if current_user.chair?
-      if params[:unevaluated].present? 
+      if params[:unevaluated].present?
         #Set applicants to show only unevaluated applicants
         @show_unevaluated = true
         @applicants = current_user.chair.unevaluated_applicants
@@ -82,15 +85,17 @@ class ApplicantsController < ApplicationController
     end
     @applicants = @applicants.paginate(page: params[:page], per_page: 20)
   end
-  
-  def edit 
+
+  def edit
     authorize Applicant, :create?
+    @title = "Applicant Update Page"
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
   end
-  
+
   def update
     authorize Applicant, :create?
+    @title = "Applicant Update Page"
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
     @applicant.first_name = params['applicant'][:first_name]
@@ -161,6 +166,7 @@ class ApplicantsController < ApplicationController
 
   def show
     authorize Applicant, :show?
+    @title = "Applicant"
     uin = params[:uin]
     @applicant = Applicant.all.find_by 'uin = ?', uin
     @evaluation = Evaluation.new(applicant: @applicant)
@@ -176,7 +182,7 @@ class ApplicantsController < ApplicationController
       redirect_to request.referrer, notice: "Applicants imported."
     end
   end
-  
+
   def delete_all
     authorize Applicant, :destroy?
     Applicant.all.each do |app|
@@ -186,8 +192,8 @@ class ApplicantsController < ApplicationController
     flash[:notice] = "You have removed all applicants"
     redirect_to request.referrer
   end
-  
-  def destroy 
+
+  def destroy
     authorize Applicant, :destroy?
     @applicant = Applicant.find(params[:id])
     @applicant.session_availabilities.destroy_all

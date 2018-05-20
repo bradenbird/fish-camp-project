@@ -39,6 +39,7 @@ class FcController < ApplicationController
   end
 
   def denied
+    @title = "Registration"
     #do nothing yet
   end
 
