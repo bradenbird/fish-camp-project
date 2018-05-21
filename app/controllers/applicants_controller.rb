@@ -96,8 +96,8 @@ class ApplicantsController < ApplicationController
   def update
     authorize Applicant, :create?
     @title = "Applicant Update Page"
-    uin = params[:uin]
-    @applicant = Applicant.all.find_by 'uin = ?', uin
+    # uin = params[:uin]
+    @applicant = Applicant.find_by(uin: params[:id])
     @applicant.first_name = params['applicant'][:first_name]
     @applicant.last_name = params['applicant'][:last_name]
     @applicant.uin = params['applicant'][:uin]
@@ -194,7 +194,7 @@ class ApplicantsController < ApplicationController
 
   def destroy
     authorize Applicant, :destroy?
-    @applicant = Applicant.find(params[:id])
+    @applicant = Applicant.find_by(uin: params[:id])
     @applicant.session_availabilities.destroy_all
     @applicant.destroy
     flash[:notice] = "You have removed the applicant"

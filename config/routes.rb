@@ -4,9 +4,9 @@ FishCampProject::Application.routes.draw do
   resources :applicants do
     collection { post :import }
 
-    collection { post :delete_all}
+    collection { post :delete_all }
     collection { get 'delete/:uin', action: :delete }
-    collection { get :edit}
+    collection { get :edit }
     resources :interviews, except: :destroy
     resources :evaluations, except: :destroy
   end
