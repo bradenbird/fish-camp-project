@@ -1,5 +1,5 @@
 <!-- Edit Applicant page -->
-<%= form_for @applicant, url: applicants_path + "/update/#{@applicant.uin}", :method => :POST do |f| %>
+<%= form_for @applicant do |f| %>
 <h4>Applicant Information</h4>
 <p>
   <%= f.label :first_name %>

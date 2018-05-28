@@ -10,7 +10,7 @@ class ApplicantsController < ApplicationController
     if params[:commit].present? && params[:commit] == "Find"
       uin = params[:find][:uin]
       if Applicant.exists?(uin: uin)
-        redirect_to applicants_path + "/#{uin}"
+        redirect_to applicant_path(uin)
       end
       flash[:error] = "UIN not found in database"
     end
@@ -89,8 +89,7 @@ class ApplicantsController < ApplicationController
   def edit
     authorize Applicant, :create?
     @title = "Applicant Update Page"
-    uin = params[:uin]
-    @applicant = Applicant.all.find_by 'uin = ?', uin
+    @applicant = Applicant.find_by(uin: params[:id])
   end
 
   def update
@@ -161,7 +160,7 @@ class ApplicantsController < ApplicationController
     @applicant.other_medical_concerns = params['applicant'][:other_medical_concerns]
     @applicant.save!
     flash[:notice] = "You have updated the application"
-    redirect_to "/applicants/edit?uin=#{@applicant.uin}"
+    redirect_to applicant_path(@applicant)
   end
 
   def show

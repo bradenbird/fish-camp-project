@@ -62,7 +62,7 @@
   </tr>
   <% @applicants.each do |applicant| %>
     <tr>
-      <td><%= link_to applicant.uin, edit_applicants_path(:uin => applicant.uin ), :method => :get%></td>
+      <td><%= link_to applicant.uin, edit_applicant_path(applicant) %></td>
       <td><%= applicant.first_name %></td>
       <td><%= applicant.last_name %></td>
       <td><%= applicant.sessions.pluck(:name).sort.join(", ") %></td>
