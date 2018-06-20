@@ -9,7 +9,7 @@ RSpec.describe ApplicantsController, type: :controller do
 			expect(subject).to render_template(:index)
 		end
 	end
-    
+
 	# describe "GET #destroy" do
 	# 	it "deletes the applicant" do
 	# 		applicant = create(:applicant)
