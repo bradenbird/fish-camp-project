@@ -11,7 +11,8 @@ module OmniauthMacros
       },
       'credentials' => {
         'token' => 'mock_token',
-        'secret' => 'mock_secret'
+        'secret' => 'mock_secret',
+        'expires_at' => Time.now + (60 * 60 * 24)
       }
     })
   end

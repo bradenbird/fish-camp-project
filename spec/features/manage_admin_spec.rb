@@ -9,7 +9,7 @@ RSpec.feature "ManageAdmin", type: :feature do
 
   it "signs in" do
     home_page.sign_in
-    expect(page).to have_selector("p", text: "Signed in!")
+    expect(page).to have_selector("p", text: "Signed in as James Vanderburg!")
   end
 
 end
