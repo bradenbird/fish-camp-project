@@ -6,8 +6,8 @@ module OmniauthMacros
       'provider' => 'ggoogle',
       'uid' => '12345',
       'info' => {
-        "email"=>"james@vanderburg.org",
-        "name"=>"James Vanderburg"
+        "email"=>"jameslvdb@tamu.edu",
+        "name"=>"James Vanderburg",
       },
       'credentials' => {
         'token' => 'mock_token',
