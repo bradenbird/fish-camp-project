@@ -11,8 +11,9 @@ class ApplicantsController < ApplicationController
       uin = params[:find][:uin]
       if Applicant.exists?(uin: uin)
         redirect_to applicant_path(uin)
+      else
+        flash[:error] = "UIN not found in database"
       end
-      flash[:error] = "UIN not found in database"
     end
 
     # Change to only chairs since to use it you should be a chair
