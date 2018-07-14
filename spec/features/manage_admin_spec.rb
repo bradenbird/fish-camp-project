@@ -19,8 +19,8 @@ RSpec.feature "ManageAdmin", type: :feature do
     # end
 
     it "signs in" do
-      home_page.chair_sign_in
-      byebug
+      home_page.admin_sign_in
+      byebug  
       expect(page).to have_selector("p", text: "Signed in as Admin!")
       admin_page.visit_page
       expect(page).to have_selector("h", text: "Fish Camp Admin Console")

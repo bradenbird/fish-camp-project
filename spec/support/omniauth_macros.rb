@@ -6,7 +6,7 @@ module OmniauthMacros
       'provider' => 'google',
       'uid' => '12345',
       'info' => {
-        "email"=>"admin.email@gmail.com",
+        "email"=>"admin_test_email_string",
         "name"=>"Admin",
       },
       'credentials' => {
@@ -22,7 +22,7 @@ module OmniauthMacros
       'provider' => 'google',
       'uid' => '23456',
       'info' => {
-        'email' => "chair.email@gmail.com",
+        'email' => "chair_test_email_string",
         'name' => "Chair",
       },
       'credentials' => {

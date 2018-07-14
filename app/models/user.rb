@@ -14,25 +14,33 @@ class User < ActiveRecord::Base
     "darrelmarek@tamu.edu",
     "tyler_lamkin@tamu.edu",
     # Testing email
-    "admin.email@gmail.com"
+    "admin_test_email_string"
   ]
 
   CHAIR_EMAILS = [
     # Testing email
-    "chair.email@gmail.com"
+    "chair_test_email_string"
   ]
 
   def self.from_omniauth(auth)
     data = auth.info
     user = User.where(email: data['email']).first
     return user unless user.nil?
+
+    role = ""
+    if ADMIN_EMAILS.include?(data['email'])
+      role = "admin"
+    elsif CHAIR_EMAILS.include?(data['email'])
+      role = "chair"
+    else
+      role = "guest"
+    end
+    
     user = User.create(name: data['name'],
       google_uid: auth.uid,
       email: data['email'],
       uin: nil,
-      # TODO: figure out better control flow for this 
-      role: ADMIN_EMAILS.include?(data['email']) ? 'admin' : 'guest',
-      role: CHAIR_EMAILS.include?(data['email']) ? 'chair' : 'guest',
+      role: role,
       oauth_token: auth.credentials.token,
       oauth_expires_at: Time.at(auth.credentials.expires_at)
     )
