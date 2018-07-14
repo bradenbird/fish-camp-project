@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
     "admin.email@gmail.com"
   ]
 
+  CHAIR_EMAILS = [
+    # Testing email
+    "chair.email@gmail.com"
+  ]
+
   def self.from_omniauth(auth)
     data = auth.info
     user = User.where(email: data['email']).first
@@ -25,7 +30,9 @@ class User < ActiveRecord::Base
       google_uid: auth.uid,
       email: data['email'],
       uin: nil,
+      # TODO: figure out better control flow for this 
       role: ADMIN_EMAILS.include?(data['email']) ? 'admin' : 'guest',
+      role: CHAIR_EMAILS.include?(data['email']) ? 'chair' : 'guest',
       oauth_token: auth.credentials.token,
       oauth_expires_at: Time.at(auth.credentials.expires_at)
     )

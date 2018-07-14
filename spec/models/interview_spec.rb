@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Interview, type: :model do
 	it "has a valid factory" do
@@ -10,7 +10,7 @@ RSpec.describe Interview, type: :model do
   	expect(build(:interview, chair: nil)).to_not be_valid
     expect(build(:interview).new_record?).to be_truthy
   end
-	
+
   it "is invalid without an applicant" do
   	expect(build(:interview, applicant: nil)).to_not be_valid
   end

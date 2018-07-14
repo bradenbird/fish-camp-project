@@ -1,5 +1,4 @@
-# spec/models/user_spec.rb
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe User, type: :model do
   it "has a valid factory" do
@@ -30,7 +29,7 @@ RSpec.describe User, type: :model do
     it "creates a chair linked to a camp" do
       expect(user.create_chair(sessiona.id, "red")).to be_valid
     end
-    
+
     it "deletes old chair records for the same user" do
       camp2 = create(:camp, name: "blue", session: sessiona)
       user.create_chair(sessiona.id, "red")

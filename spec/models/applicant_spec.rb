@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Applicant, type: :model do
 
@@ -29,7 +29,7 @@ RSpec.describe Applicant, type: :model do
       expect(applicant1.first_name).to eq("Brooke")
       expect(applicant2.first_name).to eq("Corey")
     end
-    
+
     it "imports last names properly" do
       expect(applicant1.last_name).to eq("Aaron")
       expect(applicant2.last_name).to eq("Able")

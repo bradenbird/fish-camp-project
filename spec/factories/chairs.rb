@@ -1,5 +1,4 @@
 # spec/factories/chairs.rb
-require 'faker'
 
 FactoryBot.define do
   factory :chair do |c|

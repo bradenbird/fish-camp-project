@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Chair, type: :model do
   let(:sessiona) { create(:session, name: "A") }
@@ -14,7 +14,7 @@ RSpec.describe Chair, type: :model do
   it "is invalid without a camp" do
     expect(build(:chair, camp: nil)).to_not be_valid
   end
-  
+
   it "is invalid without a user" do
     expect(build(:chair, user: nil)).to_not be_valid
   end
