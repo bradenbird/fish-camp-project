@@ -1,13 +1,29 @@
 module OmniauthMacros
-  def mock_auth_hash
+  def admin_auth_hash
     # The mock_auth configuration allows you to set per-provider (or default)
     # authentication hashes to return during integration testing.
     OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new({
-      'provider' => 'ggoogle',
+      'provider' => 'google',
       'uid' => '12345',
       'info' => {
-        "email"=>"jameslvdb@tamu.edu",
-        "name"=>"James Vanderburg",
+        "email"=>"admin.email@gmail.com",
+        "name"=>"Admin",
+      },
+      'credentials' => {
+        'token' => 'mock_token',
+        'secret' => 'mock_secret',
+        'expires_at' => Time.now + (60 * 60 * 24)
+      }
+    })
+  end
+
+  def chair_auth_hash
+    OmniAuth.config.mock_auth[:default] = OmniAuth::AuthHash.new({
+      'provider' => 'google',
+      'uid' => '23456',
+      'info' => {
+        'email' => "chair.email@gmail.com",
+        'name' => "Chair",
       },
       'credentials' => {
         'token' => 'mock_token',
