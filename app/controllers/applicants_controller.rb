@@ -4,43 +4,19 @@ class ApplicantsController < ApplicationController
 
   def index
     authorize Applicant, :show?
-
     @title = "Applicant Database"
+    @applicants= Applicant.all
 
     if params[:commit].present? && params[:commit] == "Find"
-      uin = params[:find][:uin]
-      if Applicant.exists?(uin: uin)
-        redirect_to applicant_path(uin)
-      elsif !Applicant.exists?(uin: uin)
-        flash[:error] = "UIN not found in database"
-        redirect_to applicants_path
-      end
+      find_applicant
     end
 
-    # Change to only chairs since to use it you should be a chair
     if current_user.chair?
-      if params[:unevaluated].present?
-        #Set applicants to show only unevaluated applicants
-        @show_unevaluated = true
-        @applicants = current_user.chair.unevaluated_applicants
-      else
-        #Set applicants to show all
-        @show_unevaluated = false
-        @applicants = current_user.chair.applicants
-      end
+      chair_index_view
+    elsif current_user.admin?
+      admin_index_view
     else
       @applicants = Applicant.all
-    end
-
-    # Maybe change to admin only filters? Chairs only need to see people for their session
-    if current_user.admin?
-      if params[:sessions].present?
-        @current_sessions = params[:sessions].keys
-        @applicants = @applicants.includes(:sessions).where(sessions: {name: @current_sessions}).preload(:evaluations).distinct
-      else
-        @current_sessions = Session.all_session_names
-        @applicants = @applicants.all.preload(:evaluations, :sessions)
-      end
     end
 
     if params[:classifications].present?
@@ -50,41 +26,8 @@ class ApplicantsController < ApplicationController
       @current_classifications = ['Freshmen', 'Sophomore', 'Junior', 'Senior', 'Graduate']
     end
 
-    if params[:show].present?
-      #@even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
-      @odd = false
-      @even = false
-      @all = false
-      if params[:show] == "odd"
-        @applicants = @applicants.where('applicants.id % 2 = 1')
-        @odd = true
-      elsif params[:show] == "even"
-        @applicants = @applicants.where('applicants.id % 2 = 0')
-        @even = true
-      else
-        @all = true
-      end
-    else
-      @all = true
-    end
-
-    if params[:gender].present?
-      #@male_applicants, @female_applicants = @applicants.partition{ |r| r.gender == "Male" }
-      @male = false
-      @female = false
-      @both = false
-      if params[:gender] == "Male"
-        @applicants = @applicants.where(gender: 'Male')
-        @male = true
-      elsif params[:gender] == "Female"
-        @applicants = @applicants.where(gender: 'Female')
-        @female = true
-      else
-        @both = true
-      end
-    else
-      @both = true
-    end
+    show_by_even_odd_filter
+    show_by_gender_filter
     @applicants = @applicants.paginate(page: params[:page], per_page: 20)
   end
 
@@ -152,6 +95,78 @@ class ApplicantsController < ApplicationController
   end
 
   private
+
+  def find_applicant
+    uin = params[:find][:uin]
+    if Applicant.exists?(uin: uin)
+      redirect_to applicant_path(uin)
+    elsif !Applicant.exists?(uin: uin)
+      flash[:error] = "UIN not found in database"
+      redirect_to applicants_path
+    end
+  end
+
+  def chair_index_view
+    if params[:unevaluated].present?
+      #Set applicants to show only unevaluated applicants
+      @show_unevaluated = true
+      @applicants = current_user.chair.unevaluated_applicants
+    else
+      #Set applicants to show all
+      @show_unevaluated = false
+      @applicants = current_user.chair.applicants
+    end
+  end
+
+  def admin_index_view
+    if params[:sessions].present?
+      @current_sessions = params[:sessions].keys
+      @applicants = @applicants.includes(:sessions).where(sessions: {name: @current_sessions}).preload(:evaluations).distinct
+    else
+      @current_sessions = Session.all_session_names
+      @applicants = @applicants.all.preload(:evaluations, :sessions)
+    end
+  end
+
+  def show_by_even_odd_filter
+    if params[:show].present?
+      #@even_applicants, @odd_applicants = @applicants.partition{ |r| r.id.even? }
+      @odd = false
+      @even = false
+      @all = false
+      if params[:show] == "odd"
+        @applicants = @applicants.where('applicants.id % 2 = 1')
+        @odd = true
+      elsif params[:show] == "even"
+        @applicants = @applicants.where('applicants.id % 2 = 0')
+        @even = true
+      else
+        @all = true
+      end
+    else
+      @all = true
+    end
+  end
+
+  def show_by_gender_filter
+    if params[:gender].present?
+      #@male_applicants, @female_applicants = @applicants.partition{ |r| r.gender == "Male" }
+      @male = false
+      @female = false
+      @both = false
+      if params[:gender] == "Male"
+        @applicants = @applicants.where(gender: 'Male')
+        @male = true
+      elsif params[:gender] == "Female"
+        @applicants = @applicants.where(gender: 'Female')
+        @female = true
+      else
+        @both = true
+      end
+    else
+      @both = true
+    end
+  end
 
   def applicant_params
     params.require(:applicant)
