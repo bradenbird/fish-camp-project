@@ -16,7 +16,7 @@ class ApplicantsController < ApplicationController
     elsif current_user.admin?
       admin_index_view
     else
-      @applicants = Applicant.all
+      @applicants
     end
 
     if params[:classifications].present?
