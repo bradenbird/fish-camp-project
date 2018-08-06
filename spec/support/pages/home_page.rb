@@ -13,5 +13,5 @@ class HomePage < Page
     chair_auth_hash
     click_on 'Sign in with Google'
   end
-  
+
 end
