@@ -2,7 +2,7 @@ class ChairPage < Page
   include Capybara::DSL
 
   def visit_page
-    User.first.create_chair(Session.find_by(name: "E").id, "aqua")
+    User.first.create_chair(Session.find_or_create_by(name: "E").id, "aqua")
     visit "applicants"
   end
 

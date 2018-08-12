@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     else
       role = "guest"
     end
-    
+
     user = User.create(name: data['name'],
       google_uid: auth.uid,
       email: data['email'],
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def create_chair(session_id, color)
-    camp = Camp.find_by(session_id: session_id, name: color)
+    camp = Camp.find_or_create_by(session_id: session_id, name: color)
     if chair != nil
       chair.destroy
     end

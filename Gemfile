@@ -37,6 +37,7 @@ group :test do
   gem 'launchy'
   gem 'pundit-matchers', '~> 1.4.1'
   gem 'rspec-collection_matchers'
+  gem 'database_cleaner'
 end
 
 group :development do

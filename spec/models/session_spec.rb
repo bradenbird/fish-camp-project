@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Session, type: :model do
   it "has a valid factory" do
@@ -29,11 +29,8 @@ RSpec.describe Session, type: :model do
 
   describe "#all_session_names" do
     it "gets all of the names of the sessions" do
-      sessiona = create(:session, name: "A")
-      sessionb = create(:session, name: "B")
-      sessionc = create(:session, name: "C")
-      sessiond = create(:session, name: "D")
-      expect(Session.all_session_names).to contain_exactly("A", "B", "C", "D")
+      # we are prepopulating all of the sessions in rails_helper
+      expect(Session.all_session_names).to contain_exactly("A", "B", "C", "D", "E", "F", "G")
     end
   end
 end
