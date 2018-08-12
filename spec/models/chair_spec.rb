@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe Chair, type: :model do
   let(:sessiona) { create(:session, name: "A") }

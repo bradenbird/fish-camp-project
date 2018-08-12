@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserPolicy do
   subject { described_class.new(user, user2)}
