@@ -23,13 +23,16 @@ class AdminPage < Page
   def visit_applicant_update_page(applicant)
     find("tr#applicant_#{applicant.id}").click_link("#{applicant.uin}")
   end
-  
+
   def update_applicant(applicant)
-    # byebug
     find("tr#applicant_#{applicant.id}").click_link("#{applicant.uin}")
     fill_in 'applicant[first_name]', :with => 'James'
     fill_in 'applicant[last_name]', :with => 'Vanderburg'
     find('input[type="submit"]').click
+  end
+
+  def delete_applicant(applicant)
+    find("tr#applicant_#{applicant.id}").click_link('Delete')
   end
 
 end

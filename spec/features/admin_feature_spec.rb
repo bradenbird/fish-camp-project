@@ -51,8 +51,9 @@ RSpec.feature "AdminFeatures", type: :feature do
       expect(page).to have_selector("h", text: "Fish Camp Applicant Update Page")
     end
 
-    xit "updates applicant fields" do
+    it "updates applicant fields" do
       new_applicant = create(:applicant)
+      new_applicant.session_availabilities.create!(session: Session.first)
       admin_page.visit_page
       admin_page.update_applicant(new_applicant)
       new_applicant.reload
@@ -60,8 +61,12 @@ RSpec.feature "AdminFeatures", type: :feature do
       expect(new_applicant.last_name).to eq("Vanderburg")
     end
 
-    xit "deletes an applicant" do
-
+    it "deletes an applicant" do
+      new_applicant = create(:applicant)
+      new_applicant_id = new_applicant.id
+      admin_page.visit_page
+      admin_page.delete_applicant(new_applicant)
+      expect { new_applicant.reload }.to raise_exception(ActiveRecord::RecordNotFound)
     end
 
     xit "searches for applicants by name" do
