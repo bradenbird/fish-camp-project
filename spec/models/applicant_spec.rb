@@ -58,4 +58,12 @@ RSpec.describe Applicant, type: :model do
       expect(Applicant.all_session_names).to contain_exactly("A", "B", "C", "E")
     end
   end
+
+  describe ".has_interviews?" do
+    let(:applicant) { create(:applicant) }
+
+    it "should return true with an interview" do
+      expect(applicant.has_interviews?).to be true
+    end
+  end
 end
