@@ -120,6 +120,7 @@ GEM
       cucumber-core (~> 10.1, >= 10.1.0)
       cucumber-cucumber-expressions (~> 14.0, >= 14.0.0)
     diff-lcs (1.5.0)
+    docile (1.4.0)
     email_validator (2.2.3)
       activemodel
     erubi (1.10.0)
@@ -329,6 +330,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     shellany (0.0.1)
+    simplecov (0.21.2)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.12.3)
+    simplecov_json_formatter (0.1.4)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -399,6 +406,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

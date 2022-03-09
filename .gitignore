@@ -22,3 +22,6 @@
 
 .byebug_history
 erd.pdf
+
+# Ignore test coverage directory.
+/coverage

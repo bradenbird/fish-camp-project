@@ -13,6 +13,11 @@
 # it.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# Initialize simplecov
+require "simplecov"
+SimpleCov.start
+
 require "capybara/rspec"
 require "pundit/matchers"
 RSpec.configure do |config|

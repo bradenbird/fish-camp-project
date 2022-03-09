@@ -65,6 +65,7 @@ group :test do
   gem "guard-rspec"
   gem "launchy"
   gem "pundit-matchers", "~> 1.4.1"
+  gem "simplecov"
 end
 
 group :development do
