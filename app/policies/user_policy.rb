@@ -1,35 +1,17 @@
 class UserPolicy < ApplicationPolicy
-  
   def show?
-      if (user.role == "admin")
-          return true
-      else 
-          return false 
-      end
+    user.role == "admin"
   end
-  
+
   def edit?
-      if (user.role == "admin")
-          return true
-      else 
-          return false 
-      end
+    user.role == "admin"
   end
-  
+
   def destroy?
-    if (user.role == "admin")
-      return true
-    else 
-      return false
-    end
+    user.role == "admin"
   end
-  
+
   def index?
-    if (user.role == "admin")
-      return true
-    else 
-      return false
-    end
+    user.role == "admin"
   end
-  
-end 
+end

@@ -1,5 +1,5 @@
 # spec/factories/applicants.rb
-require 'faker'
+require "faker"
 
 FactoryBot.define do
   factory :applicant do |a|

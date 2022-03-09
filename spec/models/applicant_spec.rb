@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Applicant, type: :model do
   it "has a valid factory" do
@@ -19,7 +19,7 @@ RSpec.describe Applicant, type: :model do
     #   expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
     # end
     before do
-      ("A".."G").each{ |letter| create(:session, name: letter) }
+      ("A".."G").each { |letter| create(:session, name: letter) }
       file_path = "#{Rails.root}/spec/fixtures/fc_sample.csv"
       Applicant.import(file_path, ".csv")
     end
@@ -34,8 +34,8 @@ RSpec.describe Applicant, type: :model do
       expect(applicant2.last_name).to eq("Able")
     end
     it "creates the proper session_availabilities" do
-      session_names1 = applicant1.sessions.map{|s| s.name}
-      session_names2 = applicant2.sessions.map{|s| s.name}
+      session_names1 = applicant1.sessions.map { |s| s.name }
+      session_names2 = applicant2.sessions.map { |s| s.name }
       expect(session_names1).to contain_exactly("A", "B", "C", "D", "E", "F", "G")
       expect(session_names2).to contain_exactly("B", "C", "D", "E", "F", "G")
     end

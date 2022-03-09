@@ -1,49 +1,48 @@
 class FcController < ApplicationController
-
-  #need this, otherwise submit will crash
+  # need this, otherwise submit will crash
   skip_before_action :verify_authenticity_token
 
-  #internal function, returns true if the current_user
-  #is valid, and if they have at least the clearance level
-  #required by the calling function
+  # internal function, returns true if the current_user
+  # is valid, and if they have at least the clearance level
+  # required by the calling function
   def check_user(current_user, clearance_level)
-    if current_user == nil then
+    if current_user.nil?
       return false
     end
-    if clearance_level == "admin" then
+    if clearance_level == "admin"
       return current_user.role == "admin"
     end
-    if clearance_level == "chair" then
-      return (current_user.role == "admin" || current_user.role == "chair")
+    if clearance_level == "chair"
+      (current_user.role == "admin" || current_user.role == "chair")
     end
   end
 
   def home
     @title = "Home"
-    #default, load home
+    # default, load home
   end
 
   def register
     @title = "Registration"
-    if !check_user(current_user, "chair") then
+    if !check_user(current_user, "chair")
       redirect_to login_path
     end
   end
 
   def profile
     @title = "Profile"
-    if !check_user(current_user, "chair") then
+    if !check_user(current_user, "chair")
       redirect_to login_path
     end
   end
 
   def denied
     @title = "Registration"
-    #do nothing yet
+    # do nothing yet
   end
 
   def interview
-    if !check_user(current_user, "chair") then
+    if !check_user(current_user, "chair")
       redirect_to login_path
     end
 
@@ -52,6 +51,6 @@ class FcController < ApplicationController
 
   def login
     @title = "Registration"
-    #do nothing yet
+    # do nothing yet
   end
 end

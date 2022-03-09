@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create sessions
-require 'faker'
+require "faker"
 
 start_date = Date.parse("July 1")
 ("A".."G").each do |letter|
   Session.create!(name: letter,
-                  year: start_date.year,
-                  start_date: start_date,
-                  end_date: start_date + 3.days)
+    year: start_date.year,
+    start_date: start_date,
+    end_date: start_date + 3.days)
   start_date += 1.week
 end
 session_ids = Session.pluck(:id)
@@ -30,9 +30,9 @@ end
 # Create some applicants using faker, and assign to them random session availabilities
 (1..10).each do |i|
   applicant = Applicant.create!(submission_id: Faker::Number.number(5),
-                                uin: Faker::Number.number(9),
-                                first_name: Faker::Name.first_name,
-                                last_name: Faker::Name.last_name)
+    uin: Faker::Number.number(9),
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name)
   num_sessions = rand(session_ids.count) + 1
   available_sessions = session_ids.sample(num_sessions)
   available_sessions.each do |session_id|

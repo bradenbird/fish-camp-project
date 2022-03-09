@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Chair, type: :model do
   let(:sessiona) { create(:session, name: "A") }
@@ -35,7 +35,7 @@ RSpec.describe Chair, type: :model do
       applicant2.session_availabilities.create(session: sessiona)
       applicant2.session_availabilities.create(session: sessionb)
       applicant3.session_availabilities.create(session: sessionb)
-      chair.evaluations.create!(applicant: applicant1, rating: '9')
+      chair.evaluations.create!(applicant: applicant1, rating: "9")
       expect(chair.unevaluated_applicants).to contain_exactly(applicant2)
     end
   end

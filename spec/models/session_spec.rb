@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Session, type: :model do
   it "has a valid factory" do
@@ -28,7 +28,7 @@ RSpec.describe Session, type: :model do
   end
 
   describe "#all_session_names" do
-    it "gets all of the names of the sessions" do 
+    it "gets all of the names of the sessions" do
       sessiona = create(:session, name: "A")
       sessionb = create(:session, name: "B")
       sessionc = create(:session, name: "C")

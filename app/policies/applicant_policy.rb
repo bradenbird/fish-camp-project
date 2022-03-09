@@ -1,37 +1,21 @@
 class ApplicantPolicy < ApplicationPolicy
-  
   def create?
-      if (user.role == "admin") 
-          return true
-      else 
-          return false
-      end
+    user.role == "admin"
   end
-  
+
   def show?
-      if (user.role == "admin")
-          return true
-      elsif (user.role == "chair")
-          return true
-      else 
-          return false 
-      end
+    if user.role == "admin"
+      true
+    else
+      user.role == "chair"
+    end
   end
-  
+
   def destroy?
-    if (user.role == "admin")
-      return true
-    else 
-      return false
-    end
+    user.role == "admin"
   end
-  
+
   def index?
-    if (user.role == "admin")
-      return true
-    else 
-      return false
-    end
+    user.role == "admin"
   end
-  
-end 
+end

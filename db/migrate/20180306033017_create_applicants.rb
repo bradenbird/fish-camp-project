@@ -29,7 +29,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
       t.string :parent_name # column AB
       t.string :parent_phone # column AC
       t.string :parent_email # column AD
-      t.string :parent_address #column AE
+      t.string :parent_address # column AE
       t.string :parent_city # column AF
       t.string :parent_state # column AG
       t.string :parent_zip # column AH
@@ -48,7 +48,7 @@ class CreateApplicants < ActiveRecord::Migration[5.1]
       t.string :alt_contact_2_state # column AW
       t.string :alt_contact_2_zip # column AX
       t.string :insurance_provider # column AY
-      t.string :insurance_policy_number #column AZ
+      t.string :insurance_policy_number # column AZ
       t.string :insurance_policy_holder_name # column BA
       t.date :last_tetanus_booster_date # column BB
       t.text :drug_allergies # column BC
