@@ -29,8 +29,8 @@ end
 
 # Create some applicants using faker, and assign to them random session availabilities
 (1..10).each do |i|
-  applicant = Applicant.create!(submission_id: Faker::Number.number(5),
-    uin: Faker::Number.number(9),
+  applicant = Applicant.create!(submission_id: Faker::Number.number(digits: 5),
+    uin: Faker::Number.number(digits: 9),
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name)
   num_sessions = rand(session_ids.count) + 1
