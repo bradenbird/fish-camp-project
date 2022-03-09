@@ -57,6 +57,7 @@ group :development, :test do
   gem "sqlite3"
   gem "rails-controller-testing"
   gem "rails-erd"
+  gem "standard"
 end
 
 group :test do
