@@ -15,7 +15,8 @@ module FishCampProject
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    # -- all .rb files in that directory are automatically loaded after loading
+    # the framework and any gems in your application.
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
@@ -26,5 +27,7 @@ module FishCampProject
         request_specs: true
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+
+    Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426202908) do
+ActiveRecord::Schema.define(version: 2018_04_26_202908) do
 
   create_table "applicants", force: :cascade do |t|
     t.integer "submission_id", null: false
