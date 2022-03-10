@@ -25,3 +25,6 @@ erd.pdf
 
 # Ignore test coverage directory.
 /coverage
+
+# Don't commit secrets :)
+/.env

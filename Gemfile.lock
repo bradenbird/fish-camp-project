@@ -127,6 +127,10 @@ GEM
       cucumber-cucumber-expressions (~> 14.0, >= 14.0.0)
     diff-lcs (1.5.0)
     docile (1.4.0)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     email_validator (2.2.3)
       activemodel
     erubi (1.10.0)
@@ -402,6 +406,7 @@ DEPENDENCIES
   clearance
   coffee-rails (~> 4.2)
   cucumber-rails
+  dotenv-rails
   factory_bot_rails
   faker
   guard-rspec
