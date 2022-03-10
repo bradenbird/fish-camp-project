@@ -60,7 +60,7 @@ RSpec.describe Applicant, type: :model do
   end
 
   describe ".has_interviews?" do
-    let(:applicant) { create(:applicant) }
+    let(:applicant) { create(:applicant, :with_interviews) }
 
     it "should return true with an interview" do
       expect(applicant.has_interviews?).to be true

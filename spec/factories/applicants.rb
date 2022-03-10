@@ -15,9 +15,11 @@ FactoryBot.define do
     other_email { Faker::Internet.safe_email }
     phone { Faker::PhoneNumber.phone_number }
 
-    after(:create) do |applicant, evaluator|
-      create_list(:interview, 2, applicant: applicant)
-      applicant.reload
+    trait :with_interviews do
+      after(:create) do |applicant, evaluator|
+        create_list(:interview, 2, applicant: applicant)
+        applicant.reload
+      end
     end
   end
 end
