@@ -29,10 +29,10 @@ RSpec.describe Session, type: :model do
 
   describe "#all_session_names" do
     it "gets all of the names of the sessions" do
-      sessiona = create(:session, name: "A")
-      sessionb = create(:session, name: "B")
-      sessionc = create(:session, name: "C")
-      sessiond = create(:session, name: "D")
+      create(:session, name: "A")
+      create(:session, name: "B")
+      create(:session, name: "C")
+      create(:session, name: "D")
       expect(Session.all_session_names).to contain_exactly("A", "B", "C", "D")
     end
   end

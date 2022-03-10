@@ -4,6 +4,7 @@ describe ApplicantPolicy do
   subject { described_class.new(user, applicant) }
 
   let(:applicant) { Applicant.create }
+
   context "being a guest" do
     let(:user) { build(:user, role: "guest") }
 

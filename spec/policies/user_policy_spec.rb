@@ -1,9 +1,10 @@
 require "rails_helper"
 
 describe UserPolicy do
-  subject { described_class.new(user, user2) }
+  subject { described_class.new(user, user_2) }
 
-  let(:user2) { User.create }
+  let(:user_2) { User.create }
+
   context "being a guest" do
     let(:user) { build(:user, role: "guest") }
 
