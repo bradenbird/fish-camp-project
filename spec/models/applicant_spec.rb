@@ -14,28 +14,28 @@ RSpec.describe Applicant, type: :model do
   end
 
   describe ".import" do
-    # testing for import goes here
-    # it "has a valid fixture" do
-    #   expect(build(:applicant.import, file: "../fixtures/fc_sample.csv")).to be_valid
-    # end
     before do
       ("A".."G").each { |letter| create(:session, name: letter) }
       file_path = "#{Rails.root}/spec/fixtures/fc_sample.csv"
       Applicant.import(file_path, ".csv")
     end
-    let(:applicant1) { Applicant.find_by(submission_id: 12255241) }
-    let(:applicant2) { Applicant.find_by(submission_id: 12389115) }
+
+    let(:applicant_1) { Applicant.find_by(submission_id: 12255241) }
+    let(:applicant_2) { Applicant.find_by(submission_id: 12389115) }
+
     it "imports first names properly" do
-      expect(applicant1.first_name).to eq("Brooke")
-      expect(applicant2.first_name).to eq("Corey")
+      expect(applicant_1.first_name).to eq("Brooke")
+      expect(applicant_2.first_name).to eq("Corey")
     end
+
     it "imports last names properly" do
-      expect(applicant1.last_name).to eq("Aaron")
-      expect(applicant2.last_name).to eq("Able")
+      expect(applicant_1.last_name).to eq("Aaron")
+      expect(applicant_2.last_name).to eq("Able")
     end
+
     it "creates the proper session_availabilities" do
-      session_names1 = applicant1.sessions.map { |s| s.name }
-      session_names2 = applicant2.sessions.map { |s| s.name }
+      session_names1 = applicant_1.sessions.map { |s| s.name }
+      session_names2 = applicant_2.sessions.map { |s| s.name }
       expect(session_names1).to contain_exactly("A", "B", "C", "D", "E", "F", "G")
       expect(session_names2).to contain_exactly("B", "C", "D", "E", "F", "G")
     end
@@ -43,27 +43,37 @@ RSpec.describe Applicant, type: :model do
 
   describe "#all_session_names" do
     it "gets all of the names of sessions that have applicants" do
-      applicant1 = create(:applicant)
-      applicant2 = create(:applicant)
-      sessiona = create(:session, name: "A")
-      sessionb = create(:session, name: "B")
-      sessionc = create(:session, name: "C")
-      sessione = create(:session, name: "E")
+      applicant_1 = create(:applicant)
+      applicant_2 = create(:applicant)
+      session_a = create(:session, name: "A")
+      session_b = create(:session, name: "B")
+      session_c = create(:session, name: "C")
+      session_e = create(:session, name: "E")
 
-      applicant1.session_availabilities.create!(session: sessiona)
-      applicant1.session_availabilities.create!(session: sessionb)
-      applicant1.session_availabilities.create!(session: sessionc)
-      applicant2.session_availabilities.create!(session: sessiona)
-      applicant2.session_availabilities.create!(session: sessione)
+      applicant_1.session_availabilities.create!(session: session_a)
+      applicant_1.session_availabilities.create!(session: session_b)
+      applicant_1.session_availabilities.create!(session: session_c)
+      applicant_2.session_availabilities.create!(session: session_a)
+      applicant_2.session_availabilities.create!(session: session_e)
       expect(Applicant.all_session_names).to contain_exactly("A", "B", "C", "E")
     end
   end
 
-  describe ".has_interviews?" do
-    let(:applicant) { create(:applicant, :with_interviews) }
+  describe "#has_interviews?" do
+    context "with interviews" do
+      let(:applicant) { create(:applicant, :with_interviews) }
 
-    it "should return true with an interview" do
-      expect(applicant.has_interviews?).to be true
+      it "should return true with an interview" do
+        expect(applicant.has_interviews?).to be true
+      end
+    end
+
+    context "without interviews" do
+      let(:applicant) { create(:applicant) }
+
+      it "should return true with an interview" do
+        expect(applicant.has_interviews?).to be false
+      end
     end
   end
 end
