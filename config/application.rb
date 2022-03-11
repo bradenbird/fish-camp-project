@@ -27,7 +27,5 @@ module FishCampProject
         request_specs: true
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
-
-    Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
   end
 end
