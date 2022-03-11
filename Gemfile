@@ -45,9 +45,7 @@ gem "jbuilder", "~> 2.5"
 # Use will_paginate for pagination
 gem "will_paginate"
 
-gem 'bootsnap', require: false
-
-gem 'dotenv-rails', groups: [:development, :test]
+gem "bootsnap", require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -62,6 +60,7 @@ group :development, :test do
   gem "rails-controller-testing"
   gem "rails-erd"
   gem "standard"
+  gem "dotenv-rails"
 end
 
 group :test do
